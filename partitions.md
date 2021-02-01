@@ -15,3 +15,5 @@ The following are the different collections. All collections have the same data,
 | AirlineData_ORIGIN_CITY_NAME_range | ORIGIN_CITY_NAME | range |
 | AirlineData_DEST_CITY_NAME | DEST_CITY_NAME | hashed |
 | AirlineData_DEST_CITY_NAME_range | DEST_CITY_NAME | range | 
+
+[Back to Overview](index.md)
