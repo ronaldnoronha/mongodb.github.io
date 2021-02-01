@@ -3,7 +3,7 @@
 - Query 1: For a given date, find all flights that are delayed by a given number of minutes or more. 
 ```
 db.getCollection('AirlineData').aggregate([
-{$match : { FL_DATE : '2020-10-31'}},
+{$match : { FL_DATE : ISODate('2020-10-31')}},
 {$match : { ARR_DELAY : { $gt : 10 }}}
 ])
 ```
