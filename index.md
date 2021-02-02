@@ -5,4 +5,4 @@
 3. [Collections/Partitions](partitions.md)
 4. [Query Run times](runtimes.md)
 5. [Query Costs](costs.md)
-6. [Query ExecutionStats](test_md.md)
+6. [Query ExecutionStats](execstats.md)
