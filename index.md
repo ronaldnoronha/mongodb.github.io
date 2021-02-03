@@ -9,3 +9,4 @@
 
 
 [Test](datatable.html)
+[Test](test.html)
