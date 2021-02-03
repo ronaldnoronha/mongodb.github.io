@@ -6,3 +6,6 @@
 4. [Query Run times](runtimes.md)
 5. [Query Costs](costs.md)
 6. [Query ExecutionStats](execstats.md)
+
+
+[Test](datatable.html)
