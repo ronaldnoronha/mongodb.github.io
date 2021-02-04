@@ -1,5 +1,9 @@
 # Query Cost Vector <a name="querycostvector"></a>
 
+![Costs](images/cost.jpg)
+
+
+
 - [AirlineData](#AirlineData)
 - [AirlineData_range](#AirlineData_range)
 - [AirlineData_FL_DATE](#AirlineData_FL_DATE)
