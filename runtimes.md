@@ -2,6 +2,6 @@
 
 # Query Runtimes 
 
-![Run Times](images/execTime.jpg
+![Run Times](images/execTime.jpg)
 
 [Back to Overview](index.md)
