@@ -7,6 +7,3 @@
 5. [Query Costs](costs.md)
 6. [Query ExecutionStats](execstats.md)
 
-
-[Test](datatable.html)
-[Test](test.html)
