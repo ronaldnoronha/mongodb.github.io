@@ -57,6 +57,99 @@
       "mergerPart": []
    },
    "shards": {
+      "shard03": {
+         "host": "localhost:27020",
+         "queryPlanner": {
+            "plannerVersion": 1,
+            "namespace": "SummerResearch.AirlineData",
+            "indexFilterSet": false,
+            "parsedQuery": {
+               "$and": [
+                  {
+                     "FL_DATE": {
+                        "$eq": "ISODate(\"2020-10-01\")"
+                     }
+                  },
+                  {
+                     "ARR_DELAY": {
+                        "$gt": 1000
+                     }
+                  }
+               ]
+            },
+            "optimizedPipeline": true,
+            "winningPlan": {
+               "stage": "SHARDING_FILTER",
+               "inputStage": {
+                  "stage": "COLLSCAN",
+                  "filter": {
+                     "$and": [
+                        {
+                           "FL_DATE": {
+                              "$eq": "ISODate(\"2020-10-01\")"
+                           }
+                        },
+                        {
+                           "ARR_DELAY": {
+                              "$gt": 1000
+                           }
+                        }
+                     ]
+                  },
+                  "direction": "forward"
+               }
+            },
+            "rejectedPlans": []
+         },
+         "executionStats": {
+            "executionSuccess": true,
+            "nReturned": 0,
+            "executionTimeMillis": 243,
+            "totalKeysExamined": 0,
+            "totalDocsExamined": 124866,
+            "executionStages": {
+               "stage": "SHARDING_FILTER",
+               "nReturned": 0,
+               "executionTimeMillisEstimate": 36,
+               "works": 124868,
+               "advanced": 0,
+               "needTime": 124867,
+               "needYield": 0,
+               "saveState": 124,
+               "restoreState": 124,
+               "isEOF": 1,
+               "chunkSkips": 0,
+               "inputStage": {
+                  "stage": "COLLSCAN",
+                  "filter": {
+                     "$and": [
+                        {
+                           "FL_DATE": {
+                              "$eq": "ISODate(\"2020-10-01\")"
+                           }
+                        },
+                        {
+                           "ARR_DELAY": {
+                              "$gt": 1000
+                           }
+                        }
+                     ]
+                  },
+                  "nReturned": 0,
+                  "executionTimeMillisEstimate": 36,
+                  "works": 124868,
+                  "advanced": 0,
+                  "needTime": 124867,
+                  "needYield": 0,
+                  "saveState": 124,
+                  "restoreState": 124,
+                  "isEOF": 1,
+                  "direction": "forward",
+                  "docsExamined": 124866
+               }
+            }
+         }
+      },
       "shard02": {
          "host": "localhost:27019",
          "queryPlanner": {
@@ -104,13 +197,13 @@
          "executionStats": {
             "executionSuccess": true,
             "nReturned": 0,
-            "executionTimeMillis": 423,
+            "executionTimeMillis": 248,
             "totalKeysExamined": 0,
             "totalDocsExamined": 124977,
             "executionStages": {
                "stage": "SHARDING_FILTER",
                "nReturned": 0,
-               "executionTimeMillisEstimate": 90,
+               "executionTimeMillisEstimate": 32,
                "works": 124979,
                "advanced": 0,
                "needTime": 124978,
@@ -136,7 +229,7 @@
                      ]
                   },
                   "nReturned": 0,
-                  "executionTimeMillisEstimate": 89,
+                  "executionTimeMillisEstimate": 32,
                   "works": 124979,
                   "advanced": 0,
                   "needTime": 124978,
@@ -197,13 +290,13 @@
          "executionStats": {
             "executionSuccess": true,
             "nReturned": 0,
-            "executionTimeMillis": 435,
+            "executionTimeMillis": 261,
             "totalKeysExamined": 0,
             "totalDocsExamined": 124695,
             "executionStages": {
                "stage": "SHARDING_FILTER",
                "nReturned": 0,
-               "executionTimeMillisEstimate": 111,
+               "executionTimeMillisEstimate": 39,
                "works": 124697,
                "advanced": 0,
                "needTime": 124696,
@@ -229,7 +322,7 @@
                      ]
                   },
                   "nReturned": 0,
-                  "executionTimeMillisEstimate": 111,
+                  "executionTimeMillisEstimate": 39,
                   "works": 124697,
                   "advanced": 0,
                   "needTime": 124696,
@@ -242,113 +335,20 @@
                }
             }
          }
-      },
-      "shard03": {
-         "host": "localhost:27020",
-         "queryPlanner": {
-            "plannerVersion": 1,
-            "namespace": "SummerResearch.AirlineData",
-            "indexFilterSet": false,
-            "parsedQuery": {
-               "$and": [
-                  {
-                     "FL_DATE": {
-                        "$eq": "ISODate(\"2020-10-01\")"
-                     }
-                  },
-                  {
-                     "ARR_DELAY": {
-                        "$gt": 1000
-                     }
-                  }
-               ]
-            },
-            "optimizedPipeline": true,
-            "winningPlan": {
-               "stage": "SHARDING_FILTER",
-               "inputStage": {
-                  "stage": "COLLSCAN",
-                  "filter": {
-                     "$and": [
-                        {
-                           "FL_DATE": {
-                              "$eq": "ISODate(\"2020-10-01\")"
-                           }
-                        },
-                        {
-                           "ARR_DELAY": {
-                              "$gt": 1000
-                           }
-                        }
-                     ]
-                  },
-                  "direction": "forward"
-               }
-            },
-            "rejectedPlans": []
-         },
-         "executionStats": {
-            "executionSuccess": true,
-            "nReturned": 0,
-            "executionTimeMillis": 459,
-            "totalKeysExamined": 0,
-            "totalDocsExamined": 124866,
-            "executionStages": {
-               "stage": "SHARDING_FILTER",
-               "nReturned": 0,
-               "executionTimeMillisEstimate": 99,
-               "works": 124868,
-               "advanced": 0,
-               "needTime": 124867,
-               "needYield": 0,
-               "saveState": 124,
-               "restoreState": 124,
-               "isEOF": 1,
-               "chunkSkips": 0,
-               "inputStage": {
-                  "stage": "COLLSCAN",
-                  "filter": {
-                     "$and": [
-                        {
-                           "FL_DATE": {
-                              "$eq": "ISODate(\"2020-10-01\")"
-                           }
-                        },
-                        {
-                           "ARR_DELAY": {
-                              "$gt": 1000
-                           }
-                        }
-                     ]
-                  },
-                  "nReturned": 0,
-                  "executionTimeMillisEstimate": 97,
-                  "works": 124868,
-                  "advanced": 0,
-                  "needTime": 124867,
-                  "needYield": 0,
-                  "saveState": 124,
-                  "restoreState": 124,
-                  "isEOF": 1,
-                  "direction": "forward",
-                  "docsExamined": 124866
-               }
-            }
-         }
       }
    },
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232226,
+         "t": 1612445241,
          "i": 1
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232226,
-            "i": 1
+            "t": 1612445242,
+            "i": 3
          }
       },
       "signature": {
@@ -450,124 +450,6 @@
       ]
    },
    "shards": {
-      "shard03": {
-         "host": "localhost:27020",
-         "stages": [
-            {
-               "$cursor": {
-                  "queryPlanner": {
-                     "plannerVersion": 1,
-                     "namespace": "SummerResearch.AirlineData",
-                     "indexFilterSet": false,
-                     "parsedQuery": {},
-                     "queryHash": "7759D437",
-                     "planCacheKey": "7759D437",
-                     "winningPlan": {
-                        "stage": "PROJECTION_SIMPLE",
-                        "transformBy": {
-                           "ARR_DELAY": 1,
-                           "MKT_UNIQUE_CARRIER": 1,
-                           "_id": 0
-                        },
-                        "inputStage": {
-                           "stage": "SHARDING_FILTER",
-                           "inputStage": {
-                              "stage": "COLLSCAN",
-                              "direction": "forward"
-                           }
-                        }
-                     },
-                     "rejectedPlans": []
-                  },
-                  "executionStats": {
-                     "executionSuccess": true,
-                     "nReturned": 124866,
-                     "executionTimeMillis": 797,
-                     "totalKeysExamined": 0,
-                     "totalDocsExamined": 124866,
-                     "executionStages": {
-                        "stage": "PROJECTION_SIMPLE",
-                        "nReturned": 124866,
-                        "executionTimeMillisEstimate": 322,
-                        "works": 124868,
-                        "advanced": 124866,
-                        "needTime": 1,
-                        "needYield": 0,
-                        "saveState": 135,
-                        "restoreState": 135,
-                        "isEOF": 1,
-                        "transformBy": {
-                           "ARR_DELAY": 1,
-                           "MKT_UNIQUE_CARRIER": 1,
-                           "_id": 0
-                        },
-                        "inputStage": {
-                           "stage": "SHARDING_FILTER",
-                           "nReturned": 124866,
-                           "executionTimeMillisEstimate": 300,
-                           "works": 124868,
-                           "advanced": 124866,
-                           "needTime": 1,
-                           "needYield": 0,
-                           "saveState": 135,
-                           "restoreState": 135,
-                           "isEOF": 1,
-                           "chunkSkips": 0,
-                           "inputStage": {
-                              "stage": "COLLSCAN",
-                              "nReturned": 124866,
-                              "executionTimeMillisEstimate": 32,
-                              "works": 124868,
-                              "advanced": 124866,
-                              "needTime": 1,
-                              "needYield": 0,
-                              "saveState": 135,
-                              "restoreState": 135,
-                              "isEOF": 1,
-                              "direction": "forward",
-                              "docsExamined": 124866
-                           }
-                        }
-                     }
-                  }
-               },
-               "nReturned": 124866,
-               "executionTimeMillisEstimate": 674
-            },
-            {
-               "$group": {
-                  "_id": "$MKT_UNIQUE_CARRIER",
-                  "late": {
-                     "$sum": {
-                        "$cond": [
-                           {
-                              "$gt": [
-                                 "$ARR_DELAY",
-                                 {
-                                    "$const": 0
-                                 }
-                              ]
-                           },
-                           {
-                              "$const": 1
-                           },
-                           {
-                              "$const": 0
-                           }
-                        ]
-                     }
-                  },
-                  "total": {
-                     "$sum": {
-                        "$const": 1
-                     }
-                  }
-               },
-               "nReturned": 10,
-               "executionTimeMillisEstimate": 789
-            }
-         ]
-      },
       "shard01": {
          "host": "localhost:27018",
          "stages": [
@@ -600,19 +482,19 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 124695,
-                     "executionTimeMillis": 851,
+                     "executionTimeMillis": 317,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 124695,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 124695,
-                        "executionTimeMillisEstimate": 338,
+                        "executionTimeMillisEstimate": 21,
                         "works": 124697,
                         "advanced": 124695,
                         "needTime": 1,
                         "needYield": 0,
-                        "saveState": 135,
-                        "restoreState": 135,
+                        "saveState": 131,
+                        "restoreState": 131,
                         "isEOF": 1,
                         "transformBy": {
                            "ARR_DELAY": 1,
@@ -622,25 +504,25 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 124695,
-                           "executionTimeMillisEstimate": 322,
+                           "executionTimeMillisEstimate": 14,
                            "works": 124697,
                            "advanced": 124695,
                            "needTime": 1,
                            "needYield": 0,
-                           "saveState": 135,
-                           "restoreState": 135,
+                           "saveState": 131,
+                           "restoreState": 131,
                            "isEOF": 1,
                            "chunkSkips": 0,
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 124695,
-                              "executionTimeMillisEstimate": 19,
+                              "executionTimeMillisEstimate": 4,
                               "works": 124697,
                               "advanced": 124695,
                               "needTime": 1,
                               "needYield": 0,
-                              "saveState": 135,
-                              "restoreState": 135,
+                              "saveState": 131,
+                              "restoreState": 131,
                               "isEOF": 1,
                               "direction": "forward",
                               "docsExamined": 124695
@@ -650,7 +532,7 @@
                   }
                },
                "nReturned": 124695,
-               "executionTimeMillisEstimate": 729
+               "executionTimeMillisEstimate": 247
             },
             {
                "$group": {
@@ -682,7 +564,125 @@
                   }
                },
                "nReturned": 10,
-               "executionTimeMillisEstimate": 843
+               "executionTimeMillisEstimate": 316
+            }
+         ]
+      },
+      "shard03": {
+         "host": "localhost:27020",
+         "stages": [
+            {
+               "$cursor": {
+                  "queryPlanner": {
+                     "plannerVersion": 1,
+                     "namespace": "SummerResearch.AirlineData",
+                     "indexFilterSet": false,
+                     "parsedQuery": {},
+                     "queryHash": "7759D437",
+                     "planCacheKey": "7759D437",
+                     "winningPlan": {
+                        "stage": "PROJECTION_SIMPLE",
+                        "transformBy": {
+                           "ARR_DELAY": 1,
+                           "MKT_UNIQUE_CARRIER": 1,
+                           "_id": 0
+                        },
+                        "inputStage": {
+                           "stage": "SHARDING_FILTER",
+                           "inputStage": {
+                              "stage": "COLLSCAN",
+                              "direction": "forward"
+                           }
+                        }
+                     },
+                     "rejectedPlans": []
+                  },
+                  "executionStats": {
+                     "executionSuccess": true,
+                     "nReturned": 124866,
+                     "executionTimeMillis": 310,
+                     "totalKeysExamined": 0,
+                     "totalDocsExamined": 124866,
+                     "executionStages": {
+                        "stage": "PROJECTION_SIMPLE",
+                        "nReturned": 124866,
+                        "executionTimeMillisEstimate": 23,
+                        "works": 124868,
+                        "advanced": 124866,
+                        "needTime": 1,
+                        "needYield": 0,
+                        "saveState": 131,
+                        "restoreState": 131,
+                        "isEOF": 1,
+                        "transformBy": {
+                           "ARR_DELAY": 1,
+                           "MKT_UNIQUE_CARRIER": 1,
+                           "_id": 0
+                        },
+                        "inputStage": {
+                           "stage": "SHARDING_FILTER",
+                           "nReturned": 124866,
+                           "executionTimeMillisEstimate": 15,
+                           "works": 124868,
+                           "advanced": 124866,
+                           "needTime": 1,
+                           "needYield": 0,
+                           "saveState": 131,
+                           "restoreState": 131,
+                           "isEOF": 1,
+                           "chunkSkips": 0,
+                           "inputStage": {
+                              "stage": "COLLSCAN",
+                              "nReturned": 124866,
+                              "executionTimeMillisEstimate": 3,
+                              "works": 124868,
+                              "advanced": 124866,
+                              "needTime": 1,
+                              "needYield": 0,
+                              "saveState": 131,
+                              "restoreState": 131,
+                              "isEOF": 1,
+                              "direction": "forward",
+                              "docsExamined": 124866
+                           }
+                        }
+                     }
+                  }
+               },
+               "nReturned": 124866,
+               "executionTimeMillisEstimate": 243
+            },
+            {
+               "$group": {
+                  "_id": "$MKT_UNIQUE_CARRIER",
+                  "late": {
+                     "$sum": {
+                        "$cond": [
+                           {
+                              "$gt": [
+                                 "$ARR_DELAY",
+                                 {
+                                    "$const": 0
+                                 }
+                              ]
+                           },
+                           {
+                              "$const": 1
+                           },
+                           {
+                              "$const": 0
+                           }
+                        ]
+                     }
+                  },
+                  "total": {
+                     "$sum": {
+                        "$const": 1
+                     }
+                  }
+               },
+               "nReturned": 10,
+               "executionTimeMillisEstimate": 305
             }
          ]
       },
@@ -718,19 +718,19 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 124977,
-                     "executionTimeMillis": 896,
+                     "executionTimeMillis": 320,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 124977,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 124977,
-                        "executionTimeMillisEstimate": 403,
+                        "executionTimeMillisEstimate": 17,
                         "works": 124979,
                         "advanced": 124977,
                         "needTime": 1,
                         "needYield": 0,
-                        "saveState": 138,
-                        "restoreState": 138,
+                        "saveState": 131,
+                        "restoreState": 131,
                         "isEOF": 1,
                         "transformBy": {
                            "ARR_DELAY": 1,
@@ -740,25 +740,25 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 124977,
-                           "executionTimeMillisEstimate": 398,
+                           "executionTimeMillisEstimate": 16,
                            "works": 124979,
                            "advanced": 124977,
                            "needTime": 1,
                            "needYield": 0,
-                           "saveState": 138,
-                           "restoreState": 138,
+                           "saveState": 131,
+                           "restoreState": 131,
                            "isEOF": 1,
                            "chunkSkips": 0,
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 124977,
-                              "executionTimeMillisEstimate": 12,
+                              "executionTimeMillisEstimate": 3,
                               "works": 124979,
                               "advanced": 124977,
                               "needTime": 1,
                               "needYield": 0,
-                              "saveState": 138,
-                              "restoreState": 138,
+                              "saveState": 131,
+                              "restoreState": 131,
                               "isEOF": 1,
                               "direction": "forward",
                               "docsExamined": 124977
@@ -768,7 +768,7 @@
                   }
                },
                "nReturned": 124977,
-               "executionTimeMillisEstimate": 781
+               "executionTimeMillisEstimate": 245
             },
             {
                "$group": {
@@ -800,7 +800,7 @@
                   }
                },
                "nReturned": 10,
-               "executionTimeMillisEstimate": 884
+               "executionTimeMillisEstimate": 315
             }
          ]
       }
@@ -808,15 +808,15 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232226,
+         "t": 1612445241,
          "i": 1
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232226,
-            "i": 1
+            "t": 1612445242,
+            "i": 3
          }
       },
       "signature": {
@@ -918,124 +918,6 @@
       ]
    },
    "shards": {
-      "shard01": {
-         "host": "localhost:27018",
-         "stages": [
-            {
-               "$cursor": {
-                  "queryPlanner": {
-                     "plannerVersion": 1,
-                     "namespace": "SummerResearch.AirlineData",
-                     "indexFilterSet": false,
-                     "parsedQuery": {},
-                     "queryHash": "422FF7AE",
-                     "planCacheKey": "422FF7AE",
-                     "winningPlan": {
-                        "stage": "PROJECTION_SIMPLE",
-                        "transformBy": {
-                           "ARR_DELAY": 1,
-                           "ORIGIN_CITY_NAME": 1,
-                           "_id": 0
-                        },
-                        "inputStage": {
-                           "stage": "SHARDING_FILTER",
-                           "inputStage": {
-                              "stage": "COLLSCAN",
-                              "direction": "forward"
-                           }
-                        }
-                     },
-                     "rejectedPlans": []
-                  },
-                  "executionStats": {
-                     "executionSuccess": true,
-                     "nReturned": 124695,
-                     "executionTimeMillis": 440,
-                     "totalKeysExamined": 0,
-                     "totalDocsExamined": 124695,
-                     "executionStages": {
-                        "stage": "PROJECTION_SIMPLE",
-                        "nReturned": 124695,
-                        "executionTimeMillisEstimate": 51,
-                        "works": 124697,
-                        "advanced": 124695,
-                        "needTime": 1,
-                        "needYield": 0,
-                        "saveState": 130,
-                        "restoreState": 130,
-                        "isEOF": 1,
-                        "transformBy": {
-                           "ARR_DELAY": 1,
-                           "ORIGIN_CITY_NAME": 1,
-                           "_id": 0
-                        },
-                        "inputStage": {
-                           "stage": "SHARDING_FILTER",
-                           "nReturned": 124695,
-                           "executionTimeMillisEstimate": 38,
-                           "works": 124697,
-                           "advanced": 124695,
-                           "needTime": 1,
-                           "needYield": 0,
-                           "saveState": 130,
-                           "restoreState": 130,
-                           "isEOF": 1,
-                           "chunkSkips": 0,
-                           "inputStage": {
-                              "stage": "COLLSCAN",
-                              "nReturned": 124695,
-                              "executionTimeMillisEstimate": 7,
-                              "works": 124697,
-                              "advanced": 124695,
-                              "needTime": 1,
-                              "needYield": 0,
-                              "saveState": 130,
-                              "restoreState": 130,
-                              "isEOF": 1,
-                              "direction": "forward",
-                              "docsExamined": 124695
-                           }
-                        }
-                     }
-                  }
-               },
-               "nReturned": 124695,
-               "executionTimeMillisEstimate": 324
-            },
-            {
-               "$group": {
-                  "_id": "$ORIGIN_CITY_NAME",
-                  "late": {
-                     "$sum": {
-                        "$cond": [
-                           {
-                              "$gt": [
-                                 "$ARR_DELAY",
-                                 {
-                                    "$const": 0
-                                 }
-                              ]
-                           },
-                           {
-                              "$const": 1
-                           },
-                           {
-                              "$const": 0
-                           }
-                        ]
-                     }
-                  },
-                  "total": {
-                     "$sum": {
-                        "$const": 1
-                     }
-                  }
-               },
-               "nReturned": 359,
-               "executionTimeMillisEstimate": 439
-            }
-         ]
-      },
       "shard03": {
          "host": "localhost:27020",
          "stages": [
@@ -1068,13 +950,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 124866,
-                     "executionTimeMillis": 440,
+                     "executionTimeMillis": 291,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 124866,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 124866,
-                        "executionTimeMillisEstimate": 47,
+                        "executionTimeMillisEstimate": 18,
                         "works": 124868,
                         "advanced": 124866,
                         "needTime": 1,
@@ -1090,7 +972,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 124866,
-                           "executionTimeMillisEstimate": 40,
+                           "executionTimeMillisEstimate": 14,
                            "works": 124868,
                            "advanced": 124866,
                            "needTime": 1,
@@ -1102,7 +984,7 @@
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 124866,
-                              "executionTimeMillisEstimate": 10,
+                              "executionTimeMillisEstimate": 0,
                               "works": 124868,
                               "advanced": 124866,
                               "needTime": 1,
@@ -1118,7 +1000,7 @@
                   }
                },
                "nReturned": 124866,
-               "executionTimeMillisEstimate": 326
+               "executionTimeMillisEstimate": 202
             },
             {
                "$group": {
@@ -1150,7 +1032,125 @@
                   }
                },
                "nReturned": 359,
-               "executionTimeMillisEstimate": 437
+               "executionTimeMillisEstimate": 288
+            }
+         ]
+      },
+      "shard01": {
+         "host": "localhost:27018",
+         "stages": [
+            {
+               "$cursor": {
+                  "queryPlanner": {
+                     "plannerVersion": 1,
+                     "namespace": "SummerResearch.AirlineData",
+                     "indexFilterSet": false,
+                     "parsedQuery": {},
+                     "queryHash": "422FF7AE",
+                     "planCacheKey": "422FF7AE",
+                     "winningPlan": {
+                        "stage": "PROJECTION_SIMPLE",
+                        "transformBy": {
+                           "ARR_DELAY": 1,
+                           "ORIGIN_CITY_NAME": 1,
+                           "_id": 0
+                        },
+                        "inputStage": {
+                           "stage": "SHARDING_FILTER",
+                           "inputStage": {
+                              "stage": "COLLSCAN",
+                              "direction": "forward"
+                           }
+                        }
+                     },
+                     "rejectedPlans": []
+                  },
+                  "executionStats": {
+                     "executionSuccess": true,
+                     "nReturned": 124695,
+                     "executionTimeMillis": 300,
+                     "totalKeysExamined": 0,
+                     "totalDocsExamined": 124695,
+                     "executionStages": {
+                        "stage": "PROJECTION_SIMPLE",
+                        "nReturned": 124695,
+                        "executionTimeMillisEstimate": 18,
+                        "works": 124697,
+                        "advanced": 124695,
+                        "needTime": 1,
+                        "needYield": 0,
+                        "saveState": 130,
+                        "restoreState": 130,
+                        "isEOF": 1,
+                        "transformBy": {
+                           "ARR_DELAY": 1,
+                           "ORIGIN_CITY_NAME": 1,
+                           "_id": 0
+                        },
+                        "inputStage": {
+                           "stage": "SHARDING_FILTER",
+                           "nReturned": 124695,
+                           "executionTimeMillisEstimate": 15,
+                           "works": 124697,
+                           "advanced": 124695,
+                           "needTime": 1,
+                           "needYield": 0,
+                           "saveState": 130,
+                           "restoreState": 130,
+                           "isEOF": 1,
+                           "chunkSkips": 0,
+                           "inputStage": {
+                              "stage": "COLLSCAN",
+                              "nReturned": 124695,
+                              "executionTimeMillisEstimate": 2,
+                              "works": 124697,
+                              "advanced": 124695,
+                              "needTime": 1,
+                              "needYield": 0,
+                              "saveState": 130,
+                              "restoreState": 130,
+                              "isEOF": 1,
+                              "direction": "forward",
+                              "docsExamined": 124695
+                           }
+                        }
+                     }
+                  }
+               },
+               "nReturned": 124695,
+               "executionTimeMillisEstimate": 228
+            },
+            {
+               "$group": {
+                  "_id": "$ORIGIN_CITY_NAME",
+                  "late": {
+                     "$sum": {
+                        "$cond": [
+                           {
+                              "$gt": [
+                                 "$ARR_DELAY",
+                                 {
+                                    "$const": 0
+                                 }
+                              ]
+                           },
+                           {
+                              "$const": 1
+                           },
+                           {
+                              "$const": 0
+                           }
+                        ]
+                     }
+                  },
+                  "total": {
+                     "$sum": {
+                        "$const": 1
+                     }
+                  }
+               },
+               "nReturned": 359,
+               "executionTimeMillisEstimate": 292
             }
          ]
       },
@@ -1186,13 +1186,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 124977,
-                     "executionTimeMillis": 443,
+                     "executionTimeMillis": 303,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 124977,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 124977,
-                        "executionTimeMillisEstimate": 37,
+                        "executionTimeMillisEstimate": 18,
                         "works": 124979,
                         "advanced": 124977,
                         "needTime": 1,
@@ -1208,7 +1208,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 124977,
-                           "executionTimeMillisEstimate": 30,
+                           "executionTimeMillisEstimate": 16,
                            "works": 124979,
                            "advanced": 124977,
                            "needTime": 1,
@@ -1220,7 +1220,7 @@
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 124977,
-                              "executionTimeMillisEstimate": 11,
+                              "executionTimeMillisEstimate": 4,
                               "works": 124979,
                               "advanced": 124977,
                               "needTime": 1,
@@ -1236,7 +1236,7 @@
                   }
                },
                "nReturned": 124977,
-               "executionTimeMillisEstimate": 321
+               "executionTimeMillisEstimate": 223
             },
             {
                "$group": {
@@ -1268,7 +1268,7 @@
                   }
                },
                "nReturned": 358,
-               "executionTimeMillisEstimate": 439
+               "executionTimeMillisEstimate": 292
             }
          ]
       }
@@ -1276,15 +1276,15 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232226,
+         "t": 1612445241,
          "i": 1
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232226,
-            "i": 1
+            "t": 1612445242,
+            "i": 3
          }
       },
       "signature": {
@@ -1418,13 +1418,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 124866,
-                     "executionTimeMillis": 341,
+                     "executionTimeMillis": 297,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 124866,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 124866,
-                        "executionTimeMillisEstimate": 24,
+                        "executionTimeMillisEstimate": 13,
                         "works": 124868,
                         "advanced": 124866,
                         "needTime": 1,
@@ -1440,7 +1440,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 124866,
-                           "executionTimeMillisEstimate": 20,
+                           "executionTimeMillisEstimate": 13,
                            "works": 124868,
                            "advanced": 124866,
                            "needTime": 1,
@@ -1452,7 +1452,7 @@
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 124866,
-                              "executionTimeMillisEstimate": 5,
+                              "executionTimeMillisEstimate": 6,
                               "works": 124868,
                               "advanced": 124866,
                               "needTime": 1,
@@ -1468,7 +1468,7 @@
                   }
                },
                "nReturned": 124866,
-               "executionTimeMillisEstimate": 242
+               "executionTimeMillisEstimate": 219
             },
             {
                "$group": {
@@ -1500,7 +1500,7 @@
                   }
                },
                "nReturned": 359,
-               "executionTimeMillisEstimate": 340
+               "executionTimeMillisEstimate": 289
             }
          ]
       },
@@ -1536,13 +1536,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 124977,
-                     "executionTimeMillis": 362,
+                     "executionTimeMillis": 308,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 124977,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 124977,
-                        "executionTimeMillisEstimate": 45,
+                        "executionTimeMillisEstimate": 21,
                         "works": 124979,
                         "advanced": 124977,
                         "needTime": 1,
@@ -1558,7 +1558,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 124977,
-                           "executionTimeMillisEstimate": 40,
+                           "executionTimeMillisEstimate": 14,
                            "works": 124979,
                            "advanced": 124977,
                            "needTime": 1,
@@ -1570,7 +1570,7 @@
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 124977,
-                              "executionTimeMillisEstimate": 3,
+                              "executionTimeMillisEstimate": 4,
                               "works": 124979,
                               "advanced": 124977,
                               "needTime": 1,
@@ -1586,7 +1586,7 @@
                   }
                },
                "nReturned": 124977,
-               "executionTimeMillisEstimate": 267
+               "executionTimeMillisEstimate": 222
             },
             {
                "$group": {
@@ -1618,7 +1618,7 @@
                   }
                },
                "nReturned": 359,
-               "executionTimeMillisEstimate": 357
+               "executionTimeMillisEstimate": 301
             }
          ]
       },
@@ -1654,19 +1654,19 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 124695,
-                     "executionTimeMillis": 579,
+                     "executionTimeMillis": 307,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 124695,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 124695,
-                        "executionTimeMillisEstimate": 207,
+                        "executionTimeMillisEstimate": 20,
                         "works": 124697,
                         "advanced": 124695,
                         "needTime": 1,
                         "needYield": 0,
-                        "saveState": 136,
-                        "restoreState": 136,
+                        "saveState": 132,
+                        "restoreState": 132,
                         "isEOF": 1,
                         "transformBy": {
                            "ARR_DELAY": 1,
@@ -1676,25 +1676,25 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 124695,
-                           "executionTimeMillisEstimate": 180,
+                           "executionTimeMillisEstimate": 20,
                            "works": 124697,
                            "advanced": 124695,
                            "needTime": 1,
                            "needYield": 0,
-                           "saveState": 136,
-                           "restoreState": 136,
+                           "saveState": 132,
+                           "restoreState": 132,
                            "isEOF": 1,
                            "chunkSkips": 0,
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 124695,
-                              "executionTimeMillisEstimate": 12,
+                              "executionTimeMillisEstimate": 5,
                               "works": 124697,
                               "advanced": 124695,
                               "needTime": 1,
                               "needYield": 0,
-                              "saveState": 136,
-                              "restoreState": 136,
+                              "saveState": 132,
+                              "restoreState": 132,
                               "isEOF": 1,
                               "direction": "forward",
                               "docsExamined": 124695
@@ -1704,7 +1704,7 @@
                   }
                },
                "nReturned": 124695,
-               "executionTimeMillisEstimate": 467
+               "executionTimeMillisEstimate": 224
             },
             {
                "$group": {
@@ -1736,7 +1736,7 @@
                   }
                },
                "nReturned": 359,
-               "executionTimeMillisEstimate": 573
+               "executionTimeMillisEstimate": 302
             }
          ]
       }
@@ -1744,15 +1744,15 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232226,
+         "t": 1612445241,
          "i": 1
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232230,
-            "i": 1
+            "t": 1612445242,
+            "i": 3
          }
       },
       "signature": {
@@ -1827,8 +1827,8 @@
       ]
    },
    "shards": {
-      "shard01": {
-         "host": "localhost:27018",
+      "shard03": {
+         "host": "localhost:27020",
          "stages": [
             {
                "$cursor": {
@@ -1867,17 +1867,17 @@
                   },
                   "executionStats": {
                      "executionSuccess": true,
-                     "nReturned": 26092,
-                     "executionTimeMillis": 154,
+                     "nReturned": 26362,
+                     "executionTimeMillis": 117,
                      "totalKeysExamined": 0,
-                     "totalDocsExamined": 124695,
+                     "totalDocsExamined": 124866,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
-                        "nReturned": 26092,
-                        "executionTimeMillisEstimate": 12,
-                        "works": 124697,
-                        "advanced": 26092,
-                        "needTime": 98604,
+                        "nReturned": 26362,
+                        "executionTimeMillisEstimate": 5,
+                        "works": 124868,
+                        "advanced": 26362,
+                        "needTime": 98505,
                         "needYield": 0,
                         "saveState": 125,
                         "restoreState": 125,
@@ -1889,11 +1889,11 @@
                         },
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
-                           "nReturned": 26092,
-                           "executionTimeMillisEstimate": 11,
-                           "works": 124697,
-                           "advanced": 26092,
-                           "needTime": 98604,
+                           "nReturned": 26362,
+                           "executionTimeMillisEstimate": 5,
+                           "works": 124868,
+                           "advanced": 26362,
+                           "needTime": 98505,
                            "needYield": 0,
                            "saveState": 125,
                            "restoreState": 125,
@@ -1906,24 +1906,24 @@
                                     "$gt": 0
                                  }
                               },
-                              "nReturned": 26092,
-                              "executionTimeMillisEstimate": 11,
-                              "works": 124697,
-                              "advanced": 26092,
-                              "needTime": 98604,
+                              "nReturned": 26362,
+                              "executionTimeMillisEstimate": 3,
+                              "works": 124868,
+                              "advanced": 26362,
+                              "needTime": 98505,
                               "needYield": 0,
                               "saveState": 125,
                               "restoreState": 125,
                               "isEOF": 1,
                               "direction": "forward",
-                              "docsExamined": 124695
+                              "docsExamined": 124866
                            }
                         }
                      }
                   }
                },
-               "nReturned": 26092,
-               "executionTimeMillisEstimate": 121
+               "nReturned": 26362,
+               "executionTimeMillisEstimate": 96
             },
             {
                "$group": {
@@ -1938,8 +1938,8 @@
                      "$min": "$ARR_DELAY"
                   }
                },
-               "nReturned": 348,
-               "executionTimeMillisEstimate": 153
+               "nReturned": 347,
+               "executionTimeMillisEstimate": 108
             }
          ]
       },
@@ -1984,13 +1984,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 26516,
-                     "executionTimeMillis": 156,
+                     "executionTimeMillis": 121,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 124977,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 26516,
-                        "executionTimeMillisEstimate": 12,
+                        "executionTimeMillisEstimate": 7,
                         "works": 124979,
                         "advanced": 26516,
                         "needTime": 98462,
@@ -2006,7 +2006,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 26516,
-                           "executionTimeMillisEstimate": 10,
+                           "executionTimeMillisEstimate": 6,
                            "works": 124979,
                            "advanced": 26516,
                            "needTime": 98462,
@@ -2023,7 +2023,7 @@
                                  }
                               },
                               "nReturned": 26516,
-                              "executionTimeMillisEstimate": 9,
+                              "executionTimeMillisEstimate": 2,
                               "works": 124979,
                               "advanced": 26516,
                               "needTime": 98462,
@@ -2039,7 +2039,7 @@
                   }
                },
                "nReturned": 26516,
-               "executionTimeMillisEstimate": 122
+               "executionTimeMillisEstimate": 98
             },
             {
                "$group": {
@@ -2055,12 +2055,12 @@
                   }
                },
                "nReturned": 343,
-               "executionTimeMillisEstimate": 151
+               "executionTimeMillisEstimate": 115
             }
          ]
       },
-      "shard03": {
-         "host": "localhost:27020",
+      "shard01": {
+         "host": "localhost:27018",
          "stages": [
             {
                "$cursor": {
@@ -2099,17 +2099,17 @@
                   },
                   "executionStats": {
                      "executionSuccess": true,
-                     "nReturned": 26362,
-                     "executionTimeMillis": 158,
+                     "nReturned": 26092,
+                     "executionTimeMillis": 125,
                      "totalKeysExamined": 0,
-                     "totalDocsExamined": 124866,
+                     "totalDocsExamined": 124695,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
-                        "nReturned": 26362,
-                        "executionTimeMillisEstimate": 8,
-                        "works": 124868,
-                        "advanced": 26362,
-                        "needTime": 98505,
+                        "nReturned": 26092,
+                        "executionTimeMillisEstimate": 6,
+                        "works": 124697,
+                        "advanced": 26092,
+                        "needTime": 98604,
                         "needYield": 0,
                         "saveState": 125,
                         "restoreState": 125,
@@ -2121,11 +2121,11 @@
                         },
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
-                           "nReturned": 26362,
-                           "executionTimeMillisEstimate": 6,
-                           "works": 124868,
-                           "advanced": 26362,
-                           "needTime": 98505,
+                           "nReturned": 26092,
+                           "executionTimeMillisEstimate": 5,
+                           "works": 124697,
+                           "advanced": 26092,
+                           "needTime": 98604,
                            "needYield": 0,
                            "saveState": 125,
                            "restoreState": 125,
@@ -2138,24 +2138,24 @@
                                     "$gt": 0
                                  }
                               },
-                              "nReturned": 26362,
-                              "executionTimeMillisEstimate": 6,
-                              "works": 124868,
-                              "advanced": 26362,
-                              "needTime": 98505,
+                              "nReturned": 26092,
+                              "executionTimeMillisEstimate": 3,
+                              "works": 124697,
+                              "advanced": 26092,
+                              "needTime": 98604,
                               "needYield": 0,
                               "saveState": 125,
                               "restoreState": 125,
                               "isEOF": 1,
                               "direction": "forward",
-                              "docsExamined": 124866
+                              "docsExamined": 124695
                            }
                         }
                      }
                   }
                },
-               "nReturned": 26362,
-               "executionTimeMillisEstimate": 125
+               "nReturned": 26092,
+               "executionTimeMillisEstimate": 104
             },
             {
                "$group": {
@@ -2170,8 +2170,8 @@
                      "$min": "$ARR_DELAY"
                   }
                },
-               "nReturned": 347,
-               "executionTimeMillisEstimate": 148
+               "nReturned": 348,
+               "executionTimeMillisEstimate": 124
             }
          ]
       }
@@ -2179,15 +2179,15 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232226,
+         "t": 1612445241,
          "i": 1
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232230,
-            "i": 1
+            "t": 1612445242,
+            "i": 3
          }
       },
       "signature": {
@@ -2262,8 +2262,8 @@
       ]
    },
    "shards": {
-      "shard01": {
-         "host": "localhost:27018",
+      "shard03": {
+         "host": "localhost:27020",
          "stages": [
             {
                "$cursor": {
@@ -2302,17 +2302,17 @@
                   },
                   "executionStats": {
                      "executionSuccess": true,
-                     "nReturned": 26092,
-                     "executionTimeMillis": 143,
+                     "nReturned": 26362,
+                     "executionTimeMillis": 116,
                      "totalKeysExamined": 0,
-                     "totalDocsExamined": 124695,
+                     "totalDocsExamined": 124866,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
-                        "nReturned": 26092,
-                        "executionTimeMillisEstimate": 9,
-                        "works": 124697,
-                        "advanced": 26092,
-                        "needTime": 98604,
+                        "nReturned": 26362,
+                        "executionTimeMillisEstimate": 4,
+                        "works": 124868,
+                        "advanced": 26362,
+                        "needTime": 98505,
                         "needYield": 0,
                         "saveState": 125,
                         "restoreState": 125,
@@ -2324,11 +2324,11 @@
                         },
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
-                           "nReturned": 26092,
-                           "executionTimeMillisEstimate": 8,
-                           "works": 124697,
-                           "advanced": 26092,
-                           "needTime": 98604,
+                           "nReturned": 26362,
+                           "executionTimeMillisEstimate": 3,
+                           "works": 124868,
+                           "advanced": 26362,
+                           "needTime": 98505,
                            "needYield": 0,
                            "saveState": 125,
                            "restoreState": 125,
@@ -2341,24 +2341,24 @@
                                     "$gt": 0
                                  }
                               },
-                              "nReturned": 26092,
-                              "executionTimeMillisEstimate": 3,
-                              "works": 124697,
-                              "advanced": 26092,
-                              "needTime": 98604,
+                              "nReturned": 26362,
+                              "executionTimeMillisEstimate": 1,
+                              "works": 124868,
+                              "advanced": 26362,
+                              "needTime": 98505,
                               "needYield": 0,
                               "saveState": 125,
                               "restoreState": 125,
                               "isEOF": 1,
                               "direction": "forward",
-                              "docsExamined": 124695
+                              "docsExamined": 124866
                            }
                         }
                      }
                   }
                },
-               "nReturned": 26092,
-               "executionTimeMillisEstimate": 118
+               "nReturned": 26362,
+               "executionTimeMillisEstimate": 95
             },
             {
                "$group": {
@@ -2373,8 +2373,8 @@
                      "$min": "$ARR_DELAY"
                   }
                },
-               "nReturned": 343,
-               "executionTimeMillisEstimate": 137
+               "nReturned": 340,
+               "executionTimeMillisEstimate": 112
             }
          ]
       },
@@ -2419,13 +2419,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 26516,
-                     "executionTimeMillis": 143,
+                     "executionTimeMillis": 119,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 124977,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 26516,
-                        "executionTimeMillisEstimate": 10,
+                        "executionTimeMillisEstimate": 2,
                         "works": 124979,
                         "advanced": 26516,
                         "needTime": 98462,
@@ -2441,7 +2441,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 26516,
-                           "executionTimeMillisEstimate": 9,
+                           "executionTimeMillisEstimate": 2,
                            "works": 124979,
                            "advanced": 26516,
                            "needTime": 98462,
@@ -2458,7 +2458,7 @@
                                  }
                               },
                               "nReturned": 26516,
-                              "executionTimeMillisEstimate": 6,
+                              "executionTimeMillisEstimate": 2,
                               "works": 124979,
                               "advanced": 26516,
                               "needTime": 98462,
@@ -2474,7 +2474,7 @@
                   }
                },
                "nReturned": 26516,
-               "executionTimeMillisEstimate": 120
+               "executionTimeMillisEstimate": 97
             },
             {
                "$group": {
@@ -2490,12 +2490,12 @@
                   }
                },
                "nReturned": 350,
-               "executionTimeMillisEstimate": 142
+               "executionTimeMillisEstimate": 112
             }
          ]
       },
-      "shard03": {
-         "host": "localhost:27020",
+      "shard01": {
+         "host": "localhost:27018",
          "stages": [
             {
                "$cursor": {
@@ -2534,17 +2534,17 @@
                   },
                   "executionStats": {
                      "executionSuccess": true,
-                     "nReturned": 26362,
-                     "executionTimeMillis": 147,
+                     "nReturned": 26092,
+                     "executionTimeMillis": 126,
                      "totalKeysExamined": 0,
-                     "totalDocsExamined": 124866,
+                     "totalDocsExamined": 124695,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
-                        "nReturned": 26362,
-                        "executionTimeMillisEstimate": 10,
-                        "works": 124868,
-                        "advanced": 26362,
-                        "needTime": 98505,
+                        "nReturned": 26092,
+                        "executionTimeMillisEstimate": 3,
+                        "works": 124697,
+                        "advanced": 26092,
+                        "needTime": 98604,
                         "needYield": 0,
                         "saveState": 125,
                         "restoreState": 125,
@@ -2556,11 +2556,11 @@
                         },
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
-                           "nReturned": 26362,
-                           "executionTimeMillisEstimate": 9,
-                           "works": 124868,
-                           "advanced": 26362,
-                           "needTime": 98505,
+                           "nReturned": 26092,
+                           "executionTimeMillisEstimate": 3,
+                           "works": 124697,
+                           "advanced": 26092,
+                           "needTime": 98604,
                            "needYield": 0,
                            "saveState": 125,
                            "restoreState": 125,
@@ -2573,24 +2573,24 @@
                                     "$gt": 0
                                  }
                               },
-                              "nReturned": 26362,
-                              "executionTimeMillisEstimate": 7,
-                              "works": 124868,
-                              "advanced": 26362,
-                              "needTime": 98505,
+                              "nReturned": 26092,
+                              "executionTimeMillisEstimate": 3,
+                              "works": 124697,
+                              "advanced": 26092,
+                              "needTime": 98604,
                               "needYield": 0,
                               "saveState": 125,
                               "restoreState": 125,
                               "isEOF": 1,
                               "direction": "forward",
-                              "docsExamined": 124866
+                              "docsExamined": 124695
                            }
                         }
                      }
                   }
                },
-               "nReturned": 26362,
-               "executionTimeMillisEstimate": 122
+               "nReturned": 26092,
+               "executionTimeMillisEstimate": 104
             },
             {
                "$group": {
@@ -2605,8 +2605,8 @@
                      "$min": "$ARR_DELAY"
                   }
                },
-               "nReturned": 340,
-               "executionTimeMillisEstimate": 142
+               "nReturned": 343,
+               "executionTimeMillisEstimate": 124
             }
          ]
       }
@@ -2614,15 +2614,15 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232226,
+         "t": 1612445241,
          "i": 1
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232230,
-            "i": 1
+            "t": 1612445242,
+            "i": 3
          }
       },
       "signature": {
@@ -2697,6 +2697,122 @@
       ]
    },
    "shards": {
+      "shard03": {
+         "host": "localhost:27020",
+         "stages": [
+            {
+               "$cursor": {
+                  "queryPlanner": {
+                     "plannerVersion": 1,
+                     "namespace": "SummerResearch.AirlineData",
+                     "indexFilterSet": false,
+                     "parsedQuery": {
+                        "ARR_DELAY": {
+                           "$gt": 0
+                        }
+                     },
+                     "queryHash": "B4AB563C",
+                     "planCacheKey": "B4AB563C",
+                     "winningPlan": {
+                        "stage": "PROJECTION_SIMPLE",
+                        "transformBy": {
+                           "ARR_DELAY": 1,
+                           "MKT_UNIQUE_CARRIER": 1,
+                           "_id": 0
+                        },
+                        "inputStage": {
+                           "stage": "SHARDING_FILTER",
+                           "inputStage": {
+                              "stage": "COLLSCAN",
+                              "filter": {
+                                 "ARR_DELAY": {
+                                    "$gt": 0
+                                 }
+                              },
+                              "direction": "forward"
+                           }
+                        }
+                     },
+                     "rejectedPlans": []
+                  },
+                  "executionStats": {
+                     "executionSuccess": true,
+                     "nReturned": 26362,
+                     "executionTimeMillis": 110,
+                     "totalKeysExamined": 0,
+                     "totalDocsExamined": 124866,
+                     "executionStages": {
+                        "stage": "PROJECTION_SIMPLE",
+                        "nReturned": 26362,
+                        "executionTimeMillisEstimate": 6,
+                        "works": 124868,
+                        "advanced": 26362,
+                        "needTime": 98505,
+                        "needYield": 0,
+                        "saveState": 125,
+                        "restoreState": 125,
+                        "isEOF": 1,
+                        "transformBy": {
+                           "ARR_DELAY": 1,
+                           "MKT_UNIQUE_CARRIER": 1,
+                           "_id": 0
+                        },
+                        "inputStage": {
+                           "stage": "SHARDING_FILTER",
+                           "nReturned": 26362,
+                           "executionTimeMillisEstimate": 4,
+                           "works": 124868,
+                           "advanced": 26362,
+                           "needTime": 98505,
+                           "needYield": 0,
+                           "saveState": 125,
+                           "restoreState": 125,
+                           "isEOF": 1,
+                           "chunkSkips": 0,
+                           "inputStage": {
+                              "stage": "COLLSCAN",
+                              "filter": {
+                                 "ARR_DELAY": {
+                                    "$gt": 0
+                                 }
+                              },
+                              "nReturned": 26362,
+                              "executionTimeMillisEstimate": 3,
+                              "works": 124868,
+                              "advanced": 26362,
+                              "needTime": 98505,
+                              "needYield": 0,
+                              "saveState": 125,
+                              "restoreState": 125,
+                              "isEOF": 1,
+                              "direction": "forward",
+                              "docsExamined": 124866
+                           }
+                        }
+                     }
+                  }
+               },
+               "nReturned": 26362,
+               "executionTimeMillisEstimate": 93
+            },
+            {
+               "$group": {
+                  "_id": "$MKT_UNIQUE_CARRIER",
+                  "avgDelay": {
+                     "$avg": "$ARR_DELAY"
+                  },
+                  "maxDelay": {
+                     "$max": "$ARR_DELAY"
+                  },
+                  "minDelay": {
+                     "$min": "$ARR_DELAY"
+                  }
+               },
+               "nReturned": 10,
+               "executionTimeMillisEstimate": 100
+            }
+         ]
+      },
       "shard02": {
          "host": "localhost:27019",
          "stages": [
@@ -2738,13 +2854,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 26516,
-                     "executionTimeMillis": 120,
+                     "executionTimeMillis": 116,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 124977,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 26516,
-                        "executionTimeMillisEstimate": 6,
+                        "executionTimeMillisEstimate": 5,
                         "works": 124979,
                         "advanced": 26516,
                         "needTime": 98462,
@@ -2760,7 +2876,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 26516,
-                           "executionTimeMillisEstimate": 6,
+                           "executionTimeMillisEstimate": 5,
                            "works": 124979,
                            "advanced": 26516,
                            "needTime": 98462,
@@ -2793,7 +2909,7 @@
                   }
                },
                "nReturned": 26516,
-               "executionTimeMillisEstimate": 105
+               "executionTimeMillisEstimate": 98
             },
             {
                "$group": {
@@ -2809,7 +2925,7 @@
                   }
                },
                "nReturned": 10,
-               "executionTimeMillisEstimate": 120
+               "executionTimeMillisEstimate": 113
             }
          ]
       },
@@ -2854,7 +2970,7 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 26092,
-                     "executionTimeMillis": 121,
+                     "executionTimeMillis": 119,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 124695,
                      "executionStages": {
@@ -2909,7 +3025,7 @@
                   }
                },
                "nReturned": 26092,
-               "executionTimeMillisEstimate": 102
+               "executionTimeMillisEstimate": 103
             },
             {
                "$group": {
@@ -2925,123 +3041,7 @@
                   }
                },
                "nReturned": 10,
-               "executionTimeMillisEstimate": 112
-            }
-         ]
-      },
-      "shard03": {
-         "host": "localhost:27020",
-         "stages": [
-            {
-               "$cursor": {
-                  "queryPlanner": {
-                     "plannerVersion": 1,
-                     "namespace": "SummerResearch.AirlineData",
-                     "indexFilterSet": false,
-                     "parsedQuery": {
-                        "ARR_DELAY": {
-                           "$gt": 0
-                        }
-                     },
-                     "queryHash": "B4AB563C",
-                     "planCacheKey": "B4AB563C",
-                     "winningPlan": {
-                        "stage": "PROJECTION_SIMPLE",
-                        "transformBy": {
-                           "ARR_DELAY": 1,
-                           "MKT_UNIQUE_CARRIER": 1,
-                           "_id": 0
-                        },
-                        "inputStage": {
-                           "stage": "SHARDING_FILTER",
-                           "inputStage": {
-                              "stage": "COLLSCAN",
-                              "filter": {
-                                 "ARR_DELAY": {
-                                    "$gt": 0
-                                 }
-                              },
-                              "direction": "forward"
-                           }
-                        }
-                     },
-                     "rejectedPlans": []
-                  },
-                  "executionStats": {
-                     "executionSuccess": true,
-                     "nReturned": 26362,
-                     "executionTimeMillis": 129,
-                     "totalKeysExamined": 0,
-                     "totalDocsExamined": 124866,
-                     "executionStages": {
-                        "stage": "PROJECTION_SIMPLE",
-                        "nReturned": 26362,
-                        "executionTimeMillisEstimate": 10,
-                        "works": 124868,
-                        "advanced": 26362,
-                        "needTime": 98505,
-                        "needYield": 0,
-                        "saveState": 125,
-                        "restoreState": 125,
-                        "isEOF": 1,
-                        "transformBy": {
-                           "ARR_DELAY": 1,
-                           "MKT_UNIQUE_CARRIER": 1,
-                           "_id": 0
-                        },
-                        "inputStage": {
-                           "stage": "SHARDING_FILTER",
-                           "nReturned": 26362,
-                           "executionTimeMillisEstimate": 10,
-                           "works": 124868,
-                           "advanced": 26362,
-                           "needTime": 98505,
-                           "needYield": 0,
-                           "saveState": 125,
-                           "restoreState": 125,
-                           "isEOF": 1,
-                           "chunkSkips": 0,
-                           "inputStage": {
-                              "stage": "COLLSCAN",
-                              "filter": {
-                                 "ARR_DELAY": {
-                                    "$gt": 0
-                                 }
-                              },
-                              "nReturned": 26362,
-                              "executionTimeMillisEstimate": 9,
-                              "works": 124868,
-                              "advanced": 26362,
-                              "needTime": 98505,
-                              "needYield": 0,
-                              "saveState": 125,
-                              "restoreState": 125,
-                              "isEOF": 1,
-                              "direction": "forward",
-                              "docsExamined": 124866
-                           }
-                        }
-                     }
-                  }
-               },
-               "nReturned": 26362,
                "executionTimeMillisEstimate": 110
-            },
-            {
-               "$group": {
-                  "_id": "$MKT_UNIQUE_CARRIER",
-                  "avgDelay": {
-                     "$avg": "$ARR_DELAY"
-                  },
-                  "maxDelay": {
-                     "$max": "$ARR_DELAY"
-                  },
-                  "minDelay": {
-                     "$min": "$ARR_DELAY"
-                  }
-               },
-               "nReturned": 10,
-               "executionTimeMillisEstimate": 128
             }
          ]
       }
@@ -3049,15 +3049,15 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232226,
+         "t": 1612445241,
          "i": 1
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232230,
-            "i": 1
+            "t": 1612445242,
+            "i": 3
          }
       },
       "signature": {
@@ -3162,13 +3162,13 @@
          "executionStats": {
             "executionSuccess": true,
             "nReturned": 0,
-            "executionTimeMillis": 336,
+            "executionTimeMillis": 134,
             "totalKeysExamined": 0,
             "totalDocsExamined": 71087,
             "executionStages": {
                "stage": "SHARDING_FILTER",
                "nReturned": 0,
-               "executionTimeMillisEstimate": 101,
+               "executionTimeMillisEstimate": 15,
                "works": 71089,
                "advanced": 0,
                "needTime": 71088,
@@ -3194,7 +3194,7 @@
                      ]
                   },
                   "nReturned": 0,
-                  "executionTimeMillisEstimate": 98,
+                  "executionTimeMillisEstimate": 15,
                   "works": 71089,
                   "advanced": 0,
                   "needTime": 71088,
@@ -3255,13 +3255,13 @@
          "executionStats": {
             "executionSuccess": true,
             "nReturned": 0,
-            "executionTimeMillis": 487,
+            "executionTimeMillis": 214,
             "totalKeysExamined": 0,
             "totalDocsExamined": 125768,
             "executionStages": {
                "stage": "SHARDING_FILTER",
                "nReturned": 0,
-               "executionTimeMillisEstimate": 120,
+               "executionTimeMillisEstimate": 27,
                "works": 125770,
                "advanced": 0,
                "needTime": 125769,
@@ -3287,7 +3287,7 @@
                      ]
                   },
                   "nReturned": 0,
-                  "executionTimeMillisEstimate": 120,
+                  "executionTimeMillisEstimate": 26,
                   "works": 125770,
                   "advanced": 0,
                   "needTime": 125769,
@@ -3348,13 +3348,13 @@
          "executionStats": {
             "executionSuccess": true,
             "nReturned": 0,
-            "executionTimeMillis": 734,
+            "executionTimeMillis": 321,
             "totalKeysExamined": 0,
             "totalDocsExamined": 177683,
             "executionStages": {
                "stage": "SHARDING_FILTER",
                "nReturned": 0,
-               "executionTimeMillisEstimate": 217,
+               "executionTimeMillisEstimate": 39,
                "works": 177685,
                "advanced": 0,
                "needTime": 177684,
@@ -3380,7 +3380,7 @@
                      ]
                   },
                   "nReturned": 0,
-                  "executionTimeMillisEstimate": 217,
+                  "executionTimeMillisEstimate": 39,
                   "works": 177685,
                   "advanced": 0,
                   "needTime": 177684,
@@ -3398,15 +3398,15 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232226,
+         "t": 1612445241,
          "i": 1
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232230,
-            "i": 1
+            "t": 1612445242,
+            "i": 3
          }
       },
       "signature": {
@@ -3540,13 +3540,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 71087,
-                     "executionTimeMillis": 207,
+                     "executionTimeMillis": 176,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 71087,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 71087,
-                        "executionTimeMillisEstimate": 22,
+                        "executionTimeMillisEstimate": 14,
                         "works": 71089,
                         "advanced": 71087,
                         "needTime": 1,
@@ -3562,7 +3562,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 71087,
-                           "executionTimeMillisEstimate": 18,
+                           "executionTimeMillisEstimate": 9,
                            "works": 71089,
                            "advanced": 71087,
                            "needTime": 1,
@@ -3574,7 +3574,7 @@
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 71087,
-                              "executionTimeMillisEstimate": 7,
+                              "executionTimeMillisEstimate": 2,
                               "works": 71089,
                               "advanced": 71087,
                               "needTime": 1,
@@ -3590,7 +3590,7 @@
                   }
                },
                "nReturned": 71087,
-               "executionTimeMillisEstimate": 168
+               "executionTimeMillisEstimate": 133
             },
             {
                "$group": {
@@ -3622,7 +3622,7 @@
                   }
                },
                "nReturned": 10,
-               "executionTimeMillisEstimate": 199
+               "executionTimeMillisEstimate": 168
             }
          ]
       },
@@ -3658,13 +3658,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 125768,
-                     "executionTimeMillis": 369,
+                     "executionTimeMillis": 315,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 125768,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 125768,
-                        "executionTimeMillisEstimate": 45,
+                        "executionTimeMillisEstimate": 22,
                         "works": 125770,
                         "advanced": 125768,
                         "needTime": 1,
@@ -3680,7 +3680,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 125768,
-                           "executionTimeMillisEstimate": 27,
+                           "executionTimeMillisEstimate": 18,
                            "works": 125770,
                            "advanced": 125768,
                            "needTime": 1,
@@ -3692,7 +3692,7 @@
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 125768,
-                              "executionTimeMillisEstimate": 8,
+                              "executionTimeMillisEstimate": 5,
                               "works": 125770,
                               "advanced": 125768,
                               "needTime": 1,
@@ -3708,7 +3708,7 @@
                   }
                },
                "nReturned": 125768,
-               "executionTimeMillisEstimate": 287
+               "executionTimeMillisEstimate": 251
             },
             {
                "$group": {
@@ -3740,7 +3740,7 @@
                   }
                },
                "nReturned": 10,
-               "executionTimeMillisEstimate": 361
+               "executionTimeMillisEstimate": 311
             }
          ]
       },
@@ -3776,13 +3776,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 177683,
-                     "executionTimeMillis": 530,
+                     "executionTimeMillis": 440,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 177683,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 177683,
-                        "executionTimeMillisEstimate": 60,
+                        "executionTimeMillisEstimate": 35,
                         "works": 177685,
                         "advanced": 177683,
                         "needTime": 1,
@@ -3798,7 +3798,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 177683,
-                           "executionTimeMillisEstimate": 49,
+                           "executionTimeMillisEstimate": 31,
                            "works": 177685,
                            "advanced": 177683,
                            "needTime": 1,
@@ -3810,7 +3810,7 @@
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 177683,
-                              "executionTimeMillisEstimate": 18,
+                              "executionTimeMillisEstimate": 8,
                               "works": 177685,
                               "advanced": 177683,
                               "needTime": 1,
@@ -3826,7 +3826,7 @@
                   }
                },
                "nReturned": 177683,
-               "executionTimeMillisEstimate": 406
+               "executionTimeMillisEstimate": 363
             },
             {
                "$group": {
@@ -3858,7 +3858,7 @@
                   }
                },
                "nReturned": 10,
-               "executionTimeMillisEstimate": 526
+               "executionTimeMillisEstimate": 435
             }
          ]
       }
@@ -3866,15 +3866,15 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232233,
+         "t": 1612445241,
          "i": 1
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232233,
-            "i": 1
+            "t": 1612445245,
+            "i": 2
          }
       },
       "signature": {
@@ -4008,13 +4008,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 71087,
-                     "executionTimeMillis": 317,
+                     "executionTimeMillis": 187,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 71087,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 71087,
-                        "executionTimeMillisEstimate": 43,
+                        "executionTimeMillisEstimate": 12,
                         "works": 71089,
                         "advanced": 71087,
                         "needTime": 1,
@@ -4030,7 +4030,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 71087,
-                           "executionTimeMillisEstimate": 35,
+                           "executionTimeMillisEstimate": 9,
                            "works": 71089,
                            "advanced": 71087,
                            "needTime": 1,
@@ -4042,7 +4042,7 @@
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 71087,
-                              "executionTimeMillisEstimate": 5,
+                              "executionTimeMillisEstimate": 1,
                               "works": 71089,
                               "advanced": 71087,
                               "needTime": 1,
@@ -4058,7 +4058,7 @@
                   }
                },
                "nReturned": 71087,
-               "executionTimeMillisEstimate": 227
+               "executionTimeMillisEstimate": 139
             },
             {
                "$group": {
@@ -4090,7 +4090,7 @@
                   }
                },
                "nReturned": 185,
-               "executionTimeMillisEstimate": 312
+               "executionTimeMillisEstimate": 186
             }
          ]
       },
@@ -4126,13 +4126,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 125768,
-                     "executionTimeMillis": 520,
+                     "executionTimeMillis": 332,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 125768,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 125768,
-                        "executionTimeMillisEstimate": 108,
+                        "executionTimeMillisEstimate": 18,
                         "works": 125770,
                         "advanced": 125768,
                         "needTime": 1,
@@ -4148,7 +4148,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 125768,
-                           "executionTimeMillisEstimate": 94,
+                           "executionTimeMillisEstimate": 16,
                            "works": 125770,
                            "advanced": 125768,
                            "needTime": 1,
@@ -4160,7 +4160,7 @@
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 125768,
-                              "executionTimeMillisEstimate": 18,
+                              "executionTimeMillisEstimate": 1,
                               "works": 125770,
                               "advanced": 125768,
                               "needTime": 1,
@@ -4176,7 +4176,7 @@
                   }
                },
                "nReturned": 125768,
-               "executionTimeMillisEstimate": 381
+               "executionTimeMillisEstimate": 248
             },
             {
                "$group": {
@@ -4208,7 +4208,7 @@
                   }
                },
                "nReturned": 249,
-               "executionTimeMillisEstimate": 514
+               "executionTimeMillisEstimate": 332
             }
          ]
       },
@@ -4244,19 +4244,19 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 177683,
-                     "executionTimeMillis": 654,
+                     "executionTimeMillis": 460,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 177683,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 177683,
-                        "executionTimeMillisEstimate": 97,
+                        "executionTimeMillisEstimate": 36,
                         "works": 177685,
                         "advanced": 177683,
                         "needTime": 1,
                         "needYield": 0,
-                        "saveState": 186,
-                        "restoreState": 186,
+                        "saveState": 185,
+                        "restoreState": 185,
                         "isEOF": 1,
                         "transformBy": {
                            "ARR_DELAY": 1,
@@ -4266,25 +4266,25 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 177683,
-                           "executionTimeMillisEstimate": 75,
+                           "executionTimeMillisEstimate": 30,
                            "works": 177685,
                            "advanced": 177683,
                            "needTime": 1,
                            "needYield": 0,
-                           "saveState": 186,
-                           "restoreState": 186,
+                           "saveState": 185,
+                           "restoreState": 185,
                            "isEOF": 1,
                            "chunkSkips": 0,
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 177683,
-                              "executionTimeMillisEstimate": 28,
+                              "executionTimeMillisEstimate": 4,
                               "works": 177685,
                               "advanced": 177683,
                               "needTime": 1,
                               "needYield": 0,
-                              "saveState": 186,
-                              "restoreState": 186,
+                              "saveState": 185,
+                              "restoreState": 185,
                               "isEOF": 1,
                               "direction": "forward",
                               "docsExamined": 177683
@@ -4294,7 +4294,7 @@
                   }
                },
                "nReturned": 177683,
-               "executionTimeMillisEstimate": 479
+               "executionTimeMillisEstimate": 359
             },
             {
                "$group": {
@@ -4326,7 +4326,7 @@
                   }
                },
                "nReturned": 314,
-               "executionTimeMillisEstimate": 647
+               "executionTimeMillisEstimate": 454
             }
          ]
       }
@@ -4334,14 +4334,14 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232233,
+         "t": 1612445241,
          "i": 1
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232233,
+            "t": 1612445245,
             "i": 2
          }
       },
@@ -4476,7 +4476,7 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 71087,
-                     "executionTimeMillis": 196,
+                     "executionTimeMillis": 171,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 71087,
                      "executionStages": {
@@ -4498,7 +4498,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 71087,
-                           "executionTimeMillisEstimate": 12,
+                           "executionTimeMillisEstimate": 8,
                            "works": 71089,
                            "advanced": 71087,
                            "needTime": 1,
@@ -4526,7 +4526,7 @@
                   }
                },
                "nReturned": 71087,
-               "executionTimeMillisEstimate": 141
+               "executionTimeMillisEstimate": 134
             },
             {
                "$group": {
@@ -4558,7 +4558,7 @@
                   }
                },
                "nReturned": 114,
-               "executionTimeMillisEstimate": 194
+               "executionTimeMillisEstimate": 168
             }
          ]
       },
@@ -4594,7 +4594,7 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 125768,
-                     "executionTimeMillis": 348,
+                     "executionTimeMillis": 321,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 125768,
                      "executionStages": {
@@ -4616,7 +4616,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 125768,
-                           "executionTimeMillisEstimate": 21,
+                           "executionTimeMillisEstimate": 17,
                            "works": 125770,
                            "advanced": 125768,
                            "needTime": 1,
@@ -4628,7 +4628,7 @@
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 125768,
-                              "executionTimeMillisEstimate": 4,
+                              "executionTimeMillisEstimate": 3,
                               "works": 125770,
                               "advanced": 125768,
                               "needTime": 1,
@@ -4644,7 +4644,7 @@
                   }
                },
                "nReturned": 125768,
-               "executionTimeMillisEstimate": 274
+               "executionTimeMillisEstimate": 258
             },
             {
                "$group": {
@@ -4676,7 +4676,7 @@
                   }
                },
                "nReturned": 121,
-               "executionTimeMillisEstimate": 341
+               "executionTimeMillisEstimate": 318
             }
          ]
       },
@@ -4712,13 +4712,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 177683,
-                     "executionTimeMillis": 472,
+                     "executionTimeMillis": 434,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 177683,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 177683,
-                        "executionTimeMillisEstimate": 37,
+                        "executionTimeMillisEstimate": 21,
                         "works": 177685,
                         "advanced": 177683,
                         "needTime": 1,
@@ -4734,7 +4734,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 177683,
-                           "executionTimeMillisEstimate": 24,
+                           "executionTimeMillisEstimate": 14,
                            "works": 177685,
                            "advanced": 177683,
                            "needTime": 1,
@@ -4746,7 +4746,7 @@
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 177683,
-                              "executionTimeMillisEstimate": 0,
+                              "executionTimeMillisEstimate": 5,
                               "works": 177685,
                               "advanced": 177683,
                               "needTime": 1,
@@ -4762,7 +4762,7 @@
                   }
                },
                "nReturned": 177683,
-               "executionTimeMillisEstimate": 366
+               "executionTimeMillisEstimate": 327
             },
             {
                "$group": {
@@ -4794,7 +4794,7 @@
                   }
                },
                "nReturned": 124,
-               "executionTimeMillisEstimate": 468
+               "executionTimeMillisEstimate": 432
             }
          ]
       }
@@ -4802,14 +4802,14 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232233,
+         "t": 1612445241,
          "i": 1
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232233,
+            "t": 1612445245,
             "i": 2
          }
       },
@@ -4926,7 +4926,7 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 14544,
-                     "executionTimeMillis": 74,
+                     "executionTimeMillis": 64,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 71087,
                      "executionStages": {
@@ -4965,7 +4965,7 @@
                                  }
                               },
                               "nReturned": 14544,
-                              "executionTimeMillisEstimate": 3,
+                              "executionTimeMillisEstimate": 2,
                               "works": 71089,
                               "advanced": 14544,
                               "needTime": 56544,
@@ -4981,7 +4981,7 @@
                   }
                },
                "nReturned": 14544,
-               "executionTimeMillisEstimate": 62
+               "executionTimeMillisEstimate": 53
             },
             {
                "$group": {
@@ -4997,7 +4997,7 @@
                   }
                },
                "nReturned": 178,
-               "executionTimeMillisEstimate": 73
+               "executionTimeMillisEstimate": 58
             }
          ]
       },
@@ -5042,7 +5042,7 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 25845,
-                     "executionTimeMillis": 134,
+                     "executionTimeMillis": 118,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 125768,
                      "executionStages": {
@@ -5097,7 +5097,7 @@
                   }
                },
                "nReturned": 25845,
-               "executionTimeMillisEstimate": 109
+               "executionTimeMillisEstimate": 100
             },
             {
                "$group": {
@@ -5113,7 +5113,7 @@
                   }
                },
                "nReturned": 247,
-               "executionTimeMillisEstimate": 126
+               "executionTimeMillisEstimate": 117
             }
          ]
       },
@@ -5158,13 +5158,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 38581,
-                     "executionTimeMillis": 194,
+                     "executionTimeMillis": 180,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 177683,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 38581,
-                        "executionTimeMillisEstimate": 10,
+                        "executionTimeMillisEstimate": 12,
                         "works": 177685,
                         "advanced": 38581,
                         "needTime": 139103,
@@ -5180,7 +5180,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 38581,
-                           "executionTimeMillisEstimate": 7,
+                           "executionTimeMillisEstimate": 10,
                            "works": 177685,
                            "advanced": 38581,
                            "needTime": 139103,
@@ -5197,7 +5197,7 @@
                                  }
                               },
                               "nReturned": 38581,
-                              "executionTimeMillisEstimate": 4,
+                              "executionTimeMillisEstimate": 9,
                               "works": 177685,
                               "advanced": 38581,
                               "needTime": 139103,
@@ -5213,7 +5213,7 @@
                   }
                },
                "nReturned": 38581,
-               "executionTimeMillisEstimate": 161
+               "executionTimeMillisEstimate": 153
             },
             {
                "$group": {
@@ -5229,7 +5229,7 @@
                   }
                },
                "nReturned": 312,
-               "executionTimeMillisEstimate": 192
+               "executionTimeMillisEstimate": 179
             }
          ]
       }
@@ -5237,15 +5237,15 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232233,
+         "t": 1612445247,
          "i": 1
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232233,
-            "i": 2
+            "t": 1612445247,
+            "i": 1
          }
       },
       "signature": {
@@ -5361,13 +5361,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 14544,
-                     "executionTimeMillis": 76,
+                     "executionTimeMillis": 64,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 71087,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 14544,
-                        "executionTimeMillisEstimate": 7,
+                        "executionTimeMillisEstimate": 2,
                         "works": 71089,
                         "advanced": 14544,
                         "needTime": 56544,
@@ -5383,7 +5383,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 14544,
-                           "executionTimeMillisEstimate": 6,
+                           "executionTimeMillisEstimate": 1,
                            "works": 71089,
                            "advanced": 14544,
                            "needTime": 56544,
@@ -5400,7 +5400,7 @@
                                  }
                               },
                               "nReturned": 14544,
-                              "executionTimeMillisEstimate": 4,
+                              "executionTimeMillisEstimate": 1,
                               "works": 71089,
                               "advanced": 14544,
                               "needTime": 56544,
@@ -5416,7 +5416,7 @@
                   }
                },
                "nReturned": 14544,
-               "executionTimeMillisEstimate": 65
+               "executionTimeMillisEstimate": 53
             },
             {
                "$group": {
@@ -5432,7 +5432,7 @@
                   }
                },
                "nReturned": 113,
-               "executionTimeMillisEstimate": 72
+               "executionTimeMillisEstimate": 56
             }
          ]
       },
@@ -5477,13 +5477,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 25845,
-                     "executionTimeMillis": 134,
+                     "executionTimeMillis": 119,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 125768,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 25845,
-                        "executionTimeMillisEstimate": 8,
+                        "executionTimeMillisEstimate": 2,
                         "works": 125770,
                         "advanced": 25845,
                         "needTime": 99924,
@@ -5499,7 +5499,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 25845,
-                           "executionTimeMillisEstimate": 8,
+                           "executionTimeMillisEstimate": 1,
                            "works": 125770,
                            "advanced": 25845,
                            "needTime": 99924,
@@ -5516,7 +5516,7 @@
                                  }
                               },
                               "nReturned": 25845,
-                              "executionTimeMillisEstimate": 6,
+                              "executionTimeMillisEstimate": 1,
                               "works": 125770,
                               "advanced": 25845,
                               "needTime": 99924,
@@ -5532,7 +5532,7 @@
                   }
                },
                "nReturned": 25845,
-               "executionTimeMillisEstimate": 110
+               "executionTimeMillisEstimate": 99
             },
             {
                "$group": {
@@ -5548,7 +5548,7 @@
                   }
                },
                "nReturned": 121,
-               "executionTimeMillisEstimate": 134
+               "executionTimeMillisEstimate": 119
             }
          ]
       },
@@ -5593,13 +5593,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 38581,
-                     "executionTimeMillis": 187,
+                     "executionTimeMillis": 179,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 177683,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 38581,
-                        "executionTimeMillisEstimate": 11,
+                        "executionTimeMillisEstimate": 8,
                         "works": 177685,
                         "advanced": 38581,
                         "needTime": 139103,
@@ -5648,7 +5648,7 @@
                   }
                },
                "nReturned": 38581,
-               "executionTimeMillisEstimate": 162
+               "executionTimeMillisEstimate": 157
             },
             {
                "$group": {
@@ -5664,7 +5664,7 @@
                   }
                },
                "nReturned": 122,
-               "executionTimeMillisEstimate": 178
+               "executionTimeMillisEstimate": 174
             }
          ]
       }
@@ -5672,15 +5672,15 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232233,
+         "t": 1612445247,
          "i": 1
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232233,
-            "i": 2
+            "t": 1612445247,
+            "i": 1
          }
       },
       "signature": {
@@ -5796,13 +5796,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 14544,
-                     "executionTimeMillis": 72,
+                     "executionTimeMillis": 63,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 71087,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 14544,
-                        "executionTimeMillisEstimate": 1,
+                        "executionTimeMillisEstimate": 0,
                         "works": 71089,
                         "advanced": 14544,
                         "needTime": 56544,
@@ -5818,7 +5818,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 14544,
-                           "executionTimeMillisEstimate": 1,
+                           "executionTimeMillisEstimate": 0,
                            "works": 71089,
                            "advanced": 14544,
                            "needTime": 56544,
@@ -5835,7 +5835,7 @@
                                  }
                               },
                               "nReturned": 14544,
-                              "executionTimeMillisEstimate": 1,
+                              "executionTimeMillisEstimate": 0,
                               "works": 71089,
                               "advanced": 14544,
                               "needTime": 56544,
@@ -5851,7 +5851,7 @@
                   }
                },
                "nReturned": 14544,
-               "executionTimeMillisEstimate": 63
+               "executionTimeMillisEstimate": 53
             },
             {
                "$group": {
@@ -5867,7 +5867,7 @@
                   }
                },
                "nReturned": 10,
-               "executionTimeMillisEstimate": 66
+               "executionTimeMillisEstimate": 54
             }
          ]
       },
@@ -5912,13 +5912,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 25845,
-                     "executionTimeMillis": 129,
+                     "executionTimeMillis": 115,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 125768,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 25845,
-                        "executionTimeMillisEstimate": 4,
+                        "executionTimeMillisEstimate": 3,
                         "works": 125770,
                         "advanced": 25845,
                         "needTime": 99924,
@@ -5951,7 +5951,7 @@
                                  }
                               },
                               "nReturned": 25845,
-                              "executionTimeMillisEstimate": 2,
+                              "executionTimeMillisEstimate": 1,
                               "works": 125770,
                               "advanced": 25845,
                               "needTime": 99924,
@@ -5967,7 +5967,7 @@
                   }
                },
                "nReturned": 25845,
-               "executionTimeMillisEstimate": 112
+               "executionTimeMillisEstimate": 97
             },
             {
                "$group": {
@@ -5983,7 +5983,7 @@
                   }
                },
                "nReturned": 10,
-               "executionTimeMillisEstimate": 129
+               "executionTimeMillisEstimate": 109
             }
          ]
       },
@@ -6028,13 +6028,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 38581,
-                     "executionTimeMillis": 198,
+                     "executionTimeMillis": 172,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 177683,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 38581,
-                        "executionTimeMillisEstimate": 12,
+                        "executionTimeMillisEstimate": 3,
                         "works": 177685,
                         "advanced": 38581,
                         "needTime": 139103,
@@ -6050,7 +6050,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 38581,
-                           "executionTimeMillisEstimate": 11,
+                           "executionTimeMillisEstimate": 3,
                            "works": 177685,
                            "advanced": 38581,
                            "needTime": 139103,
@@ -6067,7 +6067,7 @@
                                  }
                               },
                               "nReturned": 38581,
-                              "executionTimeMillisEstimate": 7,
+                              "executionTimeMillisEstimate": 2,
                               "works": 177685,
                               "advanced": 38581,
                               "needTime": 139103,
@@ -6083,7 +6083,7 @@
                   }
                },
                "nReturned": 38581,
-               "executionTimeMillisEstimate": 161
+               "executionTimeMillisEstimate": 151
             },
             {
                "$group": {
@@ -6099,7 +6099,7 @@
                   }
                },
                "nReturned": 10,
-               "executionTimeMillisEstimate": 197
+               "executionTimeMillisEstimate": 170
             }
          ]
       }
@@ -6107,15 +6107,15 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232233,
+         "t": 1612445247,
          "i": 1
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232233,
-            "i": 2
+            "t": 1612445247,
+            "i": 1
          }
       },
       "signature": {
@@ -6220,19 +6220,19 @@
          "executionStats": {
             "executionSuccess": true,
             "nReturned": 0,
-            "executionTimeMillis": 618,
+            "executionTimeMillis": 123,
             "totalKeysExamined": 0,
             "totalDocsExamined": 53257,
             "executionStages": {
                "stage": "SHARDING_FILTER",
                "nReturned": 0,
-               "executionTimeMillisEstimate": 370,
+               "executionTimeMillisEstimate": 21,
                "works": 53259,
                "advanced": 0,
                "needTime": 53258,
                "needYield": 0,
-               "saveState": 56,
-               "restoreState": 56,
+               "saveState": 53,
+               "restoreState": 53,
                "isEOF": 1,
                "chunkSkips": 0,
                "inputStage": {
@@ -6252,109 +6252,16 @@
                      ]
                   },
                   "nReturned": 0,
-                  "executionTimeMillisEstimate": 370,
+                  "executionTimeMillisEstimate": 21,
                   "works": 53259,
                   "advanced": 0,
                   "needTime": 53258,
                   "needYield": 0,
-                  "saveState": 56,
-                  "restoreState": 56,
+                  "saveState": 53,
+                  "restoreState": 53,
                   "isEOF": 1,
                   "direction": "forward",
                   "docsExamined": 53257
-               }
-            }
-         }
-      },
-      "shard03": {
-         "host": "localhost:27020",
-         "queryPlanner": {
-            "plannerVersion": 1,
-            "namespace": "SummerResearch.AirlineData_DEST_CITY_NAME_range",
-            "indexFilterSet": false,
-            "parsedQuery": {
-               "$and": [
-                  {
-                     "FL_DATE": {
-                        "$eq": "ISODate(\"2020-10-01\")"
-                     }
-                  },
-                  {
-                     "ARR_DELAY": {
-                        "$gt": 1000
-                     }
-                  }
-               ]
-            },
-            "optimizedPipeline": true,
-            "winningPlan": {
-               "stage": "SHARDING_FILTER",
-               "inputStage": {
-                  "stage": "COLLSCAN",
-                  "filter": {
-                     "$and": [
-                        {
-                           "FL_DATE": {
-                              "$eq": "ISODate(\"2020-10-01\")"
-                           }
-                        },
-                        {
-                           "ARR_DELAY": {
-                              "$gt": 1000
-                           }
-                        }
-                     ]
-                  },
-                  "direction": "forward"
-               }
-            },
-            "rejectedPlans": []
-         },
-         "executionStats": {
-            "executionSuccess": true,
-            "nReturned": 0,
-            "executionTimeMillis": 687,
-            "totalKeysExamined": 0,
-            "totalDocsExamined": 160655,
-            "executionStages": {
-               "stage": "SHARDING_FILTER",
-               "nReturned": 0,
-               "executionTimeMillisEstimate": 227,
-               "works": 160657,
-               "advanced": 0,
-               "needTime": 160656,
-               "needYield": 0,
-               "saveState": 160,
-               "restoreState": 160,
-               "isEOF": 1,
-               "chunkSkips": 0,
-               "inputStage": {
-                  "stage": "COLLSCAN",
-                  "filter": {
-                     "$and": [
-                        {
-                           "FL_DATE": {
-                              "$eq": "ISODate(\"2020-10-01\")"
-                           }
-                        },
-                        {
-                           "ARR_DELAY": {
-                              "$gt": 1000
-                           }
-                        }
-                     ]
-                  },
-                  "nReturned": 0,
-                  "executionTimeMillisEstimate": 226,
-                  "works": 160657,
-                  "advanced": 0,
-                  "needTime": 160656,
-                  "needYield": 0,
-                  "saveState": 160,
-                  "restoreState": 160,
-                  "isEOF": 1,
-                  "direction": "forward",
-                  "docsExamined": 160655
                }
             }
          }
@@ -6406,13 +6313,13 @@
          "executionStats": {
             "executionSuccess": true,
             "nReturned": 0,
-            "executionTimeMillis": 761,
+            "executionTimeMillis": 252,
             "totalKeysExamined": 0,
             "totalDocsExamined": 160626,
             "executionStages": {
                "stage": "SHARDING_FILTER",
                "nReturned": 0,
-               "executionTimeMillisEstimate": 241,
+               "executionTimeMillisEstimate": 33,
                "works": 160628,
                "advanced": 0,
                "needTime": 160627,
@@ -6438,7 +6345,7 @@
                      ]
                   },
                   "nReturned": 0,
-                  "executionTimeMillisEstimate": 241,
+                  "executionTimeMillisEstimate": 33,
                   "works": 160628,
                   "advanced": 0,
                   "needTime": 160627,
@@ -6451,20 +6358,113 @@
                }
             }
          }
+      },
+      "shard03": {
+         "host": "localhost:27020",
+         "queryPlanner": {
+            "plannerVersion": 1,
+            "namespace": "SummerResearch.AirlineData_DEST_CITY_NAME_range",
+            "indexFilterSet": false,
+            "parsedQuery": {
+               "$and": [
+                  {
+                     "FL_DATE": {
+                        "$eq": "ISODate(\"2020-10-01\")"
+                     }
+                  },
+                  {
+                     "ARR_DELAY": {
+                        "$gt": 1000
+                     }
+                  }
+               ]
+            },
+            "optimizedPipeline": true,
+            "winningPlan": {
+               "stage": "SHARDING_FILTER",
+               "inputStage": {
+                  "stage": "COLLSCAN",
+                  "filter": {
+                     "$and": [
+                        {
+                           "FL_DATE": {
+                              "$eq": "ISODate(\"2020-10-01\")"
+                           }
+                        },
+                        {
+                           "ARR_DELAY": {
+                              "$gt": 1000
+                           }
+                        }
+                     ]
+                  },
+                  "direction": "forward"
+               }
+            },
+            "rejectedPlans": []
+         },
+         "executionStats": {
+            "executionSuccess": true,
+            "nReturned": 0,
+            "executionTimeMillis": 256,
+            "totalKeysExamined": 0,
+            "totalDocsExamined": 160655,
+            "executionStages": {
+               "stage": "SHARDING_FILTER",
+               "nReturned": 0,
+               "executionTimeMillisEstimate": 31,
+               "works": 160657,
+               "advanced": 0,
+               "needTime": 160656,
+               "needYield": 0,
+               "saveState": 160,
+               "restoreState": 160,
+               "isEOF": 1,
+               "chunkSkips": 0,
+               "inputStage": {
+                  "stage": "COLLSCAN",
+                  "filter": {
+                     "$and": [
+                        {
+                           "FL_DATE": {
+                              "$eq": "ISODate(\"2020-10-01\")"
+                           }
+                        },
+                        {
+                           "ARR_DELAY": {
+                              "$gt": 1000
+                           }
+                        }
+                     ]
+                  },
+                  "nReturned": 0,
+                  "executionTimeMillisEstimate": 31,
+                  "works": 160657,
+                  "advanced": 0,
+                  "needTime": 160656,
+                  "needYield": 0,
+                  "saveState": 160,
+                  "restoreState": 160,
+                  "isEOF": 1,
+                  "direction": "forward",
+                  "docsExamined": 160655
+               }
+            }
+         }
       }
    },
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232233,
+         "t": 1612445247,
          "i": 1
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232233,
-            "i": 2
+            "t": 1612445247,
+            "i": 1
          }
       },
       "signature": {
@@ -6598,13 +6598,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 53257,
-                     "executionTimeMillis": 228,
+                     "executionTimeMillis": 123,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 53257,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 53257,
-                        "executionTimeMillisEstimate": 35,
+                        "executionTimeMillisEstimate": 10,
                         "works": 53259,
                         "advanced": 53257,
                         "needTime": 1,
@@ -6620,7 +6620,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 53257,
-                           "executionTimeMillisEstimate": 21,
+                           "executionTimeMillisEstimate": 9,
                            "works": 53259,
                            "advanced": 53257,
                            "needTime": 1,
@@ -6632,7 +6632,7 @@
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 53257,
-                              "executionTimeMillisEstimate": 4,
+                              "executionTimeMillisEstimate": 5,
                               "works": 53259,
                               "advanced": 53257,
                               "needTime": 1,
@@ -6648,7 +6648,7 @@
                   }
                },
                "nReturned": 53257,
-               "executionTimeMillisEstimate": 172
+               "executionTimeMillisEstimate": 95
             },
             {
                "$group": {
@@ -6680,7 +6680,7 @@
                   }
                },
                "nReturned": 10,
-               "executionTimeMillisEstimate": 224
+               "executionTimeMillisEstimate": 123
             }
          ]
       },
@@ -6716,13 +6716,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 160655,
-                     "executionTimeMillis": 538,
+                     "executionTimeMillis": 341,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 160655,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 160655,
-                        "executionTimeMillisEstimate": 63,
+                        "executionTimeMillisEstimate": 23,
                         "works": 160657,
                         "advanced": 160655,
                         "needTime": 1,
@@ -6738,7 +6738,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 160655,
-                           "executionTimeMillisEstimate": 58,
+                           "executionTimeMillisEstimate": 19,
                            "works": 160657,
                            "advanced": 160655,
                            "needTime": 1,
@@ -6750,7 +6750,7 @@
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 160655,
-                              "executionTimeMillisEstimate": 10,
+                              "executionTimeMillisEstimate": 3,
                               "works": 160657,
                               "advanced": 160655,
                               "needTime": 1,
@@ -6766,7 +6766,7 @@
                   }
                },
                "nReturned": 160655,
-               "executionTimeMillisEstimate": 413
+               "executionTimeMillisEstimate": 269
             },
             {
                "$group": {
@@ -6798,7 +6798,7 @@
                   }
                },
                "nReturned": 10,
-               "executionTimeMillisEstimate": 534
+               "executionTimeMillisEstimate": 338
             }
          ]
       },
@@ -6834,13 +6834,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 160626,
-                     "executionTimeMillis": 551,
+                     "executionTimeMillis": 349,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 160626,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 160626,
-                        "executionTimeMillisEstimate": 76,
+                        "executionTimeMillisEstimate": 27,
                         "works": 160628,
                         "advanced": 160626,
                         "needTime": 1,
@@ -6856,7 +6856,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 160626,
-                           "executionTimeMillisEstimate": 66,
+                           "executionTimeMillisEstimate": 19,
                            "works": 160628,
                            "advanced": 160626,
                            "needTime": 1,
@@ -6868,7 +6868,7 @@
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 160626,
-                              "executionTimeMillisEstimate": 20,
+                              "executionTimeMillisEstimate": 3,
                               "works": 160628,
                               "advanced": 160626,
                               "needTime": 1,
@@ -6884,7 +6884,7 @@
                   }
                },
                "nReturned": 160626,
-               "executionTimeMillisEstimate": 413
+               "executionTimeMillisEstimate": 254
             },
             {
                "$group": {
@@ -6916,7 +6916,7 @@
                   }
                },
                "nReturned": 9,
-               "executionTimeMillisEstimate": 550
+               "executionTimeMillisEstimate": 338
             }
          ]
       }
@@ -6924,15 +6924,15 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232233,
+         "t": 1612445247,
          "i": 1
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232233,
-            "i": 2
+            "t": 1612445247,
+            "i": 1
          }
       },
       "signature": {
@@ -7066,13 +7066,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 53257,
-                     "executionTimeMillis": 190,
+                     "executionTimeMillis": 125,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 53257,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 53257,
-                        "executionTimeMillisEstimate": 18,
+                        "executionTimeMillisEstimate": 7,
                         "works": 53259,
                         "advanced": 53257,
                         "needTime": 1,
@@ -7088,7 +7088,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 53257,
-                           "executionTimeMillisEstimate": 17,
+                           "executionTimeMillisEstimate": 5,
                            "works": 53259,
                            "advanced": 53257,
                            "needTime": 1,
@@ -7100,7 +7100,7 @@
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 53257,
-                              "executionTimeMillisEstimate": 7,
+                              "executionTimeMillisEstimate": 1,
                               "works": 53259,
                               "advanced": 53257,
                               "needTime": 1,
@@ -7116,7 +7116,7 @@
                   }
                },
                "nReturned": 53257,
-               "executionTimeMillisEstimate": 133
+               "executionTimeMillisEstimate": 91
             },
             {
                "$group": {
@@ -7148,7 +7148,7 @@
                   }
                },
                "nReturned": 176,
-               "executionTimeMillisEstimate": 187
+               "executionTimeMillisEstimate": 120
             }
          ]
       },
@@ -7184,13 +7184,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 160655,
-                     "executionTimeMillis": 530,
+                     "executionTimeMillis": 343,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 160655,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 160655,
-                        "executionTimeMillisEstimate": 55,
+                        "executionTimeMillisEstimate": 14,
                         "works": 160657,
                         "advanced": 160655,
                         "needTime": 1,
@@ -7206,7 +7206,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 160655,
-                           "executionTimeMillisEstimate": 45,
+                           "executionTimeMillisEstimate": 5,
                            "works": 160657,
                            "advanced": 160655,
                            "needTime": 1,
@@ -7218,7 +7218,7 @@
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 160655,
-                              "executionTimeMillisEstimate": 9,
+                              "executionTimeMillisEstimate": 2,
                               "works": 160657,
                               "advanced": 160655,
                               "needTime": 1,
@@ -7234,7 +7234,7 @@
                   }
                },
                "nReturned": 160655,
-               "executionTimeMillisEstimate": 371
+               "executionTimeMillisEstimate": 233
             },
             {
                "$group": {
@@ -7266,7 +7266,7 @@
                   }
                },
                "nReturned": 247,
-               "executionTimeMillisEstimate": 524
+               "executionTimeMillisEstimate": 339
             }
          ]
       },
@@ -7302,13 +7302,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 160626,
-                     "executionTimeMillis": 531,
+                     "executionTimeMillis": 363,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 160626,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 160626,
-                        "executionTimeMillisEstimate": 60,
+                        "executionTimeMillisEstimate": 15,
                         "works": 160628,
                         "advanced": 160626,
                         "needTime": 1,
@@ -7324,7 +7324,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 160626,
-                           "executionTimeMillisEstimate": 49,
+                           "executionTimeMillisEstimate": 12,
                            "works": 160628,
                            "advanced": 160626,
                            "needTime": 1,
@@ -7336,7 +7336,7 @@
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 160626,
-                              "executionTimeMillisEstimate": 12,
+                              "executionTimeMillisEstimate": 3,
                               "works": 160628,
                               "advanced": 160626,
                               "needTime": 1,
@@ -7352,7 +7352,7 @@
                   }
                },
                "nReturned": 160626,
-               "executionTimeMillisEstimate": 370
+               "executionTimeMillisEstimate": 256
             },
             {
                "$group": {
@@ -7384,7 +7384,7 @@
                   }
                },
                "nReturned": 308,
-               "executionTimeMillisEstimate": 521
+               "executionTimeMillisEstimate": 356
             }
          ]
       }
@@ -7392,14 +7392,14 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232236,
+         "t": 1612445247,
          "i": 1
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232236,
+            "t": 1612445247,
             "i": 1
          }
       },
@@ -7534,13 +7534,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 53257,
-                     "executionTimeMillis": 229,
+                     "executionTimeMillis": 126,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 53257,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 53257,
-                        "executionTimeMillisEstimate": 22,
+                        "executionTimeMillisEstimate": 8,
                         "works": 53259,
                         "advanced": 53257,
                         "needTime": 1,
@@ -7556,7 +7556,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 53257,
-                           "executionTimeMillisEstimate": 18,
+                           "executionTimeMillisEstimate": 8,
                            "works": 53259,
                            "advanced": 53257,
                            "needTime": 1,
@@ -7568,7 +7568,7 @@
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 53257,
-                              "executionTimeMillisEstimate": 5,
+                              "executionTimeMillisEstimate": 0,
                               "works": 53259,
                               "advanced": 53257,
                               "needTime": 1,
@@ -7584,7 +7584,7 @@
                   }
                },
                "nReturned": 53257,
-               "executionTimeMillisEstimate": 149
+               "executionTimeMillisEstimate": 88
             },
             {
                "$group": {
@@ -7616,125 +7616,7 @@
                   }
                },
                "nReturned": 67,
-               "executionTimeMillisEstimate": 221
-            }
-         ]
-      },
-      "shard03": {
-         "host": "localhost:27020",
-         "stages": [
-            {
-               "$cursor": {
-                  "queryPlanner": {
-                     "plannerVersion": 1,
-                     "namespace": "SummerResearch.AirlineData_DEST_CITY_NAME_range",
-                     "indexFilterSet": false,
-                     "parsedQuery": {},
-                     "queryHash": "270C0B07",
-                     "planCacheKey": "270C0B07",
-                     "winningPlan": {
-                        "stage": "PROJECTION_SIMPLE",
-                        "transformBy": {
-                           "ARR_DELAY": 1,
-                           "DEST_CITY_NAME": 1,
-                           "_id": 0
-                        },
-                        "inputStage": {
-                           "stage": "SHARDING_FILTER",
-                           "inputStage": {
-                              "stage": "COLLSCAN",
-                              "direction": "forward"
-                           }
-                        }
-                     },
-                     "rejectedPlans": []
-                  },
-                  "executionStats": {
-                     "executionSuccess": true,
-                     "nReturned": 160655,
-                     "executionTimeMillis": 610,
-                     "totalKeysExamined": 0,
-                     "totalDocsExamined": 160655,
-                     "executionStages": {
-                        "stage": "PROJECTION_SIMPLE",
-                        "nReturned": 160655,
-                        "executionTimeMillisEstimate": 51,
-                        "works": 160657,
-                        "advanced": 160655,
-                        "needTime": 1,
-                        "needYield": 0,
-                        "saveState": 170,
-                        "restoreState": 170,
-                        "isEOF": 1,
-                        "transformBy": {
-                           "ARR_DELAY": 1,
-                           "DEST_CITY_NAME": 1,
-                           "_id": 0
-                        },
-                        "inputStage": {
-                           "stage": "SHARDING_FILTER",
-                           "nReturned": 160655,
-                           "executionTimeMillisEstimate": 38,
-                           "works": 160657,
-                           "advanced": 160655,
-                           "needTime": 1,
-                           "needYield": 0,
-                           "saveState": 170,
-                           "restoreState": 170,
-                           "isEOF": 1,
-                           "chunkSkips": 0,
-                           "inputStage": {
-                              "stage": "COLLSCAN",
-                              "nReturned": 160655,
-                              "executionTimeMillisEstimate": 17,
-                              "works": 160657,
-                              "advanced": 160655,
-                              "needTime": 1,
-                              "needYield": 0,
-                              "saveState": 170,
-                              "restoreState": 170,
-                              "isEOF": 1,
-                              "direction": "forward",
-                              "docsExamined": 160655
-                           }
-                        }
-                     }
-                  }
-               },
-               "nReturned": 160655,
-               "executionTimeMillisEstimate": 441
-            },
-            {
-               "$group": {
-                  "_id": "$DEST_CITY_NAME",
-                  "late": {
-                     "$sum": {
-                        "$cond": [
-                           {
-                              "$gt": [
-                                 "$ARR_DELAY",
-                                 {
-                                    "$const": 0
-                                 }
-                              ]
-                           },
-                           {
-                              "$const": 1
-                           },
-                           {
-                              "$const": 0
-                           }
-                        ]
-                     }
-                  },
-                  "total": {
-                     "$sum": {
-                        "$const": 1
-                     }
-                  }
-               },
-               "nReturned": 176,
-               "executionTimeMillisEstimate": 608
+               "executionTimeMillisEstimate": 123
             }
          ]
       },
@@ -7770,13 +7652,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 160626,
-                     "executionTimeMillis": 610,
+                     "executionTimeMillis": 351,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 160626,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 160626,
-                        "executionTimeMillisEstimate": 44,
+                        "executionTimeMillisEstimate": 23,
                         "works": 160628,
                         "advanced": 160626,
                         "needTime": 1,
@@ -7792,7 +7674,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 160626,
-                           "executionTimeMillisEstimate": 31,
+                           "executionTimeMillisEstimate": 13,
                            "works": 160628,
                            "advanced": 160626,
                            "needTime": 1,
@@ -7804,7 +7686,7 @@
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 160626,
-                              "executionTimeMillisEstimate": 10,
+                              "executionTimeMillisEstimate": 3,
                               "works": 160628,
                               "advanced": 160626,
                               "needTime": 1,
@@ -7820,7 +7702,7 @@
                   }
                },
                "nReturned": 160626,
-               "executionTimeMillisEstimate": 444
+               "executionTimeMillisEstimate": 263
             },
             {
                "$group": {
@@ -7852,7 +7734,125 @@
                   }
                },
                "nReturned": 116,
-               "executionTimeMillisEstimate": 601
+               "executionTimeMillisEstimate": 350
+            }
+         ]
+      },
+      "shard03": {
+         "host": "localhost:27020",
+         "stages": [
+            {
+               "$cursor": {
+                  "queryPlanner": {
+                     "plannerVersion": 1,
+                     "namespace": "SummerResearch.AirlineData_DEST_CITY_NAME_range",
+                     "indexFilterSet": false,
+                     "parsedQuery": {},
+                     "queryHash": "270C0B07",
+                     "planCacheKey": "270C0B07",
+                     "winningPlan": {
+                        "stage": "PROJECTION_SIMPLE",
+                        "transformBy": {
+                           "ARR_DELAY": 1,
+                           "DEST_CITY_NAME": 1,
+                           "_id": 0
+                        },
+                        "inputStage": {
+                           "stage": "SHARDING_FILTER",
+                           "inputStage": {
+                              "stage": "COLLSCAN",
+                              "direction": "forward"
+                           }
+                        }
+                     },
+                     "rejectedPlans": []
+                  },
+                  "executionStats": {
+                     "executionSuccess": true,
+                     "nReturned": 160655,
+                     "executionTimeMillis": 351,
+                     "totalKeysExamined": 0,
+                     "totalDocsExamined": 160655,
+                     "executionStages": {
+                        "stage": "PROJECTION_SIMPLE",
+                        "nReturned": 160655,
+                        "executionTimeMillisEstimate": 19,
+                        "works": 160657,
+                        "advanced": 160655,
+                        "needTime": 1,
+                        "needYield": 0,
+                        "saveState": 170,
+                        "restoreState": 170,
+                        "isEOF": 1,
+                        "transformBy": {
+                           "ARR_DELAY": 1,
+                           "DEST_CITY_NAME": 1,
+                           "_id": 0
+                        },
+                        "inputStage": {
+                           "stage": "SHARDING_FILTER",
+                           "nReturned": 160655,
+                           "executionTimeMillisEstimate": 13,
+                           "works": 160657,
+                           "advanced": 160655,
+                           "needTime": 1,
+                           "needYield": 0,
+                           "saveState": 170,
+                           "restoreState": 170,
+                           "isEOF": 1,
+                           "chunkSkips": 0,
+                           "inputStage": {
+                              "stage": "COLLSCAN",
+                              "nReturned": 160655,
+                              "executionTimeMillisEstimate": 1,
+                              "works": 160657,
+                              "advanced": 160655,
+                              "needTime": 1,
+                              "needYield": 0,
+                              "saveState": 170,
+                              "restoreState": 170,
+                              "isEOF": 1,
+                              "direction": "forward",
+                              "docsExamined": 160655
+                           }
+                        }
+                     }
+                  }
+               },
+               "nReturned": 160655,
+               "executionTimeMillisEstimate": 258
+            },
+            {
+               "$group": {
+                  "_id": "$DEST_CITY_NAME",
+                  "late": {
+                     "$sum": {
+                        "$cond": [
+                           {
+                              "$gt": [
+                                 "$ARR_DELAY",
+                                 {
+                                    "$const": 0
+                                 }
+                              ]
+                           },
+                           {
+                              "$const": 1
+                           },
+                           {
+                              "$const": 0
+                           }
+                        ]
+                     }
+                  },
+                  "total": {
+                     "$sum": {
+                        "$const": 1
+                     }
+                  }
+               },
+               "nReturned": 176,
+               "executionTimeMillisEstimate": 350
             }
          ]
       }
@@ -7860,14 +7860,14 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232236,
+         "t": 1612445247,
          "i": 1
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232236,
+            "t": 1612445248,
             "i": 1
          }
       },
@@ -7984,13 +7984,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 11090,
-                     "executionTimeMillis": 97,
+                     "executionTimeMillis": 51,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 53257,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 11090,
-                        "executionTimeMillisEstimate": 7,
+                        "executionTimeMillisEstimate": 1,
                         "works": 53259,
                         "advanced": 11090,
                         "needTime": 42168,
@@ -8006,7 +8006,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 11090,
-                           "executionTimeMillisEstimate": 6,
+                           "executionTimeMillisEstimate": 1,
                            "works": 53259,
                            "advanced": 11090,
                            "needTime": 42168,
@@ -8023,7 +8023,7 @@
                                  }
                               },
                               "nReturned": 11090,
-                              "executionTimeMillisEstimate": 4,
+                              "executionTimeMillisEstimate": 1,
                               "works": 53259,
                               "advanced": 11090,
                               "needTime": 42168,
@@ -8039,7 +8039,7 @@
                   }
                },
                "nReturned": 11090,
-               "executionTimeMillisEstimate": 80
+               "executionTimeMillisEstimate": 43
             },
             {
                "$group": {
@@ -8055,7 +8055,7 @@
                   }
                },
                "nReturned": 172,
-               "executionTimeMillisEstimate": 91
+               "executionTimeMillisEstimate": 43
             }
          ]
       },
@@ -8100,13 +8100,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 32423,
-                     "executionTimeMillis": 257,
+                     "executionTimeMillis": 139,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 160655,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 32423,
-                        "executionTimeMillisEstimate": 24,
+                        "executionTimeMillisEstimate": 2,
                         "works": 160657,
                         "advanced": 32423,
                         "needTime": 128233,
@@ -8122,7 +8122,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 32423,
-                           "executionTimeMillisEstimate": 24,
+                           "executionTimeMillisEstimate": 1,
                            "works": 160657,
                            "advanced": 32423,
                            "needTime": 128233,
@@ -8139,7 +8139,7 @@
                                  }
                               },
                               "nReturned": 32423,
-                              "executionTimeMillisEstimate": 17,
+                              "executionTimeMillisEstimate": 1,
                               "works": 160657,
                               "advanced": 32423,
                               "needTime": 128233,
@@ -8155,7 +8155,7 @@
                   }
                },
                "nReturned": 32423,
-               "executionTimeMillisEstimate": 222
+               "executionTimeMillisEstimate": 116
             },
             {
                "$group": {
@@ -8171,7 +8171,7 @@
                   }
                },
                "nReturned": 243,
-               "executionTimeMillisEstimate": 254
+               "executionTimeMillisEstimate": 137
             }
          ]
       },
@@ -8216,13 +8216,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 35457,
-                     "executionTimeMillis": 264,
+                     "executionTimeMillis": 149,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 160626,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 35457,
-                        "executionTimeMillisEstimate": 24,
+                        "executionTimeMillisEstimate": 6,
                         "works": 160628,
                         "advanced": 35457,
                         "needTime": 125170,
@@ -8238,7 +8238,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 35457,
-                           "executionTimeMillisEstimate": 19,
+                           "executionTimeMillisEstimate": 6,
                            "works": 160628,
                            "advanced": 35457,
                            "needTime": 125170,
@@ -8255,7 +8255,7 @@
                                  }
                               },
                               "nReturned": 35457,
-                              "executionTimeMillisEstimate": 12,
+                              "executionTimeMillisEstimate": 5,
                               "works": 160628,
                               "advanced": 35457,
                               "needTime": 125170,
@@ -8271,7 +8271,7 @@
                   }
                },
                "nReturned": 35457,
-               "executionTimeMillisEstimate": 222
+               "executionTimeMillisEstimate": 122
             },
             {
                "$group": {
@@ -8287,7 +8287,7 @@
                   }
                },
                "nReturned": 308,
-               "executionTimeMillisEstimate": 255
+               "executionTimeMillisEstimate": 149
             }
          ]
       }
@@ -8295,14 +8295,14 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232236,
+         "t": 1612445247,
          "i": 1
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232236,
+            "t": 1612445248,
             "i": 1
          }
       },
@@ -8419,13 +8419,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 11090,
-                     "executionTimeMillis": 92,
+                     "executionTimeMillis": 52,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 53257,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 11090,
-                        "executionTimeMillisEstimate": 4,
+                        "executionTimeMillisEstimate": 3,
                         "works": 53259,
                         "advanced": 11090,
                         "needTime": 42168,
@@ -8441,7 +8441,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 11090,
-                           "executionTimeMillisEstimate": 4,
+                           "executionTimeMillisEstimate": 3,
                            "works": 53259,
                            "advanced": 11090,
                            "needTime": 42168,
@@ -8458,7 +8458,7 @@
                                  }
                               },
                               "nReturned": 11090,
-                              "executionTimeMillisEstimate": 3,
+                              "executionTimeMillisEstimate": 2,
                               "works": 53259,
                               "advanced": 11090,
                               "needTime": 42168,
@@ -8474,7 +8474,7 @@
                   }
                },
                "nReturned": 11090,
-               "executionTimeMillisEstimate": 65
+               "executionTimeMillisEstimate": 43
             },
             {
                "$group": {
@@ -8490,7 +8490,7 @@
                   }
                },
                "nReturned": 67,
-               "executionTimeMillisEstimate": 89
+               "executionTimeMillisEstimate": 50
             }
          ]
       },
@@ -8535,19 +8535,19 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 32423,
-                     "executionTimeMillis": 434,
+                     "executionTimeMillis": 142,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 160655,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 32423,
-                        "executionTimeMillisEstimate": 106,
+                        "executionTimeMillisEstimate": 6,
                         "works": 160657,
                         "advanced": 32423,
                         "needTime": 128233,
                         "needYield": 0,
-                        "saveState": 163,
-                        "restoreState": 163,
+                        "saveState": 162,
+                        "restoreState": 162,
                         "isEOF": 1,
                         "transformBy": {
                            "ARR_DELAY": 1,
@@ -8557,13 +8557,13 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 32423,
-                           "executionTimeMillisEstimate": 95,
+                           "executionTimeMillisEstimate": 6,
                            "works": 160657,
                            "advanced": 32423,
                            "needTime": 128233,
                            "needYield": 0,
-                           "saveState": 163,
-                           "restoreState": 163,
+                           "saveState": 162,
+                           "restoreState": 162,
                            "isEOF": 1,
                            "chunkSkips": 0,
                            "inputStage": {
@@ -8574,13 +8574,13 @@
                                  }
                               },
                               "nReturned": 32423,
-                              "executionTimeMillisEstimate": 60,
+                              "executionTimeMillisEstimate": 4,
                               "works": 160657,
                               "advanced": 32423,
                               "needTime": 128233,
                               "needYield": 0,
-                              "saveState": 163,
-                              "restoreState": 163,
+                              "saveState": 162,
+                              "restoreState": 162,
                               "isEOF": 1,
                               "direction": "forward",
                               "docsExamined": 160655
@@ -8590,7 +8590,7 @@
                   }
                },
                "nReturned": 32423,
-               "executionTimeMillisEstimate": 387
+               "executionTimeMillisEstimate": 116
             },
             {
                "$group": {
@@ -8606,7 +8606,7 @@
                   }
                },
                "nReturned": 175,
-               "executionTimeMillisEstimate": 433
+               "executionTimeMillisEstimate": 138
             }
          ]
       },
@@ -8651,19 +8651,19 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 35457,
-                     "executionTimeMillis": 454,
+                     "executionTimeMillis": 150,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 160626,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 35457,
-                        "executionTimeMillisEstimate": 146,
+                        "executionTimeMillisEstimate": 8,
                         "works": 160628,
                         "advanced": 35457,
                         "needTime": 125170,
                         "needYield": 0,
-                        "saveState": 163,
-                        "restoreState": 163,
+                        "saveState": 162,
+                        "restoreState": 162,
                         "isEOF": 1,
                         "transformBy": {
                            "ARR_DELAY": 1,
@@ -8673,13 +8673,13 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 35457,
-                           "executionTimeMillisEstimate": 142,
+                           "executionTimeMillisEstimate": 6,
                            "works": 160628,
                            "advanced": 35457,
                            "needTime": 125170,
                            "needYield": 0,
-                           "saveState": 163,
-                           "restoreState": 163,
+                           "saveState": 162,
+                           "restoreState": 162,
                            "isEOF": 1,
                            "chunkSkips": 0,
                            "inputStage": {
@@ -8690,13 +8690,13 @@
                                  }
                               },
                               "nReturned": 35457,
-                              "executionTimeMillisEstimate": 75,
+                              "executionTimeMillisEstimate": 4,
                               "works": 160628,
                               "advanced": 35457,
                               "needTime": 125170,
                               "needYield": 0,
-                              "saveState": 163,
-                              "restoreState": 163,
+                              "saveState": 162,
+                              "restoreState": 162,
                               "isEOF": 1,
                               "direction": "forward",
                               "docsExamined": 160626
@@ -8706,7 +8706,7 @@
                   }
                },
                "nReturned": 35457,
-               "executionTimeMillisEstimate": 405
+               "executionTimeMillisEstimate": 131
             },
             {
                "$group": {
@@ -8722,7 +8722,7 @@
                   }
                },
                "nReturned": 114,
-               "executionTimeMillisEstimate": 449
+               "executionTimeMillisEstimate": 143
             }
          ]
       }
@@ -8730,14 +8730,14 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232236,
+         "t": 1612445247,
          "i": 1
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232237,
+            "t": 1612445248,
             "i": 1
          }
       },
@@ -8854,13 +8854,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 11090,
-                     "executionTimeMillis": 121,
+                     "executionTimeMillis": 48,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 53257,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 11090,
-                        "executionTimeMillisEstimate": 15,
+                        "executionTimeMillisEstimate": 2,
                         "works": 53259,
                         "advanced": 11090,
                         "needTime": 42168,
@@ -8876,7 +8876,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 11090,
-                           "executionTimeMillisEstimate": 15,
+                           "executionTimeMillisEstimate": 2,
                            "works": 53259,
                            "advanced": 11090,
                            "needTime": 42168,
@@ -8893,7 +8893,7 @@
                                  }
                               },
                               "nReturned": 11090,
-                              "executionTimeMillisEstimate": 9,
+                              "executionTimeMillisEstimate": 1,
                               "works": 53259,
                               "advanced": 11090,
                               "needTime": 42168,
@@ -8909,7 +8909,7 @@
                   }
                },
                "nReturned": 11090,
-               "executionTimeMillisEstimate": 104
+               "executionTimeMillisEstimate": 42
             },
             {
                "$group": {
@@ -8925,7 +8925,7 @@
                   }
                },
                "nReturned": 10,
-               "executionTimeMillisEstimate": 117
+               "executionTimeMillisEstimate": 43
             }
          ]
       },
@@ -8970,19 +8970,19 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 32423,
-                     "executionTimeMillis": 338,
+                     "executionTimeMillis": 134,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 160655,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 32423,
-                        "executionTimeMillisEstimate": 41,
+                        "executionTimeMillisEstimate": 9,
                         "works": 160657,
                         "advanced": 32423,
                         "needTime": 128233,
                         "needYield": 0,
-                        "saveState": 164,
-                        "restoreState": 164,
+                        "saveState": 163,
+                        "restoreState": 163,
                         "isEOF": 1,
                         "transformBy": {
                            "ARR_DELAY": 1,
@@ -8992,13 +8992,13 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 32423,
-                           "executionTimeMillisEstimate": 39,
+                           "executionTimeMillisEstimate": 8,
                            "works": 160657,
                            "advanced": 32423,
                            "needTime": 128233,
                            "needYield": 0,
-                           "saveState": 164,
-                           "restoreState": 164,
+                           "saveState": 163,
+                           "restoreState": 163,
                            "isEOF": 1,
                            "chunkSkips": 0,
                            "inputStage": {
@@ -9009,13 +9009,13 @@
                                  }
                               },
                               "nReturned": 32423,
-                              "executionTimeMillisEstimate": 24,
+                              "executionTimeMillisEstimate": 5,
                               "works": 160657,
                               "advanced": 32423,
                               "needTime": 128233,
                               "needYield": 0,
-                              "saveState": 164,
-                              "restoreState": 164,
+                              "saveState": 163,
+                              "restoreState": 163,
                               "isEOF": 1,
                               "direction": "forward",
                               "docsExamined": 160655
@@ -9025,7 +9025,7 @@
                   }
                },
                "nReturned": 32423,
-               "executionTimeMillisEstimate": 310
+               "executionTimeMillisEstimate": 115
             },
             {
                "$group": {
@@ -9041,7 +9041,7 @@
                   }
                },
                "nReturned": 10,
-               "executionTimeMillisEstimate": 334
+               "executionTimeMillisEstimate": 131
             }
          ]
       },
@@ -9086,19 +9086,19 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 35457,
-                     "executionTimeMillis": 340,
+                     "executionTimeMillis": 147,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 160626,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 35457,
-                        "executionTimeMillisEstimate": 54,
+                        "executionTimeMillisEstimate": 5,
                         "works": 160628,
                         "advanced": 35457,
                         "needTime": 125170,
                         "needYield": 0,
-                        "saveState": 163,
-                        "restoreState": 163,
+                        "saveState": 162,
+                        "restoreState": 162,
                         "isEOF": 1,
                         "transformBy": {
                            "ARR_DELAY": 1,
@@ -9108,13 +9108,13 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 35457,
-                           "executionTimeMillisEstimate": 41,
+                           "executionTimeMillisEstimate": 4,
                            "works": 160628,
                            "advanced": 35457,
                            "needTime": 125170,
                            "needYield": 0,
-                           "saveState": 163,
-                           "restoreState": 163,
+                           "saveState": 162,
+                           "restoreState": 162,
                            "isEOF": 1,
                            "chunkSkips": 0,
                            "inputStage": {
@@ -9125,13 +9125,13 @@
                                  }
                               },
                               "nReturned": 35457,
-                              "executionTimeMillisEstimate": 25,
+                              "executionTimeMillisEstimate": 2,
                               "works": 160628,
                               "advanced": 35457,
                               "needTime": 125170,
                               "needYield": 0,
-                              "saveState": 163,
-                              "restoreState": 163,
+                              "saveState": 162,
+                              "restoreState": 162,
                               "isEOF": 1,
                               "direction": "forward",
                               "docsExamined": 160626
@@ -9141,7 +9141,7 @@
                   }
                },
                "nReturned": 35457,
-               "executionTimeMillisEstimate": 301
+               "executionTimeMillisEstimate": 126
             },
             {
                "$group": {
@@ -9157,7 +9157,7 @@
                   }
                },
                "nReturned": 9,
-               "executionTimeMillisEstimate": 339
+               "executionTimeMillisEstimate": 146
             }
          ]
       }
@@ -9165,15 +9165,15 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232236,
-         "i": 1
+         "t": 1612445249,
+         "i": 2
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232237,
-            "i": 1
+            "t": 1612445249,
+            "i": 2
          }
       },
       "signature": {
@@ -9307,7 +9307,7 @@
          "executionStats": {
             "executionSuccess": true,
             "nReturned": 0,
-            "executionTimeMillis": 5,
+            "executionTimeMillis": 0,
             "totalKeysExamined": 0,
             "totalDocsExamined": 0,
             "executionStages": {
@@ -9382,15 +9382,15 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232233,
+         "t": 1612445241,
          "i": 1
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232237,
-            "i": 1
+            "t": 1612445249,
+            "i": 2
          }
       },
       "signature": {
@@ -9524,19 +9524,19 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 91322,
-                     "executionTimeMillis": 677,
+                     "executionTimeMillis": 261,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 91322,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 91322,
-                        "executionTimeMillisEstimate": 219,
+                        "executionTimeMillisEstimate": 21,
                         "works": 91324,
                         "advanced": 91322,
                         "needTime": 1,
                         "needYield": 0,
-                        "saveState": 97,
-                        "restoreState": 97,
+                        "saveState": 96,
+                        "restoreState": 96,
                         "isEOF": 1,
                         "transformBy": {
                            "ARR_DELAY": 1,
@@ -9546,25 +9546,25 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 91322,
-                           "executionTimeMillisEstimate": 125,
+                           "executionTimeMillisEstimate": 12,
                            "works": 91324,
                            "advanced": 91322,
                            "needTime": 1,
                            "needYield": 0,
-                           "saveState": 97,
-                           "restoreState": 97,
+                           "saveState": 96,
+                           "restoreState": 96,
                            "isEOF": 1,
                            "chunkSkips": 0,
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 91322,
-                              "executionTimeMillisEstimate": 60,
+                              "executionTimeMillisEstimate": 2,
                               "works": 91324,
                               "advanced": 91322,
                               "needTime": 1,
                               "needYield": 0,
-                              "saveState": 97,
-                              "restoreState": 97,
+                              "saveState": 96,
+                              "restoreState": 96,
                               "isEOF": 1,
                               "direction": "forward",
                               "docsExamined": 91322
@@ -9574,7 +9574,7 @@
                   }
                },
                "nReturned": 91322,
-               "executionTimeMillisEstimate": 603
+               "executionTimeMillisEstimate": 217
             },
             {
                "$group": {
@@ -9606,7 +9606,7 @@
                   }
                },
                "nReturned": 10,
-               "executionTimeMillisEstimate": 675
+               "executionTimeMillisEstimate": 260
             }
          ]
       },
@@ -9642,19 +9642,19 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 97869,
-                     "executionTimeMillis": 735,
+                     "executionTimeMillis": 264,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 97869,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 97869,
-                        "executionTimeMillisEstimate": 270,
+                        "executionTimeMillisEstimate": 26,
                         "works": 97871,
                         "advanced": 97869,
                         "needTime": 1,
                         "needYield": 0,
-                        "saveState": 104,
-                        "restoreState": 104,
+                        "saveState": 103,
+                        "restoreState": 103,
                         "isEOF": 1,
                         "transformBy": {
                            "ARR_DELAY": 1,
@@ -9664,25 +9664,25 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 97869,
-                           "executionTimeMillisEstimate": 106,
+                           "executionTimeMillisEstimate": 16,
                            "works": 97871,
                            "advanced": 97869,
                            "needTime": 1,
                            "needYield": 0,
-                           "saveState": 104,
-                           "restoreState": 104,
+                           "saveState": 103,
+                           "restoreState": 103,
                            "isEOF": 1,
                            "chunkSkips": 0,
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 97869,
-                              "executionTimeMillisEstimate": 26,
+                              "executionTimeMillisEstimate": 5,
                               "works": 97871,
                               "advanced": 97869,
                               "needTime": 1,
                               "needYield": 0,
-                              "saveState": 104,
-                              "restoreState": 104,
+                              "saveState": 103,
+                              "restoreState": 103,
                               "isEOF": 1,
                               "direction": "forward",
                               "docsExamined": 97869
@@ -9692,7 +9692,7 @@
                   }
                },
                "nReturned": 97869,
-               "executionTimeMillisEstimate": 656
+               "executionTimeMillisEstimate": 210
             },
             {
                "$group": {
@@ -9724,7 +9724,7 @@
                   }
                },
                "nReturned": 10,
-               "executionTimeMillisEstimate": 728
+               "executionTimeMillisEstimate": 260
             }
          ]
       },
@@ -9760,13 +9760,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 185347,
-                     "executionTimeMillis": 1547,
+                     "executionTimeMillis": 508,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 185347,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 185347,
-                        "executionTimeMillisEstimate": 588,
+                        "executionTimeMillisEstimate": 44,
                         "works": 185349,
                         "advanced": 185347,
                         "needTime": 1,
@@ -9782,7 +9782,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 185347,
-                           "executionTimeMillisEstimate": 231,
+                           "executionTimeMillisEstimate": 30,
                            "works": 185349,
                            "advanced": 185347,
                            "needTime": 1,
@@ -9794,7 +9794,7 @@
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 185347,
-                              "executionTimeMillisEstimate": 106,
+                              "executionTimeMillisEstimate": 9,
                               "works": 185349,
                               "advanced": 185347,
                               "needTime": 1,
@@ -9810,7 +9810,7 @@
                   }
                },
                "nReturned": 185347,
-               "executionTimeMillisEstimate": 1382
+               "executionTimeMillisEstimate": 408
             },
             {
                "$group": {
@@ -9842,7 +9842,7 @@
                   }
                },
                "nReturned": 10,
-               "executionTimeMillisEstimate": 1543
+               "executionTimeMillisEstimate": 502
             }
          ]
       }
@@ -9850,15 +9850,15 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232236,
-         "i": 1
+         "t": 1612445249,
+         "i": 2
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232237,
-            "i": 1
+            "t": 1612445249,
+            "i": 2
          }
       },
       "signature": {
@@ -9992,13 +9992,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 91322,
-                     "executionTimeMillis": 285,
+                     "executionTimeMillis": 218,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 91322,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 91322,
-                        "executionTimeMillisEstimate": 26,
+                        "executionTimeMillisEstimate": 10,
                         "works": 91324,
                         "advanced": 91322,
                         "needTime": 1,
@@ -10014,7 +10014,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 91322,
-                           "executionTimeMillisEstimate": 18,
+                           "executionTimeMillisEstimate": 8,
                            "works": 91324,
                            "advanced": 91322,
                            "needTime": 1,
@@ -10026,7 +10026,7 @@
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 91322,
-                              "executionTimeMillisEstimate": 0,
+                              "executionTimeMillisEstimate": 4,
                               "works": 91324,
                               "advanced": 91322,
                               "needTime": 1,
@@ -10042,7 +10042,7 @@
                   }
                },
                "nReturned": 91322,
-               "executionTimeMillisEstimate": 205
+               "executionTimeMillisEstimate": 159
             },
             {
                "$group": {
@@ -10074,7 +10074,7 @@
                   }
                },
                "nReturned": 359,
-               "executionTimeMillisEstimate": 280
+               "executionTimeMillisEstimate": 212
             }
          ]
       },
@@ -10110,13 +10110,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 97869,
-                     "executionTimeMillis": 308,
+                     "executionTimeMillis": 229,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 97869,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 97869,
-                        "executionTimeMillisEstimate": 28,
+                        "executionTimeMillisEstimate": 12,
                         "works": 97871,
                         "advanced": 97869,
                         "needTime": 1,
@@ -10132,7 +10132,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 97869,
-                           "executionTimeMillisEstimate": 17,
+                           "executionTimeMillisEstimate": 8,
                            "works": 97871,
                            "advanced": 97869,
                            "needTime": 1,
@@ -10144,7 +10144,7 @@
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 97869,
-                              "executionTimeMillisEstimate": 8,
+                              "executionTimeMillisEstimate": 3,
                               "works": 97871,
                               "advanced": 97869,
                               "needTime": 1,
@@ -10160,7 +10160,7 @@
                   }
                },
                "nReturned": 97869,
-               "executionTimeMillisEstimate": 219
+               "executionTimeMillisEstimate": 168
             },
             {
                "$group": {
@@ -10192,7 +10192,7 @@
                   }
                },
                "nReturned": 353,
-               "executionTimeMillisEstimate": 306
+               "executionTimeMillisEstimate": 222
             }
          ]
       },
@@ -10228,13 +10228,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 185347,
-                     "executionTimeMillis": 583,
+                     "executionTimeMillis": 448,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 185347,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 185347,
-                        "executionTimeMillisEstimate": 52,
+                        "executionTimeMillisEstimate": 22,
                         "works": 185349,
                         "advanced": 185347,
                         "needTime": 1,
@@ -10250,7 +10250,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 185347,
-                           "executionTimeMillisEstimate": 32,
+                           "executionTimeMillisEstimate": 14,
                            "works": 185349,
                            "advanced": 185347,
                            "needTime": 1,
@@ -10262,7 +10262,7 @@
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 185347,
-                              "executionTimeMillisEstimate": 8,
+                              "executionTimeMillisEstimate": 2,
                               "works": 185349,
                               "advanced": 185347,
                               "needTime": 1,
@@ -10278,7 +10278,7 @@
                   }
                },
                "nReturned": 185347,
-               "executionTimeMillisEstimate": 427
+               "executionTimeMillisEstimate": 329
             },
             {
                "$group": {
@@ -10310,7 +10310,7 @@
                   }
                },
                "nReturned": 359,
-               "executionTimeMillisEstimate": 580
+               "executionTimeMillisEstimate": 439
             }
          ]
       }
@@ -10318,15 +10318,15 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232236,
-         "i": 1
+         "t": 1612445249,
+         "i": 2
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232237,
-            "i": 1
+            "t": 1612445249,
+            "i": 2
          }
       },
       "signature": {
@@ -10460,13 +10460,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 91322,
-                     "executionTimeMillis": 279,
+                     "executionTimeMillis": 218,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 91322,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 91322,
-                        "executionTimeMillisEstimate": 28,
+                        "executionTimeMillisEstimate": 13,
                         "works": 91324,
                         "advanced": 91322,
                         "needTime": 1,
@@ -10482,7 +10482,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 91322,
-                           "executionTimeMillisEstimate": 16,
+                           "executionTimeMillisEstimate": 12,
                            "works": 91324,
                            "advanced": 91322,
                            "needTime": 1,
@@ -10494,7 +10494,7 @@
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 91322,
-                              "executionTimeMillisEstimate": 4,
+                              "executionTimeMillisEstimate": 1,
                               "works": 91324,
                               "advanced": 91322,
                               "needTime": 1,
@@ -10510,7 +10510,7 @@
                   }
                },
                "nReturned": 91322,
-               "executionTimeMillisEstimate": 207
+               "executionTimeMillisEstimate": 173
             },
             {
                "$group": {
@@ -10542,7 +10542,7 @@
                   }
                },
                "nReturned": 359,
-               "executionTimeMillisEstimate": 269
+               "executionTimeMillisEstimate": 216
             }
          ]
       },
@@ -10578,13 +10578,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 97869,
-                     "executionTimeMillis": 299,
+                     "executionTimeMillis": 231,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 97869,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 97869,
-                        "executionTimeMillisEstimate": 27,
+                        "executionTimeMillisEstimate": 18,
                         "works": 97871,
                         "advanced": 97869,
                         "needTime": 1,
@@ -10600,7 +10600,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 97869,
-                           "executionTimeMillisEstimate": 17,
+                           "executionTimeMillisEstimate": 14,
                            "works": 97871,
                            "advanced": 97869,
                            "needTime": 1,
@@ -10612,7 +10612,7 @@
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 97869,
-                              "executionTimeMillisEstimate": 3,
+                              "executionTimeMillisEstimate": 5,
                               "works": 97871,
                               "advanced": 97869,
                               "needTime": 1,
@@ -10628,7 +10628,7 @@
                   }
                },
                "nReturned": 97869,
-               "executionTimeMillisEstimate": 220
+               "executionTimeMillisEstimate": 166
             },
             {
                "$group": {
@@ -10660,7 +10660,7 @@
                   }
                },
                "nReturned": 353,
-               "executionTimeMillisEstimate": 299
+               "executionTimeMillisEstimate": 228
             }
          ]
       },
@@ -10696,13 +10696,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 185347,
-                     "executionTimeMillis": 576,
+                     "executionTimeMillis": 442,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 185347,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 185347,
-                        "executionTimeMillisEstimate": 49,
+                        "executionTimeMillisEstimate": 26,
                         "works": 185349,
                         "advanced": 185347,
                         "needTime": 1,
@@ -10718,7 +10718,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 185347,
-                           "executionTimeMillisEstimate": 42,
+                           "executionTimeMillisEstimate": 19,
                            "works": 185349,
                            "advanced": 185347,
                            "needTime": 1,
@@ -10730,7 +10730,7 @@
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 185347,
-                              "executionTimeMillisEstimate": 12,
+                              "executionTimeMillisEstimate": 4,
                               "works": 185349,
                               "advanced": 185347,
                               "needTime": 1,
@@ -10746,7 +10746,7 @@
                   }
                },
                "nReturned": 185347,
-               "executionTimeMillisEstimate": 420
+               "executionTimeMillisEstimate": 330
             },
             {
                "$group": {
@@ -10778,7 +10778,7 @@
                   }
                },
                "nReturned": 359,
-               "executionTimeMillisEstimate": 569
+               "executionTimeMillisEstimate": 440
             }
          ]
       }
@@ -10786,15 +10786,15 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232236,
-         "i": 1
+         "t": 1612445249,
+         "i": 2
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232240,
-            "i": 1
+            "t": 1612445249,
+            "i": 2
          }
       },
       "signature": {
@@ -10910,13 +10910,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 17568,
-                     "executionTimeMillis": 99,
+                     "executionTimeMillis": 86,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 91322,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 17568,
-                        "executionTimeMillisEstimate": 7,
+                        "executionTimeMillisEstimate": 5,
                         "works": 91324,
                         "advanced": 17568,
                         "needTime": 73755,
@@ -10932,7 +10932,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 17568,
-                           "executionTimeMillisEstimate": 7,
+                           "executionTimeMillisEstimate": 5,
                            "works": 91324,
                            "advanced": 17568,
                            "needTime": 73755,
@@ -10949,7 +10949,7 @@
                                  }
                               },
                               "nReturned": 17568,
-                              "executionTimeMillisEstimate": 6,
+                              "executionTimeMillisEstimate": 3,
                               "works": 91324,
                               "advanced": 17568,
                               "needTime": 73755,
@@ -10965,7 +10965,7 @@
                   }
                },
                "nReturned": 17568,
-               "executionTimeMillisEstimate": 78
+               "executionTimeMillisEstimate": 74
             },
             {
                "$group": {
@@ -10981,7 +10981,7 @@
                   }
                },
                "nReturned": 343,
-               "executionTimeMillisEstimate": 97
+               "executionTimeMillisEstimate": 80
             }
          ]
       },
@@ -11026,13 +11026,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 21596,
-                     "executionTimeMillis": 117,
+                     "executionTimeMillis": 95,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 97869,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 21596,
-                        "executionTimeMillisEstimate": 6,
+                        "executionTimeMillisEstimate": 8,
                         "works": 97871,
                         "advanced": 21596,
                         "needTime": 76274,
@@ -11048,7 +11048,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 21596,
-                           "executionTimeMillisEstimate": 6,
+                           "executionTimeMillisEstimate": 7,
                            "works": 97871,
                            "advanced": 21596,
                            "needTime": 76274,
@@ -11065,7 +11065,7 @@
                                  }
                               },
                               "nReturned": 21596,
-                              "executionTimeMillisEstimate": 2,
+                              "executionTimeMillisEstimate": 6,
                               "works": 97871,
                               "advanced": 21596,
                               "needTime": 76274,
@@ -11081,7 +11081,7 @@
                   }
                },
                "nReturned": 21596,
-               "executionTimeMillisEstimate": 98
+               "executionTimeMillisEstimate": 77
             },
             {
                "$group": {
@@ -11097,7 +11097,7 @@
                   }
                },
                "nReturned": 344,
-               "executionTimeMillisEstimate": 107
+               "executionTimeMillisEstimate": 92
             }
          ]
       },
@@ -11142,13 +11142,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 39806,
-                     "executionTimeMillis": 217,
+                     "executionTimeMillis": 180,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 185347,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 39806,
-                        "executionTimeMillisEstimate": 15,
+                        "executionTimeMillisEstimate": 7,
                         "works": 185349,
                         "advanced": 39806,
                         "needTime": 145542,
@@ -11164,7 +11164,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 39806,
-                           "executionTimeMillisEstimate": 12,
+                           "executionTimeMillisEstimate": 7,
                            "works": 185349,
                            "advanced": 39806,
                            "needTime": 145542,
@@ -11181,7 +11181,7 @@
                                  }
                               },
                               "nReturned": 39806,
-                              "executionTimeMillisEstimate": 4,
+                              "executionTimeMillisEstimate": 3,
                               "works": 185349,
                               "advanced": 39806,
                               "needTime": 145542,
@@ -11197,7 +11197,7 @@
                   }
                },
                "nReturned": 39806,
-               "executionTimeMillisEstimate": 190
+               "executionTimeMillisEstimate": 149
             },
             {
                "$group": {
@@ -11213,7 +11213,7 @@
                   }
                },
                "nReturned": 353,
-               "executionTimeMillisEstimate": 215
+               "executionTimeMillisEstimate": 173
             }
          ]
       }
@@ -11221,14 +11221,14 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232236,
-         "i": 1
+         "t": 1612445249,
+         "i": 2
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232240,
+            "t": 1612445250,
             "i": 1
          }
       },
@@ -11345,13 +11345,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 17568,
-                     "executionTimeMillis": 99,
+                     "executionTimeMillis": 85,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 91322,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 17568,
-                        "executionTimeMillisEstimate": 3,
+                        "executionTimeMillisEstimate": 4,
                         "works": 91324,
                         "advanced": 17568,
                         "needTime": 73755,
@@ -11367,7 +11367,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 17568,
-                           "executionTimeMillisEstimate": 3,
+                           "executionTimeMillisEstimate": 4,
                            "works": 91324,
                            "advanced": 17568,
                            "needTime": 73755,
@@ -11400,7 +11400,7 @@
                   }
                },
                "nReturned": 17568,
-               "executionTimeMillisEstimate": 84
+               "executionTimeMillisEstimate": 71
             },
             {
                "$group": {
@@ -11416,7 +11416,7 @@
                   }
                },
                "nReturned": 339,
-               "executionTimeMillisEstimate": 92
+               "executionTimeMillisEstimate": 85
             }
          ]
       },
@@ -11461,13 +11461,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 21596,
-                     "executionTimeMillis": 124,
+                     "executionTimeMillis": 93,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 97869,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 21596,
-                        "executionTimeMillisEstimate": 4,
+                        "executionTimeMillisEstimate": 5,
                         "works": 97871,
                         "advanced": 21596,
                         "needTime": 76274,
@@ -11483,7 +11483,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 21596,
-                           "executionTimeMillisEstimate": 4,
+                           "executionTimeMillisEstimate": 3,
                            "works": 97871,
                            "advanced": 21596,
                            "needTime": 76274,
@@ -11516,7 +11516,7 @@
                   }
                },
                "nReturned": 21596,
-               "executionTimeMillisEstimate": 98
+               "executionTimeMillisEstimate": 75
             },
             {
                "$group": {
@@ -11532,7 +11532,7 @@
                   }
                },
                "nReturned": 337,
-               "executionTimeMillisEstimate": 117
+               "executionTimeMillisEstimate": 85
             }
          ]
       },
@@ -11577,13 +11577,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 39806,
-                     "executionTimeMillis": 224,
+                     "executionTimeMillis": 177,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 185347,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 39806,
-                        "executionTimeMillisEstimate": 9,
+                        "executionTimeMillisEstimate": 7,
                         "works": 185349,
                         "advanced": 39806,
                         "needTime": 145542,
@@ -11599,7 +11599,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 39806,
-                           "executionTimeMillisEstimate": 8,
+                           "executionTimeMillisEstimate": 6,
                            "works": 185349,
                            "advanced": 39806,
                            "needTime": 145542,
@@ -11616,7 +11616,7 @@
                                  }
                               },
                               "nReturned": 39806,
-                              "executionTimeMillisEstimate": 5,
+                              "executionTimeMillisEstimate": 3,
                               "works": 185349,
                               "advanced": 39806,
                               "needTime": 145542,
@@ -11632,7 +11632,7 @@
                   }
                },
                "nReturned": 39806,
-               "executionTimeMillisEstimate": 188
+               "executionTimeMillisEstimate": 161
             },
             {
                "$group": {
@@ -11648,7 +11648,7 @@
                   }
                },
                "nReturned": 351,
-               "executionTimeMillisEstimate": 222
+               "executionTimeMillisEstimate": 166
             }
          ]
       }
@@ -11656,14 +11656,14 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232236,
-         "i": 1
+         "t": 1612445249,
+         "i": 2
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232240,
+            "t": 1612445250,
             "i": 1
          }
       },
@@ -11780,13 +11780,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 17568,
-                     "executionTimeMillis": 94,
+                     "executionTimeMillis": 83,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 91322,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 17568,
-                        "executionTimeMillisEstimate": 6,
+                        "executionTimeMillisEstimate": 2,
                         "works": 91324,
                         "advanced": 17568,
                         "needTime": 73755,
@@ -11802,7 +11802,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 17568,
-                           "executionTimeMillisEstimate": 6,
+                           "executionTimeMillisEstimate": 2,
                            "works": 91324,
                            "advanced": 17568,
                            "needTime": 73755,
@@ -11819,7 +11819,7 @@
                                  }
                               },
                               "nReturned": 17568,
-                              "executionTimeMillisEstimate": 6,
+                              "executionTimeMillisEstimate": 2,
                               "works": 91324,
                               "advanced": 17568,
                               "needTime": 73755,
@@ -11835,7 +11835,7 @@
                   }
                },
                "nReturned": 17568,
-               "executionTimeMillisEstimate": 75
+               "executionTimeMillisEstimate": 72
             },
             {
                "$group": {
@@ -11851,7 +11851,7 @@
                   }
                },
                "nReturned": 10,
-               "executionTimeMillisEstimate": 86
+               "executionTimeMillisEstimate": 75
             }
          ]
       },
@@ -11896,13 +11896,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 21596,
-                     "executionTimeMillis": 112,
+                     "executionTimeMillis": 89,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 97869,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 21596,
-                        "executionTimeMillisEstimate": 14,
+                        "executionTimeMillisEstimate": 2,
                         "works": 97871,
                         "advanced": 21596,
                         "needTime": 76274,
@@ -11918,7 +11918,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 21596,
-                           "executionTimeMillisEstimate": 10,
+                           "executionTimeMillisEstimate": 2,
                            "works": 97871,
                            "advanced": 21596,
                            "needTime": 76274,
@@ -11935,7 +11935,7 @@
                                  }
                               },
                               "nReturned": 21596,
-                              "executionTimeMillisEstimate": 8,
+                              "executionTimeMillisEstimate": 1,
                               "works": 97871,
                               "advanced": 21596,
                               "needTime": 76274,
@@ -11951,7 +11951,7 @@
                   }
                },
                "nReturned": 21596,
-               "executionTimeMillisEstimate": 98
+               "executionTimeMillisEstimate": 76
             },
             {
                "$group": {
@@ -11967,7 +11967,7 @@
                   }
                },
                "nReturned": 10,
-               "executionTimeMillisEstimate": 110
+               "executionTimeMillisEstimate": 80
             }
          ]
       },
@@ -12012,13 +12012,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 39806,
-                     "executionTimeMillis": 213,
+                     "executionTimeMillis": 173,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 185347,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 39806,
-                        "executionTimeMillisEstimate": 12,
+                        "executionTimeMillisEstimate": 4,
                         "works": 185349,
                         "advanced": 39806,
                         "needTime": 145542,
@@ -12034,7 +12034,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 39806,
-                           "executionTimeMillisEstimate": 10,
+                           "executionTimeMillisEstimate": 3,
                            "works": 185349,
                            "advanced": 39806,
                            "needTime": 145542,
@@ -12051,7 +12051,7 @@
                                  }
                               },
                               "nReturned": 39806,
-                              "executionTimeMillisEstimate": 7,
+                              "executionTimeMillisEstimate": 0,
                               "works": 185349,
                               "advanced": 39806,
                               "needTime": 145542,
@@ -12067,7 +12067,7 @@
                   }
                },
                "nReturned": 39806,
-               "executionTimeMillisEstimate": 182
+               "executionTimeMillisEstimate": 150
             },
             {
                "$group": {
@@ -12083,7 +12083,7 @@
                   }
                },
                "nReturned": 10,
-               "executionTimeMillisEstimate": 205
+               "executionTimeMillisEstimate": 166
             }
          ]
       }
@@ -12091,14 +12091,14 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232236,
-         "i": 1
+         "t": 1612445249,
+         "i": 2
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232240,
+            "t": 1612445250,
             "i": 1
          }
       },
@@ -12194,7 +12194,7 @@
          "executionStats": {
             "executionSuccess": true,
             "nReturned": 0,
-            "executionTimeMillis": 1,
+            "executionTimeMillis": 0,
             "totalKeysExamined": 0,
             "totalDocsExamined": 0,
             "executionStages": {
@@ -12269,14 +12269,14 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232233,
-         "i": 1
+         "t": 1612445249,
+         "i": 2
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232240,
+            "t": 1612445250,
             "i": 1
          }
       },
@@ -12411,19 +12411,19 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 55435,
-                     "executionTimeMillis": 495,
+                     "executionTimeMillis": 136,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 55435,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 55435,
-                        "executionTimeMillisEstimate": 249,
+                        "executionTimeMillisEstimate": 10,
                         "works": 55437,
                         "advanced": 55435,
                         "needTime": 1,
                         "needYield": 0,
-                        "saveState": 58,
-                        "restoreState": 58,
+                        "saveState": 57,
+                        "restoreState": 57,
                         "isEOF": 1,
                         "transformBy": {
                            "ARR_DELAY": 1,
@@ -12433,25 +12433,25 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 55435,
-                           "executionTimeMillisEstimate": 88,
+                           "executionTimeMillisEstimate": 6,
                            "works": 55437,
                            "advanced": 55435,
                            "needTime": 1,
                            "needYield": 0,
-                           "saveState": 58,
-                           "restoreState": 58,
+                           "saveState": 57,
+                           "restoreState": 57,
                            "isEOF": 1,
                            "chunkSkips": 0,
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 55435,
-                              "executionTimeMillisEstimate": 67,
+                              "executionTimeMillisEstimate": 0,
                               "works": 55437,
                               "advanced": 55435,
                               "needTime": 1,
                               "needYield": 0,
-                              "saveState": 58,
-                              "restoreState": 58,
+                              "saveState": 57,
+                              "restoreState": 57,
                               "isEOF": 1,
                               "direction": "forward",
                               "docsExamined": 55435
@@ -12461,7 +12461,7 @@
                   }
                },
                "nReturned": 55435,
-               "executionTimeMillisEstimate": 452
+               "executionTimeMillisEstimate": 107
             },
             {
                "$group": {
@@ -12493,125 +12493,7 @@
                   }
                },
                "nReturned": 10,
-               "executionTimeMillisEstimate": 494
-            }
-         ]
-      },
-      "shard02": {
-         "host": "localhost:27019",
-         "stages": [
-            {
-               "$cursor": {
-                  "queryPlanner": {
-                     "plannerVersion": 1,
-                     "namespace": "SummerResearch.AirlineData_FL_DATE_range",
-                     "indexFilterSet": false,
-                     "parsedQuery": {},
-                     "queryHash": "7759D437",
-                     "planCacheKey": "7759D437",
-                     "winningPlan": {
-                        "stage": "PROJECTION_SIMPLE",
-                        "transformBy": {
-                           "ARR_DELAY": 1,
-                           "MKT_UNIQUE_CARRIER": 1,
-                           "_id": 0
-                        },
-                        "inputStage": {
-                           "stage": "SHARDING_FILTER",
-                           "inputStage": {
-                              "stage": "COLLSCAN",
-                              "direction": "forward"
-                           }
-                        }
-                     },
-                     "rejectedPlans": []
-                  },
-                  "executionStats": {
-                     "executionSuccess": true,
-                     "nReturned": 158690,
-                     "executionTimeMillis": 1324,
-                     "totalKeysExamined": 0,
-                     "totalDocsExamined": 158690,
-                     "executionStages": {
-                        "stage": "PROJECTION_SIMPLE",
-                        "nReturned": 158690,
-                        "executionTimeMillisEstimate": 470,
-                        "works": 158692,
-                        "advanced": 158690,
-                        "needTime": 1,
-                        "needYield": 0,
-                        "saveState": 168,
-                        "restoreState": 168,
-                        "isEOF": 1,
-                        "transformBy": {
-                           "ARR_DELAY": 1,
-                           "MKT_UNIQUE_CARRIER": 1,
-                           "_id": 0
-                        },
-                        "inputStage": {
-                           "stage": "SHARDING_FILTER",
-                           "nReturned": 158690,
-                           "executionTimeMillisEstimate": 224,
-                           "works": 158692,
-                           "advanced": 158690,
-                           "needTime": 1,
-                           "needYield": 0,
-                           "saveState": 168,
-                           "restoreState": 168,
-                           "isEOF": 1,
-                           "chunkSkips": 0,
-                           "inputStage": {
-                              "stage": "COLLSCAN",
-                              "nReturned": 158690,
-                              "executionTimeMillisEstimate": 111,
-                              "works": 158692,
-                              "advanced": 158690,
-                              "needTime": 1,
-                              "needYield": 0,
-                              "saveState": 168,
-                              "restoreState": 168,
-                              "isEOF": 1,
-                              "direction": "forward",
-                              "docsExamined": 158690
-                           }
-                        }
-                     }
-                  }
-               },
-               "nReturned": 158690,
-               "executionTimeMillisEstimate": 1203
-            },
-            {
-               "$group": {
-                  "_id": "$MKT_UNIQUE_CARRIER",
-                  "late": {
-                     "$sum": {
-                        "$cond": [
-                           {
-                              "$gt": [
-                                 "$ARR_DELAY",
-                                 {
-                                    "$const": 0
-                                 }
-                              ]
-                           },
-                           {
-                              "$const": 1
-                           },
-                           {
-                              "$const": 0
-                           }
-                        ]
-                     }
-                  },
-                  "total": {
-                     "$sum": {
-                        "$const": 1
-                     }
-                  }
-               },
-               "nReturned": 10,
-               "executionTimeMillisEstimate": 1318
+               "executionTimeMillisEstimate": 130
             }
          ]
       },
@@ -12647,13 +12529,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 160413,
-                     "executionTimeMillis": 1342,
+                     "executionTimeMillis": 374,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 160413,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 160413,
-                        "executionTimeMillisEstimate": 590,
+                        "executionTimeMillisEstimate": 25,
                         "works": 160415,
                         "advanced": 160413,
                         "needTime": 1,
@@ -12669,7 +12551,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 160413,
-                           "executionTimeMillisEstimate": 241,
+                           "executionTimeMillisEstimate": 23,
                            "works": 160415,
                            "advanced": 160413,
                            "needTime": 1,
@@ -12681,7 +12563,7 @@
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 160413,
-                              "executionTimeMillisEstimate": 143,
+                              "executionTimeMillisEstimate": 1,
                               "works": 160415,
                               "advanced": 160413,
                               "needTime": 1,
@@ -12697,7 +12579,7 @@
                   }
                },
                "nReturned": 160413,
-               "executionTimeMillisEstimate": 1200
+               "executionTimeMillisEstimate": 283
             },
             {
                "$group": {
@@ -12729,7 +12611,125 @@
                   }
                },
                "nReturned": 10,
-               "executionTimeMillisEstimate": 1334
+               "executionTimeMillisEstimate": 372
+            }
+         ]
+      },
+      "shard02": {
+         "host": "localhost:27019",
+         "stages": [
+            {
+               "$cursor": {
+                  "queryPlanner": {
+                     "plannerVersion": 1,
+                     "namespace": "SummerResearch.AirlineData_FL_DATE_range",
+                     "indexFilterSet": false,
+                     "parsedQuery": {},
+                     "queryHash": "7759D437",
+                     "planCacheKey": "7759D437",
+                     "winningPlan": {
+                        "stage": "PROJECTION_SIMPLE",
+                        "transformBy": {
+                           "ARR_DELAY": 1,
+                           "MKT_UNIQUE_CARRIER": 1,
+                           "_id": 0
+                        },
+                        "inputStage": {
+                           "stage": "SHARDING_FILTER",
+                           "inputStage": {
+                              "stage": "COLLSCAN",
+                              "direction": "forward"
+                           }
+                        }
+                     },
+                     "rejectedPlans": []
+                  },
+                  "executionStats": {
+                     "executionSuccess": true,
+                     "nReturned": 158690,
+                     "executionTimeMillis": 382,
+                     "totalKeysExamined": 0,
+                     "totalDocsExamined": 158690,
+                     "executionStages": {
+                        "stage": "PROJECTION_SIMPLE",
+                        "nReturned": 158690,
+                        "executionTimeMillisEstimate": 31,
+                        "works": 158692,
+                        "advanced": 158690,
+                        "needTime": 1,
+                        "needYield": 0,
+                        "saveState": 167,
+                        "restoreState": 167,
+                        "isEOF": 1,
+                        "transformBy": {
+                           "ARR_DELAY": 1,
+                           "MKT_UNIQUE_CARRIER": 1,
+                           "_id": 0
+                        },
+                        "inputStage": {
+                           "stage": "SHARDING_FILTER",
+                           "nReturned": 158690,
+                           "executionTimeMillisEstimate": 20,
+                           "works": 158692,
+                           "advanced": 158690,
+                           "needTime": 1,
+                           "needYield": 0,
+                           "saveState": 167,
+                           "restoreState": 167,
+                           "isEOF": 1,
+                           "chunkSkips": 0,
+                           "inputStage": {
+                              "stage": "COLLSCAN",
+                              "nReturned": 158690,
+                              "executionTimeMillisEstimate": 5,
+                              "works": 158692,
+                              "advanced": 158690,
+                              "needTime": 1,
+                              "needYield": 0,
+                              "saveState": 167,
+                              "restoreState": 167,
+                              "isEOF": 1,
+                              "direction": "forward",
+                              "docsExamined": 158690
+                           }
+                        }
+                     }
+                  }
+               },
+               "nReturned": 158690,
+               "executionTimeMillisEstimate": 303
+            },
+            {
+               "$group": {
+                  "_id": "$MKT_UNIQUE_CARRIER",
+                  "late": {
+                     "$sum": {
+                        "$cond": [
+                           {
+                              "$gt": [
+                                 "$ARR_DELAY",
+                                 {
+                                    "$const": 0
+                                 }
+                              ]
+                           },
+                           {
+                              "$const": 1
+                           },
+                           {
+                              "$const": 0
+                           }
+                        ]
+                     }
+                  },
+                  "total": {
+                     "$sum": {
+                        "$const": 1
+                     }
+                  }
+               },
+               "nReturned": 10,
+               "executionTimeMillisEstimate": 372
             }
          ]
       }
@@ -12737,14 +12737,14 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232243,
-         "i": 1
+         "t": 1612445249,
+         "i": 2
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232243,
+            "t": 1612445250,
             "i": 1
          }
       },
@@ -12879,13 +12879,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 55435,
-                     "executionTimeMillis": 143,
+                     "executionTimeMillis": 123,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 55435,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 55435,
-                        "executionTimeMillisEstimate": 7,
+                        "executionTimeMillisEstimate": 5,
                         "works": 55437,
                         "advanced": 55435,
                         "needTime": 1,
@@ -12901,7 +12901,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 55435,
-                           "executionTimeMillisEstimate": 6,
+                           "executionTimeMillisEstimate": 4,
                            "works": 55437,
                            "advanced": 55435,
                            "needTime": 1,
@@ -12929,7 +12929,7 @@
                   }
                },
                "nReturned": 55435,
-               "executionTimeMillisEstimate": 109
+               "executionTimeMillisEstimate": 79
             },
             {
                "$group": {
@@ -12961,125 +12961,7 @@
                   }
                },
                "nReturned": 350,
-               "executionTimeMillisEstimate": 140
-            }
-         ]
-      },
-      "shard02": {
-         "host": "localhost:27019",
-         "stages": [
-            {
-               "$cursor": {
-                  "queryPlanner": {
-                     "plannerVersion": 1,
-                     "namespace": "SummerResearch.AirlineData_FL_DATE_range",
-                     "indexFilterSet": false,
-                     "parsedQuery": {},
-                     "queryHash": "422FF7AE",
-                     "planCacheKey": "422FF7AE",
-                     "winningPlan": {
-                        "stage": "PROJECTION_SIMPLE",
-                        "transformBy": {
-                           "ARR_DELAY": 1,
-                           "ORIGIN_CITY_NAME": 1,
-                           "_id": 0
-                        },
-                        "inputStage": {
-                           "stage": "SHARDING_FILTER",
-                           "inputStage": {
-                              "stage": "COLLSCAN",
-                              "direction": "forward"
-                           }
-                        }
-                     },
-                     "rejectedPlans": []
-                  },
-                  "executionStats": {
-                     "executionSuccess": true,
-                     "nReturned": 158690,
-                     "executionTimeMillis": 404,
-                     "totalKeysExamined": 0,
-                     "totalDocsExamined": 158690,
-                     "executionStages": {
-                        "stage": "PROJECTION_SIMPLE",
-                        "nReturned": 158690,
-                        "executionTimeMillisEstimate": 24,
-                        "works": 158692,
-                        "advanced": 158690,
-                        "needTime": 1,
-                        "needYield": 0,
-                        "saveState": 165,
-                        "restoreState": 165,
-                        "isEOF": 1,
-                        "transformBy": {
-                           "ARR_DELAY": 1,
-                           "ORIGIN_CITY_NAME": 1,
-                           "_id": 0
-                        },
-                        "inputStage": {
-                           "stage": "SHARDING_FILTER",
-                           "nReturned": 158690,
-                           "executionTimeMillisEstimate": 15,
-                           "works": 158692,
-                           "advanced": 158690,
-                           "needTime": 1,
-                           "needYield": 0,
-                           "saveState": 165,
-                           "restoreState": 165,
-                           "isEOF": 1,
-                           "chunkSkips": 0,
-                           "inputStage": {
-                              "stage": "COLLSCAN",
-                              "nReturned": 158690,
-                              "executionTimeMillisEstimate": 4,
-                              "works": 158692,
-                              "advanced": 158690,
-                              "needTime": 1,
-                              "needYield": 0,
-                              "saveState": 165,
-                              "restoreState": 165,
-                              "isEOF": 1,
-                              "direction": "forward",
-                              "docsExamined": 158690
-                           }
-                        }
-                     }
-                  }
-               },
-               "nReturned": 158690,
-               "executionTimeMillisEstimate": 284
-            },
-            {
-               "$group": {
-                  "_id": "$ORIGIN_CITY_NAME",
-                  "late": {
-                     "$sum": {
-                        "$cond": [
-                           {
-                              "$gt": [
-                                 "$ARR_DELAY",
-                                 {
-                                    "$const": 0
-                                 }
-                              ]
-                           },
-                           {
-                              "$const": 1
-                           },
-                           {
-                              "$const": 0
-                           }
-                        ]
-                     }
-                  },
-                  "total": {
-                     "$sum": {
-                        "$const": 1
-                     }
-                  }
-               },
-               "nReturned": 359,
-               "executionTimeMillisEstimate": 401
+               "executionTimeMillisEstimate": 122
             }
          ]
       },
@@ -13115,13 +12997,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 160413,
-                     "executionTimeMillis": 413,
+                     "executionTimeMillis": 342,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 160413,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 160413,
-                        "executionTimeMillisEstimate": 36,
+                        "executionTimeMillisEstimate": 16,
                         "works": 160415,
                         "advanced": 160413,
                         "needTime": 1,
@@ -13137,7 +13019,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 160413,
-                           "executionTimeMillisEstimate": 25,
+                           "executionTimeMillisEstimate": 14,
                            "works": 160415,
                            "advanced": 160413,
                            "needTime": 1,
@@ -13149,7 +13031,7 @@
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 160413,
-                              "executionTimeMillisEstimate": 11,
+                              "executionTimeMillisEstimate": 3,
                               "works": 160415,
                               "advanced": 160413,
                               "needTime": 1,
@@ -13165,7 +13047,7 @@
                   }
                },
                "nReturned": 160413,
-               "executionTimeMillisEstimate": 292
+               "executionTimeMillisEstimate": 255
             },
             {
                "$group": {
@@ -13197,7 +13079,125 @@
                   }
                },
                "nReturned": 351,
-               "executionTimeMillisEstimate": 405
+               "executionTimeMillisEstimate": 335
+            }
+         ]
+      },
+      "shard02": {
+         "host": "localhost:27019",
+         "stages": [
+            {
+               "$cursor": {
+                  "queryPlanner": {
+                     "plannerVersion": 1,
+                     "namespace": "SummerResearch.AirlineData_FL_DATE_range",
+                     "indexFilterSet": false,
+                     "parsedQuery": {},
+                     "queryHash": "422FF7AE",
+                     "planCacheKey": "422FF7AE",
+                     "winningPlan": {
+                        "stage": "PROJECTION_SIMPLE",
+                        "transformBy": {
+                           "ARR_DELAY": 1,
+                           "ORIGIN_CITY_NAME": 1,
+                           "_id": 0
+                        },
+                        "inputStage": {
+                           "stage": "SHARDING_FILTER",
+                           "inputStage": {
+                              "stage": "COLLSCAN",
+                              "direction": "forward"
+                           }
+                        }
+                     },
+                     "rejectedPlans": []
+                  },
+                  "executionStats": {
+                     "executionSuccess": true,
+                     "nReturned": 158690,
+                     "executionTimeMillis": 348,
+                     "totalKeysExamined": 0,
+                     "totalDocsExamined": 158690,
+                     "executionStages": {
+                        "stage": "PROJECTION_SIMPLE",
+                        "nReturned": 158690,
+                        "executionTimeMillisEstimate": 19,
+                        "works": 158692,
+                        "advanced": 158690,
+                        "needTime": 1,
+                        "needYield": 0,
+                        "saveState": 165,
+                        "restoreState": 165,
+                        "isEOF": 1,
+                        "transformBy": {
+                           "ARR_DELAY": 1,
+                           "ORIGIN_CITY_NAME": 1,
+                           "_id": 0
+                        },
+                        "inputStage": {
+                           "stage": "SHARDING_FILTER",
+                           "nReturned": 158690,
+                           "executionTimeMillisEstimate": 12,
+                           "works": 158692,
+                           "advanced": 158690,
+                           "needTime": 1,
+                           "needYield": 0,
+                           "saveState": 165,
+                           "restoreState": 165,
+                           "isEOF": 1,
+                           "chunkSkips": 0,
+                           "inputStage": {
+                              "stage": "COLLSCAN",
+                              "nReturned": 158690,
+                              "executionTimeMillisEstimate": 3,
+                              "works": 158692,
+                              "advanced": 158690,
+                              "needTime": 1,
+                              "needYield": 0,
+                              "saveState": 165,
+                              "restoreState": 165,
+                              "isEOF": 1,
+                              "direction": "forward",
+                              "docsExamined": 158690
+                           }
+                        }
+                     }
+                  }
+               },
+               "nReturned": 158690,
+               "executionTimeMillisEstimate": 248
+            },
+            {
+               "$group": {
+                  "_id": "$ORIGIN_CITY_NAME",
+                  "late": {
+                     "$sum": {
+                        "$cond": [
+                           {
+                              "$gt": [
+                                 "$ARR_DELAY",
+                                 {
+                                    "$const": 0
+                                 }
+                              ]
+                           },
+                           {
+                              "$const": 1
+                           },
+                           {
+                              "$const": 0
+                           }
+                        ]
+                     }
+                  },
+                  "total": {
+                     "$sum": {
+                        "$const": 1
+                     }
+                  }
+               },
+               "nReturned": 359,
+               "executionTimeMillisEstimate": 346
             }
          ]
       }
@@ -13205,15 +13205,15 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232243,
+         "t": 1612445251,
          "i": 1
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232243,
-            "i": 2
+            "t": 1612445251,
+            "i": 1
          }
       },
       "signature": {
@@ -13347,13 +13347,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 55435,
-                     "executionTimeMillis": 147,
+                     "executionTimeMillis": 126,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 55435,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 55435,
-                        "executionTimeMillisEstimate": 11,
+                        "executionTimeMillisEstimate": 7,
                         "works": 55437,
                         "advanced": 55435,
                         "needTime": 1,
@@ -13369,7 +13369,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 55435,
-                           "executionTimeMillisEstimate": 6,
+                           "executionTimeMillisEstimate": 3,
                            "works": 55437,
                            "advanced": 55435,
                            "needTime": 1,
@@ -13381,7 +13381,7 @@
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 55435,
-                              "executionTimeMillisEstimate": 1,
+                              "executionTimeMillisEstimate": 0,
                               "works": 55437,
                               "advanced": 55435,
                               "needTime": 1,
@@ -13397,7 +13397,7 @@
                   }
                },
                "nReturned": 55435,
-               "executionTimeMillisEstimate": 106
+               "executionTimeMillisEstimate": 86
             },
             {
                "$group": {
@@ -13429,125 +13429,7 @@
                   }
                },
                "nReturned": 350,
-               "executionTimeMillisEstimate": 146
-            }
-         ]
-      },
-      "shard02": {
-         "host": "localhost:27019",
-         "stages": [
-            {
-               "$cursor": {
-                  "queryPlanner": {
-                     "plannerVersion": 1,
-                     "namespace": "SummerResearch.AirlineData_FL_DATE_range",
-                     "indexFilterSet": false,
-                     "parsedQuery": {},
-                     "queryHash": "270C0B07",
-                     "planCacheKey": "270C0B07",
-                     "winningPlan": {
-                        "stage": "PROJECTION_SIMPLE",
-                        "transformBy": {
-                           "ARR_DELAY": 1,
-                           "DEST_CITY_NAME": 1,
-                           "_id": 0
-                        },
-                        "inputStage": {
-                           "stage": "SHARDING_FILTER",
-                           "inputStage": {
-                              "stage": "COLLSCAN",
-                              "direction": "forward"
-                           }
-                        }
-                     },
-                     "rejectedPlans": []
-                  },
-                  "executionStats": {
-                     "executionSuccess": true,
-                     "nReturned": 158690,
-                     "executionTimeMillis": 416,
-                     "totalKeysExamined": 0,
-                     "totalDocsExamined": 158690,
-                     "executionStages": {
-                        "stage": "PROJECTION_SIMPLE",
-                        "nReturned": 158690,
-                        "executionTimeMillisEstimate": 28,
-                        "works": 158692,
-                        "advanced": 158690,
-                        "needTime": 1,
-                        "needYield": 0,
-                        "saveState": 168,
-                        "restoreState": 168,
-                        "isEOF": 1,
-                        "transformBy": {
-                           "ARR_DELAY": 1,
-                           "DEST_CITY_NAME": 1,
-                           "_id": 0
-                        },
-                        "inputStage": {
-                           "stage": "SHARDING_FILTER",
-                           "nReturned": 158690,
-                           "executionTimeMillisEstimate": 21,
-                           "works": 158692,
-                           "advanced": 158690,
-                           "needTime": 1,
-                           "needYield": 0,
-                           "saveState": 168,
-                           "restoreState": 168,
-                           "isEOF": 1,
-                           "chunkSkips": 0,
-                           "inputStage": {
-                              "stage": "COLLSCAN",
-                              "nReturned": 158690,
-                              "executionTimeMillisEstimate": 5,
-                              "works": 158692,
-                              "advanced": 158690,
-                              "needTime": 1,
-                              "needYield": 0,
-                              "saveState": 168,
-                              "restoreState": 168,
-                              "isEOF": 1,
-                              "direction": "forward",
-                              "docsExamined": 158690
-                           }
-                        }
-                     }
-                  }
-               },
-               "nReturned": 158690,
-               "executionTimeMillisEstimate": 311
-            },
-            {
-               "$group": {
-                  "_id": "$DEST_CITY_NAME",
-                  "late": {
-                     "$sum": {
-                        "$cond": [
-                           {
-                              "$gt": [
-                                 "$ARR_DELAY",
-                                 {
-                                    "$const": 0
-                                 }
-                              ]
-                           },
-                           {
-                              "$const": 1
-                           },
-                           {
-                              "$const": 0
-                           }
-                        ]
-                     }
-                  },
-                  "total": {
-                     "$sum": {
-                        "$const": 1
-                     }
-                  }
-               },
-               "nReturned": 359,
-               "executionTimeMillisEstimate": 415
+               "executionTimeMillisEstimate": 125
             }
          ]
       },
@@ -13583,13 +13465,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 160413,
-                     "executionTimeMillis": 430,
+                     "executionTimeMillis": 350,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 160413,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 160413,
-                        "executionTimeMillisEstimate": 43,
+                        "executionTimeMillisEstimate": 17,
                         "works": 160415,
                         "advanced": 160413,
                         "needTime": 1,
@@ -13605,7 +13487,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 160413,
-                           "executionTimeMillisEstimate": 35,
+                           "executionTimeMillisEstimate": 9,
                            "works": 160415,
                            "advanced": 160413,
                            "needTime": 1,
@@ -13617,7 +13499,7 @@
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 160413,
-                              "executionTimeMillisEstimate": 4,
+                              "executionTimeMillisEstimate": 2,
                               "works": 160415,
                               "advanced": 160413,
                               "needTime": 1,
@@ -13633,7 +13515,7 @@
                   }
                },
                "nReturned": 160413,
-               "executionTimeMillisEstimate": 303
+               "executionTimeMillisEstimate": 245
             },
             {
                "$group": {
@@ -13665,7 +13547,125 @@
                   }
                },
                "nReturned": 351,
-               "executionTimeMillisEstimate": 425
+               "executionTimeMillisEstimate": 344
+            }
+         ]
+      },
+      "shard02": {
+         "host": "localhost:27019",
+         "stages": [
+            {
+               "$cursor": {
+                  "queryPlanner": {
+                     "plannerVersion": 1,
+                     "namespace": "SummerResearch.AirlineData_FL_DATE_range",
+                     "indexFilterSet": false,
+                     "parsedQuery": {},
+                     "queryHash": "270C0B07",
+                     "planCacheKey": "270C0B07",
+                     "winningPlan": {
+                        "stage": "PROJECTION_SIMPLE",
+                        "transformBy": {
+                           "ARR_DELAY": 1,
+                           "DEST_CITY_NAME": 1,
+                           "_id": 0
+                        },
+                        "inputStage": {
+                           "stage": "SHARDING_FILTER",
+                           "inputStage": {
+                              "stage": "COLLSCAN",
+                              "direction": "forward"
+                           }
+                        }
+                     },
+                     "rejectedPlans": []
+                  },
+                  "executionStats": {
+                     "executionSuccess": true,
+                     "nReturned": 158690,
+                     "executionTimeMillis": 356,
+                     "totalKeysExamined": 0,
+                     "totalDocsExamined": 158690,
+                     "executionStages": {
+                        "stage": "PROJECTION_SIMPLE",
+                        "nReturned": 158690,
+                        "executionTimeMillisEstimate": 26,
+                        "works": 158692,
+                        "advanced": 158690,
+                        "needTime": 1,
+                        "needYield": 0,
+                        "saveState": 168,
+                        "restoreState": 168,
+                        "isEOF": 1,
+                        "transformBy": {
+                           "ARR_DELAY": 1,
+                           "DEST_CITY_NAME": 1,
+                           "_id": 0
+                        },
+                        "inputStage": {
+                           "stage": "SHARDING_FILTER",
+                           "nReturned": 158690,
+                           "executionTimeMillisEstimate": 23,
+                           "works": 158692,
+                           "advanced": 158690,
+                           "needTime": 1,
+                           "needYield": 0,
+                           "saveState": 168,
+                           "restoreState": 168,
+                           "isEOF": 1,
+                           "chunkSkips": 0,
+                           "inputStage": {
+                              "stage": "COLLSCAN",
+                              "nReturned": 158690,
+                              "executionTimeMillisEstimate": 5,
+                              "works": 158692,
+                              "advanced": 158690,
+                              "needTime": 1,
+                              "needYield": 0,
+                              "saveState": 168,
+                              "restoreState": 168,
+                              "isEOF": 1,
+                              "direction": "forward",
+                              "docsExamined": 158690
+                           }
+                        }
+                     }
+                  }
+               },
+               "nReturned": 158690,
+               "executionTimeMillisEstimate": 238
+            },
+            {
+               "$group": {
+                  "_id": "$DEST_CITY_NAME",
+                  "late": {
+                     "$sum": {
+                        "$cond": [
+                           {
+                              "$gt": [
+                                 "$ARR_DELAY",
+                                 {
+                                    "$const": 0
+                                 }
+                              ]
+                           },
+                           {
+                              "$const": 1
+                           },
+                           {
+                              "$const": 0
+                           }
+                        ]
+                     }
+                  },
+                  "total": {
+                     "$sum": {
+                        "$const": 1
+                     }
+                  }
+               },
+               "nReturned": 359,
+               "executionTimeMillisEstimate": 348
             }
          ]
       }
@@ -13673,15 +13673,15 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232243,
+         "t": 1612445251,
          "i": 1
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232243,
-            "i": 2
+            "t": 1612445251,
+            "i": 1
          }
       },
       "signature": {
@@ -13797,13 +13797,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 12831,
-                     "executionTimeMillis": 65,
+                     "executionTimeMillis": 54,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 55435,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 12831,
-                        "executionTimeMillisEstimate": 2,
+                        "executionTimeMillisEstimate": 1,
                         "works": 55437,
                         "advanced": 12831,
                         "needTime": 42605,
@@ -13819,7 +13819,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 12831,
-                           "executionTimeMillisEstimate": 2,
+                           "executionTimeMillisEstimate": 1,
                            "works": 55437,
                            "advanced": 12831,
                            "needTime": 42605,
@@ -13836,7 +13836,7 @@
                                  }
                               },
                               "nReturned": 12831,
-                              "executionTimeMillisEstimate": 2,
+                              "executionTimeMillisEstimate": 0,
                               "works": 55437,
                               "advanced": 12831,
                               "needTime": 42605,
@@ -13852,7 +13852,7 @@
                   }
                },
                "nReturned": 12831,
-               "executionTimeMillisEstimate": 51
+               "executionTimeMillisEstimate": 43
             },
             {
                "$group": {
@@ -13868,7 +13868,7 @@
                   }
                },
                "nReturned": 320,
-               "executionTimeMillisEstimate": 55
+               "executionTimeMillisEstimate": 44
             }
          ]
       },
@@ -13913,13 +13913,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 27039,
-                     "executionTimeMillis": 158,
+                     "executionTimeMillis": 132,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 158690,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 27039,
-                        "executionTimeMillisEstimate": 10,
+                        "executionTimeMillisEstimate": 7,
                         "works": 158692,
                         "advanced": 27039,
                         "needTime": 131652,
@@ -13935,7 +13935,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 27039,
-                           "executionTimeMillisEstimate": 9,
+                           "executionTimeMillisEstimate": 6,
                            "works": 158692,
                            "advanced": 27039,
                            "needTime": 131652,
@@ -13952,7 +13952,7 @@
                                  }
                               },
                               "nReturned": 27039,
-                              "executionTimeMillisEstimate": 5,
+                              "executionTimeMillisEstimate": 4,
                               "works": 158692,
                               "advanced": 27039,
                               "needTime": 131652,
@@ -13968,7 +13968,7 @@
                   }
                },
                "nReturned": 27039,
-               "executionTimeMillisEstimate": 132
+               "executionTimeMillisEstimate": 115
             },
             {
                "$group": {
@@ -13984,7 +13984,7 @@
                   }
                },
                "nReturned": 347,
-               "executionTimeMillisEstimate": 156
+               "executionTimeMillisEstimate": 132
             }
          ]
       },
@@ -14029,13 +14029,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 39100,
-                     "executionTimeMillis": 189,
+                     "executionTimeMillis": 152,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 160413,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 39100,
-                        "executionTimeMillisEstimate": 9,
+                        "executionTimeMillisEstimate": 6,
                         "works": 160415,
                         "advanced": 39100,
                         "needTime": 121314,
@@ -14051,7 +14051,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 39100,
-                           "executionTimeMillisEstimate": 7,
+                           "executionTimeMillisEstimate": 5,
                            "works": 160415,
                            "advanced": 39100,
                            "needTime": 121314,
@@ -14068,7 +14068,7 @@
                                  }
                               },
                               "nReturned": 39100,
-                              "executionTimeMillisEstimate": 6,
+                              "executionTimeMillisEstimate": 3,
                               "works": 160415,
                               "advanced": 39100,
                               "needTime": 121314,
@@ -14084,7 +14084,7 @@
                   }
                },
                "nReturned": 39100,
-               "executionTimeMillisEstimate": 173
+               "executionTimeMillisEstimate": 125
             },
             {
                "$group": {
@@ -14100,7 +14100,7 @@
                   }
                },
                "nReturned": 346,
-               "executionTimeMillisEstimate": 182
+               "executionTimeMillisEstimate": 142
             }
          ]
       }
@@ -14108,14 +14108,14 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232243,
+         "t": 1612445251,
          "i": 1
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232243,
+            "t": 1612445252,
             "i": 2
          }
       },
@@ -14232,13 +14232,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 12831,
-                     "executionTimeMillis": 68,
+                     "executionTimeMillis": 53,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 55435,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 12831,
-                        "executionTimeMillisEstimate": 3,
+                        "executionTimeMillisEstimate": 1,
                         "works": 55437,
                         "advanced": 12831,
                         "needTime": 42605,
@@ -14254,7 +14254,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 12831,
-                           "executionTimeMillisEstimate": 3,
+                           "executionTimeMillisEstimate": 1,
                            "works": 55437,
                            "advanced": 12831,
                            "needTime": 42605,
@@ -14271,7 +14271,7 @@
                                  }
                               },
                               "nReturned": 12831,
-                              "executionTimeMillisEstimate": 2,
+                              "executionTimeMillisEstimate": 1,
                               "works": 55437,
                               "advanced": 12831,
                               "needTime": 42605,
@@ -14287,7 +14287,7 @@
                   }
                },
                "nReturned": 12831,
-               "executionTimeMillisEstimate": 52
+               "executionTimeMillisEstimate": 43
             },
             {
                "$group": {
@@ -14303,7 +14303,7 @@
                   }
                },
                "nReturned": 317,
-               "executionTimeMillisEstimate": 60
+               "executionTimeMillisEstimate": 52
             }
          ]
       },
@@ -14348,13 +14348,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 27039,
-                     "executionTimeMillis": 155,
+                     "executionTimeMillis": 130,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 158690,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 27039,
-                        "executionTimeMillisEstimate": 7,
+                        "executionTimeMillisEstimate": 4,
                         "works": 158692,
                         "advanced": 27039,
                         "needTime": 131652,
@@ -14370,7 +14370,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 27039,
-                           "executionTimeMillisEstimate": 4,
+                           "executionTimeMillisEstimate": 3,
                            "works": 158692,
                            "advanced": 27039,
                            "needTime": 131652,
@@ -14403,7 +14403,7 @@
                   }
                },
                "nReturned": 27039,
-               "executionTimeMillisEstimate": 130
+               "executionTimeMillisEstimate": 107
             },
             {
                "$group": {
@@ -14419,7 +14419,7 @@
                   }
                },
                "nReturned": 347,
-               "executionTimeMillisEstimate": 147
+               "executionTimeMillisEstimate": 121
             }
          ]
       },
@@ -14464,13 +14464,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 39100,
-                     "executionTimeMillis": 190,
+                     "executionTimeMillis": 153,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 160413,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 39100,
-                        "executionTimeMillisEstimate": 8,
+                        "executionTimeMillisEstimate": 3,
                         "works": 160415,
                         "advanced": 39100,
                         "needTime": 121314,
@@ -14486,7 +14486,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 39100,
-                           "executionTimeMillisEstimate": 6,
+                           "executionTimeMillisEstimate": 3,
                            "works": 160415,
                            "advanced": 39100,
                            "needTime": 121314,
@@ -14503,7 +14503,7 @@
                                  }
                               },
                               "nReturned": 39100,
-                              "executionTimeMillisEstimate": 1,
+                              "executionTimeMillisEstimate": 2,
                               "works": 160415,
                               "advanced": 39100,
                               "needTime": 121314,
@@ -14519,7 +14519,7 @@
                   }
                },
                "nReturned": 39100,
-               "executionTimeMillisEstimate": 161
+               "executionTimeMillisEstimate": 123
             },
             {
                "$group": {
@@ -14535,7 +14535,7 @@
                   }
                },
                "nReturned": 346,
-               "executionTimeMillisEstimate": 186
+               "executionTimeMillisEstimate": 151
             }
          ]
       }
@@ -14543,14 +14543,14 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232243,
+         "t": 1612445251,
          "i": 1
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232243,
+            "t": 1612445252,
             "i": 2
          }
       },
@@ -14667,13 +14667,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 12831,
-                     "executionTimeMillis": 65,
+                     "executionTimeMillis": 51,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 55435,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 12831,
-                        "executionTimeMillisEstimate": 2,
+                        "executionTimeMillisEstimate": 1,
                         "works": 55437,
                         "advanced": 12831,
                         "needTime": 42605,
@@ -14689,7 +14689,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 12831,
-                           "executionTimeMillisEstimate": 2,
+                           "executionTimeMillisEstimate": 0,
                            "works": 55437,
                            "advanced": 12831,
                            "needTime": 42605,
@@ -14706,7 +14706,7 @@
                                  }
                               },
                               "nReturned": 12831,
-                              "executionTimeMillisEstimate": 2,
+                              "executionTimeMillisEstimate": 0,
                               "works": 55437,
                               "advanced": 12831,
                               "needTime": 42605,
@@ -14722,7 +14722,7 @@
                   }
                },
                "nReturned": 12831,
-               "executionTimeMillisEstimate": 52
+               "executionTimeMillisEstimate": 43
             },
             {
                "$group": {
@@ -14738,7 +14738,7 @@
                   }
                },
                "nReturned": 10,
-               "executionTimeMillisEstimate": 63
+               "executionTimeMillisEstimate": 43
             }
          ]
       },
@@ -14783,13 +14783,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 27039,
-                     "executionTimeMillis": 152,
+                     "executionTimeMillis": 124,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 158690,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 27039,
-                        "executionTimeMillisEstimate": 10,
+                        "executionTimeMillisEstimate": 7,
                         "works": 158692,
                         "advanced": 27039,
                         "needTime": 131652,
@@ -14805,7 +14805,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 27039,
-                           "executionTimeMillisEstimate": 10,
+                           "executionTimeMillisEstimate": 7,
                            "works": 158692,
                            "advanced": 27039,
                            "needTime": 131652,
@@ -14822,7 +14822,7 @@
                                  }
                               },
                               "nReturned": 27039,
-                              "executionTimeMillisEstimate": 8,
+                              "executionTimeMillisEstimate": 7,
                               "works": 158692,
                               "advanced": 27039,
                               "needTime": 131652,
@@ -14838,7 +14838,7 @@
                   }
                },
                "nReturned": 27039,
-               "executionTimeMillisEstimate": 134
+               "executionTimeMillisEstimate": 105
             },
             {
                "$group": {
@@ -14854,7 +14854,7 @@
                   }
                },
                "nReturned": 10,
-               "executionTimeMillisEstimate": 143
+               "executionTimeMillisEstimate": 115
             }
          ]
       },
@@ -14899,13 +14899,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 39100,
-                     "executionTimeMillis": 187,
+                     "executionTimeMillis": 146,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 160413,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 39100,
-                        "executionTimeMillisEstimate": 14,
+                        "executionTimeMillisEstimate": 8,
                         "works": 160415,
                         "advanced": 39100,
                         "needTime": 121314,
@@ -14921,7 +14921,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 39100,
-                           "executionTimeMillisEstimate": 13,
+                           "executionTimeMillisEstimate": 7,
                            "works": 160415,
                            "advanced": 39100,
                            "needTime": 121314,
@@ -14938,7 +14938,7 @@
                                  }
                               },
                               "nReturned": 39100,
-                              "executionTimeMillisEstimate": 8,
+                              "executionTimeMillisEstimate": 7,
                               "works": 160415,
                               "advanced": 39100,
                               "needTime": 121314,
@@ -14954,7 +14954,7 @@
                   }
                },
                "nReturned": 39100,
-               "executionTimeMillisEstimate": 161
+               "executionTimeMillisEstimate": 125
             },
             {
                "$group": {
@@ -14970,7 +14970,7 @@
                   }
                },
                "nReturned": 10,
-               "executionTimeMillisEstimate": 184
+               "executionTimeMillisEstimate": 138
             }
          ]
       }
@@ -14978,14 +14978,14 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232243,
+         "t": 1612445251,
          "i": 1
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232243,
+            "t": 1612445252,
             "i": 2
          }
       },
@@ -15091,13 +15091,13 @@
          "executionStats": {
             "executionSuccess": true,
             "nReturned": 0,
-            "executionTimeMillis": 41,
+            "executionTimeMillis": 17,
             "totalKeysExamined": 0,
             "totalDocsExamined": 7141,
             "executionStages": {
                "stage": "SHARDING_FILTER",
                "nReturned": 0,
-               "executionTimeMillisEstimate": 20,
+               "executionTimeMillisEstimate": 1,
                "works": 7143,
                "advanced": 0,
                "needTime": 7142,
@@ -15123,7 +15123,7 @@
                      ]
                   },
                   "nReturned": 0,
-                  "executionTimeMillisEstimate": 20,
+                  "executionTimeMillisEstimate": 1,
                   "works": 7143,
                   "advanced": 0,
                   "needTime": 7142,
@@ -15184,13 +15184,13 @@
          "executionStats": {
             "executionSuccess": true,
             "nReturned": 0,
-            "executionTimeMillis": 528,
+            "executionTimeMillis": 166,
             "totalKeysExamined": 0,
             "totalDocsExamined": 173946,
             "executionStages": {
                "stage": "SHARDING_FILTER",
                "nReturned": 0,
-               "executionTimeMillisEstimate": 120,
+               "executionTimeMillisEstimate": 8,
                "works": 173948,
                "advanced": 0,
                "needTime": 173947,
@@ -15216,7 +15216,7 @@
                      ]
                   },
                   "nReturned": 0,
-                  "executionTimeMillisEstimate": 120,
+                  "executionTimeMillisEstimate": 8,
                   "works": 173948,
                   "advanced": 0,
                   "needTime": 173947,
@@ -15277,13 +15277,13 @@
          "executionStats": {
             "executionSuccess": true,
             "nReturned": 0,
-            "executionTimeMillis": 561,
+            "executionTimeMillis": 169,
             "totalKeysExamined": 0,
             "totalDocsExamined": 193451,
             "executionStages": {
                "stage": "SHARDING_FILTER",
                "nReturned": 0,
-               "executionTimeMillisEstimate": 146,
+               "executionTimeMillisEstimate": 10,
                "works": 193453,
                "advanced": 0,
                "needTime": 193452,
@@ -15309,7 +15309,7 @@
                      ]
                   },
                   "nReturned": 0,
-                  "executionTimeMillisEstimate": 144,
+                  "executionTimeMillisEstimate": 9,
                   "works": 193453,
                   "advanced": 0,
                   "needTime": 193452,
@@ -15327,14 +15327,14 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232243,
+         "t": 1612445251,
          "i": 1
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232243,
+            "t": 1612445252,
             "i": 2
          }
       },
@@ -15469,13 +15469,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 7141,
-                     "executionTimeMillis": 28,
+                     "executionTimeMillis": 16,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 7141,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 7141,
-                        "executionTimeMillisEstimate": 5,
+                        "executionTimeMillisEstimate": 0,
                         "works": 7143,
                         "advanced": 7141,
                         "needTime": 1,
@@ -15491,7 +15491,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 7141,
-                           "executionTimeMillisEstimate": 2,
+                           "executionTimeMillisEstimate": 0,
                            "works": 7143,
                            "advanced": 7141,
                            "needTime": 1,
@@ -15503,7 +15503,7 @@
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 7141,
-                              "executionTimeMillisEstimate": 2,
+                              "executionTimeMillisEstimate": 0,
                               "works": 7143,
                               "advanced": 7141,
                               "needTime": 1,
@@ -15519,7 +15519,7 @@
                   }
                },
                "nReturned": 7141,
-               "executionTimeMillisEstimate": 21
+               "executionTimeMillisEstimate": 11
             },
             {
                "$group": {
@@ -15551,7 +15551,7 @@
                   }
                },
                "nReturned": 1,
-               "executionTimeMillisEstimate": 21
+               "executionTimeMillisEstimate": 11
             }
          ]
       },
@@ -15587,13 +15587,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 173946,
-                     "executionTimeMillis": 487,
+                     "executionTimeMillis": 413,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 173946,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 173946,
-                        "executionTimeMillisEstimate": 42,
+                        "executionTimeMillisEstimate": 31,
                         "works": 173948,
                         "advanced": 173946,
                         "needTime": 1,
@@ -15609,7 +15609,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 173946,
-                           "executionTimeMillisEstimate": 35,
+                           "executionTimeMillisEstimate": 24,
                            "works": 173948,
                            "advanced": 173946,
                            "needTime": 1,
@@ -15621,7 +15621,7 @@
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 173946,
-                              "executionTimeMillisEstimate": 7,
+                              "executionTimeMillisEstimate": 6,
                               "works": 173948,
                               "advanced": 173946,
                               "needTime": 1,
@@ -15637,7 +15637,7 @@
                   }
                },
                "nReturned": 173946,
-               "executionTimeMillisEstimate": 384
+               "executionTimeMillisEstimate": 320
             },
             {
                "$group": {
@@ -15669,7 +15669,7 @@
                   }
                },
                "nReturned": 4,
-               "executionTimeMillisEstimate": 484
+               "executionTimeMillisEstimate": 410
             }
          ]
       },
@@ -15705,13 +15705,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 193451,
-                     "executionTimeMillis": 561,
+                     "executionTimeMillis": 460,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 193451,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 193451,
-                        "executionTimeMillisEstimate": 47,
+                        "executionTimeMillisEstimate": 30,
                         "works": 193453,
                         "advanced": 193451,
                         "needTime": 1,
@@ -15727,7 +15727,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 193451,
-                           "executionTimeMillisEstimate": 34,
+                           "executionTimeMillisEstimate": 29,
                            "works": 193453,
                            "advanced": 193451,
                            "needTime": 1,
@@ -15739,7 +15739,7 @@
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 193451,
-                              "executionTimeMillisEstimate": 13,
+                              "executionTimeMillisEstimate": 4,
                               "works": 193453,
                               "advanced": 193451,
                               "needTime": 1,
@@ -15755,7 +15755,7 @@
                   }
                },
                "nReturned": 193451,
-               "executionTimeMillisEstimate": 438
+               "executionTimeMillisEstimate": 347
             },
             {
                "$group": {
@@ -15787,7 +15787,7 @@
                   }
                },
                "nReturned": 5,
-               "executionTimeMillisEstimate": 560
+               "executionTimeMillisEstimate": 458
             }
          ]
       }
@@ -15795,14 +15795,14 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232243,
+         "t": 1612445251,
          "i": 1
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232243,
+            "t": 1612445252,
             "i": 2
          }
       },
@@ -15937,13 +15937,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 7141,
-                     "executionTimeMillis": 19,
+                     "executionTimeMillis": 16,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 7141,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 7141,
-                        "executionTimeMillisEstimate": 2,
+                        "executionTimeMillisEstimate": 1,
                         "works": 7143,
                         "advanced": 7141,
                         "needTime": 1,
@@ -15959,7 +15959,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 7141,
-                           "executionTimeMillisEstimate": 2,
+                           "executionTimeMillisEstimate": 1,
                            "works": 7143,
                            "advanced": 7141,
                            "needTime": 1,
@@ -15971,7 +15971,7 @@
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 7141,
-                              "executionTimeMillisEstimate": 0,
+                              "executionTimeMillisEstimate": 1,
                               "works": 7143,
                               "advanced": 7141,
                               "needTime": 1,
@@ -15987,7 +15987,7 @@
                   }
                },
                "nReturned": 7141,
-               "executionTimeMillisEstimate": 13
+               "executionTimeMillisEstimate": 11
             },
             {
                "$group": {
@@ -16019,7 +16019,7 @@
                   }
                },
                "nReturned": 119,
-               "executionTimeMillisEstimate": 13
+               "executionTimeMillisEstimate": 11
             }
          ]
       },
@@ -16055,13 +16055,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 173946,
-                     "executionTimeMillis": 504,
+                     "executionTimeMillis": 411,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 173946,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 173946,
-                        "executionTimeMillisEstimate": 35,
+                        "executionTimeMillisEstimate": 27,
                         "works": 173948,
                         "advanced": 173946,
                         "needTime": 1,
@@ -16077,7 +16077,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 173946,
-                           "executionTimeMillisEstimate": 26,
+                           "executionTimeMillisEstimate": 16,
                            "works": 173948,
                            "advanced": 173946,
                            "needTime": 1,
@@ -16089,7 +16089,7 @@
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 173946,
-                              "executionTimeMillisEstimate": 2,
+                              "executionTimeMillisEstimate": 8,
                               "works": 173948,
                               "advanced": 173946,
                               "needTime": 1,
@@ -16105,7 +16105,7 @@
                   }
                },
                "nReturned": 173946,
-               "executionTimeMillisEstimate": 372
+               "executionTimeMillisEstimate": 317
             },
             {
                "$group": {
@@ -16137,7 +16137,7 @@
                   }
                },
                "nReturned": 287,
-               "executionTimeMillisEstimate": 495
+               "executionTimeMillisEstimate": 406
             }
          ]
       },
@@ -16173,13 +16173,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 193451,
-                     "executionTimeMillis": 568,
+                     "executionTimeMillis": 459,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 193451,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 193451,
-                        "executionTimeMillisEstimate": 59,
+                        "executionTimeMillisEstimate": 24,
                         "works": 193453,
                         "advanced": 193451,
                         "needTime": 1,
@@ -16195,7 +16195,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 193451,
-                           "executionTimeMillisEstimate": 50,
+                           "executionTimeMillisEstimate": 16,
                            "works": 193453,
                            "advanced": 193451,
                            "needTime": 1,
@@ -16207,7 +16207,7 @@
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 193451,
-                              "executionTimeMillisEstimate": 20,
+                              "executionTimeMillisEstimate": 5,
                               "works": 193453,
                               "advanced": 193451,
                               "needTime": 1,
@@ -16223,7 +16223,7 @@
                   }
                },
                "nReturned": 193451,
-               "executionTimeMillisEstimate": 439
+               "executionTimeMillisEstimate": 344
             },
             {
                "$group": {
@@ -16255,7 +16255,7 @@
                   }
                },
                "nReturned": 240,
-               "executionTimeMillisEstimate": 566
+               "executionTimeMillisEstimate": 454
             }
          ]
       }
@@ -16263,14 +16263,14 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232243,
+         "t": 1612445251,
          "i": 1
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232243,
+            "t": 1612445252,
             "i": 2
          }
       },
@@ -16405,13 +16405,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 7141,
-                     "executionTimeMillis": 28,
+                     "executionTimeMillis": 17,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 7141,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 7141,
-                        "executionTimeMillisEstimate": 2,
+                        "executionTimeMillisEstimate": 3,
                         "works": 7143,
                         "advanced": 7141,
                         "needTime": 1,
@@ -16427,7 +16427,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 7141,
-                           "executionTimeMillisEstimate": 1,
+                           "executionTimeMillisEstimate": 2,
                            "works": 7143,
                            "advanced": 7141,
                            "needTime": 1,
@@ -16455,7 +16455,7 @@
                   }
                },
                "nReturned": 7141,
-               "executionTimeMillisEstimate": 21
+               "executionTimeMillisEstimate": 11
             },
             {
                "$group": {
@@ -16487,7 +16487,7 @@
                   }
                },
                "nReturned": 119,
-               "executionTimeMillisEstimate": 21
+               "executionTimeMillisEstimate": 11
             }
          ]
       },
@@ -16523,13 +16523,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 173946,
-                     "executionTimeMillis": 530,
+                     "executionTimeMillis": 418,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 173946,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 173946,
-                        "executionTimeMillisEstimate": 48,
+                        "executionTimeMillisEstimate": 28,
                         "works": 173948,
                         "advanced": 173946,
                         "needTime": 1,
@@ -16545,7 +16545,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 173946,
-                           "executionTimeMillisEstimate": 42,
+                           "executionTimeMillisEstimate": 20,
                            "works": 173948,
                            "advanced": 173946,
                            "needTime": 1,
@@ -16557,7 +16557,7 @@
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 173946,
-                              "executionTimeMillisEstimate": 20,
+                              "executionTimeMillisEstimate": 10,
                               "works": 173948,
                               "advanced": 173946,
                               "needTime": 1,
@@ -16573,7 +16573,7 @@
                   }
                },
                "nReturned": 173946,
-               "executionTimeMillisEstimate": 376
+               "executionTimeMillisEstimate": 331
             },
             {
                "$group": {
@@ -16605,7 +16605,7 @@
                   }
                },
                "nReturned": 287,
-               "executionTimeMillisEstimate": 528
+               "executionTimeMillisEstimate": 409
             }
          ]
       },
@@ -16641,13 +16641,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 193451,
-                     "executionTimeMillis": 602,
+                     "executionTimeMillis": 465,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 193451,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 193451,
-                        "executionTimeMillisEstimate": 76,
+                        "executionTimeMillisEstimate": 28,
                         "works": 193453,
                         "advanced": 193451,
                         "needTime": 1,
@@ -16663,7 +16663,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 193451,
-                           "executionTimeMillisEstimate": 55,
+                           "executionTimeMillisEstimate": 22,
                            "works": 193453,
                            "advanced": 193451,
                            "needTime": 1,
@@ -16675,7 +16675,7 @@
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 193451,
-                              "executionTimeMillisEstimate": 17,
+                              "executionTimeMillisEstimate": 3,
                               "works": 193453,
                               "advanced": 193451,
                               "needTime": 1,
@@ -16691,7 +16691,7 @@
                   }
                },
                "nReturned": 193451,
-               "executionTimeMillisEstimate": 461
+               "executionTimeMillisEstimate": 343
             },
             {
                "$group": {
@@ -16723,7 +16723,7 @@
                   }
                },
                "nReturned": 240,
-               "executionTimeMillisEstimate": 598
+               "executionTimeMillisEstimate": 464
             }
          ]
       }
@@ -16731,15 +16731,15 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232246,
+         "t": 1612445251,
          "i": 1
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232246,
-            "i": 1
+            "t": 1612445252,
+            "i": 2
          }
       },
       "signature": {
@@ -16855,13 +16855,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 2213,
-                     "executionTimeMillis": 15,
+                     "executionTimeMillis": 8,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 7141,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 2213,
-                        "executionTimeMillisEstimate": 1,
+                        "executionTimeMillisEstimate": 0,
                         "works": 7143,
                         "advanced": 2213,
                         "needTime": 4929,
@@ -16877,7 +16877,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 2213,
-                           "executionTimeMillisEstimate": 1,
+                           "executionTimeMillisEstimate": 0,
                            "works": 7143,
                            "advanced": 2213,
                            "needTime": 4929,
@@ -16910,7 +16910,7 @@
                   }
                },
                "nReturned": 2213,
-               "executionTimeMillisEstimate": 13
+               "executionTimeMillisEstimate": 6
             },
             {
                "$group": {
@@ -16926,7 +16926,7 @@
                   }
                },
                "nReturned": 118,
-               "executionTimeMillisEstimate": 13
+               "executionTimeMillisEstimate": 6
             }
          ]
       },
@@ -16971,13 +16971,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 33582,
-                     "executionTimeMillis": 205,
+                     "executionTimeMillis": 166,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 193451,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 33582,
-                        "executionTimeMillisEstimate": 13,
+                        "executionTimeMillisEstimate": 4,
                         "works": 193453,
                         "advanced": 33582,
                         "needTime": 159870,
@@ -16993,7 +16993,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 33582,
-                           "executionTimeMillisEstimate": 13,
+                           "executionTimeMillisEstimate": 4,
                            "works": 193453,
                            "advanced": 33582,
                            "needTime": 159870,
@@ -17010,7 +17010,7 @@
                                  }
                               },
                               "nReturned": 33582,
-                              "executionTimeMillisEstimate": 11,
+                              "executionTimeMillisEstimate": 2,
                               "works": 193453,
                               "advanced": 33582,
                               "needTime": 159870,
@@ -17026,7 +17026,7 @@
                   }
                },
                "nReturned": 33582,
-               "executionTimeMillisEstimate": 175
+               "executionTimeMillisEstimate": 142
             },
             {
                "$group": {
@@ -17042,7 +17042,7 @@
                   }
                },
                "nReturned": 239,
-               "executionTimeMillisEstimate": 199
+               "executionTimeMillisEstimate": 166
             }
          ]
       },
@@ -17087,13 +17087,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 43175,
-                     "executionTimeMillis": 222,
+                     "executionTimeMillis": 185,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 173946,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 43175,
-                        "executionTimeMillisEstimate": 13,
+                        "executionTimeMillisEstimate": 5,
                         "works": 173948,
                         "advanced": 43175,
                         "needTime": 130772,
@@ -17109,7 +17109,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 43175,
-                           "executionTimeMillisEstimate": 11,
+                           "executionTimeMillisEstimate": 4,
                            "works": 173948,
                            "advanced": 43175,
                            "needTime": 130772,
@@ -17126,7 +17126,7 @@
                                  }
                               },
                               "nReturned": 43175,
-                              "executionTimeMillisEstimate": 9,
+                              "executionTimeMillisEstimate": 4,
                               "works": 173948,
                               "advanced": 43175,
                               "needTime": 130772,
@@ -17142,7 +17142,7 @@
                   }
                },
                "nReturned": 43175,
-               "executionTimeMillisEstimate": 183
+               "executionTimeMillisEstimate": 160
             },
             {
                "$group": {
@@ -17158,7 +17158,7 @@
                   }
                },
                "nReturned": 287,
-               "executionTimeMillisEstimate": 219
+               "executionTimeMillisEstimate": 181
             }
          ]
       }
@@ -17166,15 +17166,15 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232246,
+         "t": 1612445251,
          "i": 1
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232246,
-            "i": 1
+            "t": 1612445254,
+            "i": 3
          }
       },
       "signature": {
@@ -17290,7 +17290,7 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 2213,
-                     "executionTimeMillis": 9,
+                     "executionTimeMillis": 8,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 7141,
                      "executionStages": {
@@ -17345,7 +17345,7 @@
                   }
                },
                "nReturned": 2213,
-               "executionTimeMillisEstimate": 7
+               "executionTimeMillisEstimate": 6
             },
             {
                "$group": {
@@ -17361,7 +17361,7 @@
                   }
                },
                "nReturned": 117,
-               "executionTimeMillisEstimate": 7
+               "executionTimeMillisEstimate": 6
             }
          ]
       },
@@ -17406,13 +17406,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 33582,
-                     "executionTimeMillis": 222,
+                     "executionTimeMillis": 164,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 193451,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 33582,
-                        "executionTimeMillisEstimate": 11,
+                        "executionTimeMillisEstimate": 7,
                         "works": 193453,
                         "advanced": 33582,
                         "needTime": 159870,
@@ -17428,7 +17428,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 33582,
-                           "executionTimeMillisEstimate": 10,
+                           "executionTimeMillisEstimate": 7,
                            "works": 193453,
                            "advanced": 33582,
                            "needTime": 159870,
@@ -17445,7 +17445,7 @@
                                  }
                               },
                               "nReturned": 33582,
-                              "executionTimeMillisEstimate": 9,
+                              "executionTimeMillisEstimate": 5,
                               "works": 193453,
                               "advanced": 33582,
                               "needTime": 159870,
@@ -17461,7 +17461,7 @@
                   }
                },
                "nReturned": 33582,
-               "executionTimeMillisEstimate": 178
+               "executionTimeMillisEstimate": 139
             },
             {
                "$group": {
@@ -17477,7 +17477,7 @@
                   }
                },
                "nReturned": 239,
-               "executionTimeMillisEstimate": 218
+               "executionTimeMillisEstimate": 159
             }
          ]
       },
@@ -17522,13 +17522,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 43175,
-                     "executionTimeMillis": 230,
+                     "executionTimeMillis": 186,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 173946,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 43175,
-                        "executionTimeMillisEstimate": 13,
+                        "executionTimeMillisEstimate": 8,
                         "works": 173948,
                         "advanced": 43175,
                         "needTime": 130772,
@@ -17544,7 +17544,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 43175,
-                           "executionTimeMillisEstimate": 12,
+                           "executionTimeMillisEstimate": 7,
                            "works": 173948,
                            "advanced": 43175,
                            "needTime": 130772,
@@ -17561,7 +17561,7 @@
                                  }
                               },
                               "nReturned": 43175,
-                              "executionTimeMillisEstimate": 10,
+                              "executionTimeMillisEstimate": 1,
                               "works": 173948,
                               "advanced": 43175,
                               "needTime": 130772,
@@ -17577,7 +17577,7 @@
                   }
                },
                "nReturned": 43175,
-               "executionTimeMillisEstimate": 185
+               "executionTimeMillisEstimate": 158
             },
             {
                "$group": {
@@ -17593,7 +17593,7 @@
                   }
                },
                "nReturned": 283,
-               "executionTimeMillisEstimate": 228
+               "executionTimeMillisEstimate": 184
             }
          ]
       }
@@ -17601,15 +17601,15 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232246,
+         "t": 1612445251,
          "i": 1
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232246,
-            "i": 1
+            "t": 1612445254,
+            "i": 3
          }
       },
       "signature": {
@@ -17725,7 +17725,7 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 2213,
-                     "executionTimeMillis": 8,
+                     "executionTimeMillis": 7,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 7141,
                      "executionStages": {
@@ -17780,7 +17780,7 @@
                   }
                },
                "nReturned": 2213,
-               "executionTimeMillisEstimate": 7
+               "executionTimeMillisEstimate": 6
             },
             {
                "$group": {
@@ -17796,7 +17796,7 @@
                   }
                },
                "nReturned": 1,
-               "executionTimeMillisEstimate": 7
+               "executionTimeMillisEstimate": 6
             }
          ]
       },
@@ -17841,13 +17841,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 33582,
-                     "executionTimeMillis": 191,
+                     "executionTimeMillis": 160,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 193451,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 33582,
-                        "executionTimeMillisEstimate": 8,
+                        "executionTimeMillisEstimate": 6,
                         "works": 193453,
                         "advanced": 33582,
                         "needTime": 159870,
@@ -17863,7 +17863,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 33582,
-                           "executionTimeMillisEstimate": 8,
+                           "executionTimeMillisEstimate": 5,
                            "works": 193453,
                            "advanced": 33582,
                            "needTime": 159870,
@@ -17880,7 +17880,7 @@
                                  }
                               },
                               "nReturned": 33582,
-                              "executionTimeMillisEstimate": 7,
+                              "executionTimeMillisEstimate": 3,
                               "works": 193453,
                               "advanced": 33582,
                               "needTime": 159870,
@@ -17896,7 +17896,7 @@
                   }
                },
                "nReturned": 33582,
-               "executionTimeMillisEstimate": 172
+               "executionTimeMillisEstimate": 141
             },
             {
                "$group": {
@@ -17912,7 +17912,7 @@
                   }
                },
                "nReturned": 5,
-               "executionTimeMillisEstimate": 190
+               "executionTimeMillisEstimate": 157
             }
          ]
       },
@@ -17957,13 +17957,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 43175,
-                     "executionTimeMillis": 212,
+                     "executionTimeMillis": 179,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 173946,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 43175,
-                        "executionTimeMillisEstimate": 11,
+                        "executionTimeMillisEstimate": 9,
                         "works": 173948,
                         "advanced": 43175,
                         "needTime": 130772,
@@ -17979,7 +17979,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 43175,
-                           "executionTimeMillisEstimate": 11,
+                           "executionTimeMillisEstimate": 9,
                            "works": 173948,
                            "advanced": 43175,
                            "needTime": 130772,
@@ -17996,7 +17996,7 @@
                                  }
                               },
                               "nReturned": 43175,
-                              "executionTimeMillisEstimate": 7,
+                              "executionTimeMillisEstimate": 6,
                               "works": 173948,
                               "advanced": 43175,
                               "needTime": 130772,
@@ -18012,7 +18012,7 @@
                   }
                },
                "nReturned": 43175,
-               "executionTimeMillisEstimate": 178
+               "executionTimeMillisEstimate": 152
             },
             {
                "$group": {
@@ -18028,7 +18028,7 @@
                   }
                },
                "nReturned": 4,
-               "executionTimeMillisEstimate": 210
+               "executionTimeMillisEstimate": 178
             }
          ]
       }
@@ -18036,15 +18036,15 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232246,
+         "t": 1612445251,
          "i": 1
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232246,
-            "i": 1
+            "t": 1612445254,
+            "i": 3
          }
       },
       "signature": {
@@ -18149,13 +18149,13 @@
          "executionStats": {
             "executionSuccess": true,
             "nReturned": 0,
-            "executionTimeMillis": 378,
+            "executionTimeMillis": 51,
             "totalKeysExamined": 0,
             "totalDocsExamined": 64101,
             "executionStages": {
                "stage": "SHARDING_FILTER",
                "nReturned": 0,
-               "executionTimeMillisEstimate": 154,
+               "executionTimeMillisEstimate": 3,
                "works": 64103,
                "advanced": 0,
                "needTime": 64102,
@@ -18181,7 +18181,7 @@
                      ]
                   },
                   "nReturned": 0,
-                  "executionTimeMillisEstimate": 154,
+                  "executionTimeMillisEstimate": 3,
                   "works": 64103,
                   "advanced": 0,
                   "needTime": 64102,
@@ -18242,19 +18242,19 @@
          "executionStats": {
             "executionSuccess": true,
             "nReturned": 0,
-            "executionTimeMillis": 656,
+            "executionTimeMillis": 90,
             "totalKeysExamined": 0,
             "totalDocsExamined": 125472,
             "executionStages": {
                "stage": "SHARDING_FILTER",
                "nReturned": 0,
-               "executionTimeMillisEstimate": 277,
+               "executionTimeMillisEstimate": 1,
                "works": 125474,
                "advanced": 0,
                "needTime": 125473,
                "needYield": 0,
-               "saveState": 126,
-               "restoreState": 126,
+               "saveState": 125,
+               "restoreState": 125,
                "isEOF": 1,
                "chunkSkips": 0,
                "inputStage": {
@@ -18274,13 +18274,13 @@
                      ]
                   },
                   "nReturned": 0,
-                  "executionTimeMillisEstimate": 277,
+                  "executionTimeMillisEstimate": 1,
                   "works": 125474,
                   "advanced": 0,
                   "needTime": 125473,
                   "needYield": 0,
-                  "saveState": 126,
-                  "restoreState": 126,
+                  "saveState": 125,
+                  "restoreState": 125,
                   "isEOF": 1,
                   "direction": "forward",
                   "docsExamined": 125472
@@ -18335,19 +18335,19 @@
          "executionStats": {
             "executionSuccess": true,
             "nReturned": 0,
-            "executionTimeMillis": 911,
+            "executionTimeMillis": 122,
             "totalKeysExamined": 0,
             "totalDocsExamined": 184965,
             "executionStages": {
                "stage": "SHARDING_FILTER",
                "nReturned": 0,
-               "executionTimeMillisEstimate": 345,
+               "executionTimeMillisEstimate": 7,
                "works": 184967,
                "advanced": 0,
                "needTime": 184966,
                "needYield": 0,
-               "saveState": 185,
-               "restoreState": 185,
+               "saveState": 184,
+               "restoreState": 184,
                "isEOF": 1,
                "chunkSkips": 0,
                "inputStage": {
@@ -18367,13 +18367,13 @@
                      ]
                   },
                   "nReturned": 0,
-                  "executionTimeMillisEstimate": 345,
+                  "executionTimeMillisEstimate": 6,
                   "works": 184967,
                   "advanced": 0,
                   "needTime": 184966,
                   "needYield": 0,
-                  "saveState": 185,
-                  "restoreState": 185,
+                  "saveState": 184,
+                  "restoreState": 184,
                   "isEOF": 1,
                   "direction": "forward",
                   "docsExamined": 184965
@@ -18385,15 +18385,15 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232246,
+         "t": 1612445251,
          "i": 1
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232248,
-            "i": 1
+            "t": 1612445254,
+            "i": 3
          }
       },
       "signature": {
@@ -18527,13 +18527,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 64101,
-                     "executionTimeMillis": 297,
+                     "executionTimeMillis": 142,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 64101,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 64101,
-                        "executionTimeMillisEstimate": 50,
+                        "executionTimeMillisEstimate": 9,
                         "works": 64103,
                         "advanced": 64101,
                         "needTime": 1,
@@ -18549,7 +18549,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 64101,
-                           "executionTimeMillisEstimate": 40,
+                           "executionTimeMillisEstimate": 6,
                            "works": 64103,
                            "advanced": 64101,
                            "needTime": 1,
@@ -18561,7 +18561,7 @@
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 64101,
-                              "executionTimeMillisEstimate": 8,
+                              "executionTimeMillisEstimate": 1,
                               "works": 64103,
                               "advanced": 64101,
                               "needTime": 1,
@@ -18577,7 +18577,7 @@
                   }
                },
                "nReturned": 64101,
-               "executionTimeMillisEstimate": 238
+               "executionTimeMillisEstimate": 107
             },
             {
                "$group": {
@@ -18609,7 +18609,7 @@
                   }
                },
                "nReturned": 1,
-               "executionTimeMillisEstimate": 296
+               "executionTimeMillisEstimate": 137
             }
          ]
       },
@@ -18645,19 +18645,19 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 125472,
-                     "executionTimeMillis": 514,
+                     "executionTimeMillis": 266,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 125472,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 125472,
-                        "executionTimeMillisEstimate": 85,
+                        "executionTimeMillisEstimate": 17,
                         "works": 125474,
                         "advanced": 125472,
                         "needTime": 1,
                         "needYield": 0,
-                        "saveState": 133,
-                        "restoreState": 133,
+                        "saveState": 132,
+                        "restoreState": 132,
                         "isEOF": 1,
                         "transformBy": {
                            "ARR_DELAY": 1,
@@ -18667,25 +18667,25 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 125472,
-                           "executionTimeMillisEstimate": 61,
+                           "executionTimeMillisEstimate": 14,
                            "works": 125474,
                            "advanced": 125472,
                            "needTime": 1,
                            "needYield": 0,
-                           "saveState": 133,
-                           "restoreState": 133,
+                           "saveState": 132,
+                           "restoreState": 132,
                            "isEOF": 1,
                            "chunkSkips": 0,
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 125472,
-                              "executionTimeMillisEstimate": 15,
+                              "executionTimeMillisEstimate": 6,
                               "works": 125474,
                               "advanced": 125472,
                               "needTime": 1,
                               "needYield": 0,
-                              "saveState": 133,
-                              "restoreState": 133,
+                              "saveState": 132,
+                              "restoreState": 132,
                               "isEOF": 1,
                               "direction": "forward",
                               "docsExamined": 125472
@@ -18695,7 +18695,7 @@
                   }
                },
                "nReturned": 125472,
-               "executionTimeMillisEstimate": 387
+               "executionTimeMillisEstimate": 206
             },
             {
                "$group": {
@@ -18727,7 +18727,7 @@
                   }
                },
                "nReturned": 3,
-               "executionTimeMillisEstimate": 510
+               "executionTimeMillisEstimate": 258
             }
          ]
       },
@@ -18763,13 +18763,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 184965,
-                     "executionTimeMillis": 727,
+                     "executionTimeMillis": 387,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 184965,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 184965,
-                        "executionTimeMillisEstimate": 125,
+                        "executionTimeMillisEstimate": 20,
                         "works": 184967,
                         "advanced": 184965,
                         "needTime": 1,
@@ -18785,7 +18785,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 184965,
-                           "executionTimeMillisEstimate": 81,
+                           "executionTimeMillisEstimate": 18,
                            "works": 184967,
                            "advanced": 184965,
                            "needTime": 1,
@@ -18797,7 +18797,7 @@
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 184965,
-                              "executionTimeMillisEstimate": 26,
+                              "executionTimeMillisEstimate": 7,
                               "works": 184967,
                               "advanced": 184965,
                               "needTime": 1,
@@ -18813,7 +18813,7 @@
                   }
                },
                "nReturned": 184965,
-               "executionTimeMillisEstimate": 566
+               "executionTimeMillisEstimate": 288
             },
             {
                "$group": {
@@ -18845,7 +18845,7 @@
                   }
                },
                "nReturned": 6,
-               "executionTimeMillisEstimate": 722
+               "executionTimeMillisEstimate": 384
             }
          ]
       }
@@ -18853,15 +18853,15 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232246,
+         "t": 1612445251,
          "i": 1
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232248,
-            "i": 1
+            "t": 1612445254,
+            "i": 3
          }
       },
       "signature": {
@@ -18995,13 +18995,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 64101,
-                     "executionTimeMillis": 218,
+                     "executionTimeMillis": 144,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 64101,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 64101,
-                        "executionTimeMillisEstimate": 15,
+                        "executionTimeMillisEstimate": 9,
                         "works": 64103,
                         "advanced": 64101,
                         "needTime": 1,
@@ -19017,7 +19017,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 64101,
-                           "executionTimeMillisEstimate": 13,
+                           "executionTimeMillisEstimate": 8,
                            "works": 64103,
                            "advanced": 64101,
                            "needTime": 1,
@@ -19029,7 +19029,7 @@
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 64101,
-                              "executionTimeMillisEstimate": 3,
+                              "executionTimeMillisEstimate": 0,
                               "works": 64103,
                               "advanced": 64101,
                               "needTime": 1,
@@ -19045,7 +19045,7 @@
                   }
                },
                "nReturned": 64101,
-               "executionTimeMillisEstimate": 151
+               "executionTimeMillisEstimate": 113
             },
             {
                "$group": {
@@ -19077,7 +19077,7 @@
                   }
                },
                "nReturned": 88,
-               "executionTimeMillisEstimate": 217
+               "executionTimeMillisEstimate": 137
             }
          ]
       },
@@ -19113,13 +19113,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 125472,
-                     "executionTimeMillis": 436,
+                     "executionTimeMillis": 279,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 125472,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 125472,
-                        "executionTimeMillisEstimate": 38,
+                        "executionTimeMillisEstimate": 13,
                         "works": 125474,
                         "advanced": 125472,
                         "needTime": 1,
@@ -19135,7 +19135,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 125472,
-                           "executionTimeMillisEstimate": 32,
+                           "executionTimeMillisEstimate": 9,
                            "works": 125474,
                            "advanced": 125472,
                            "needTime": 1,
@@ -19147,7 +19147,7 @@
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 125472,
-                              "executionTimeMillisEstimate": 15,
+                              "executionTimeMillisEstimate": 2,
                               "works": 125474,
                               "advanced": 125472,
                               "needTime": 1,
@@ -19163,7 +19163,7 @@
                   }
                },
                "nReturned": 125472,
-               "executionTimeMillisEstimate": 294
+               "executionTimeMillisEstimate": 203
             },
             {
                "$group": {
@@ -19195,7 +19195,7 @@
                   }
                },
                "nReturned": 259,
-               "executionTimeMillisEstimate": 427
+               "executionTimeMillisEstimate": 278
             }
          ]
       },
@@ -19231,13 +19231,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 184965,
-                     "executionTimeMillis": 623,
+                     "executionTimeMillis": 396,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 184965,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 184965,
-                        "executionTimeMillisEstimate": 69,
+                        "executionTimeMillisEstimate": 24,
                         "works": 184967,
                         "advanced": 184965,
                         "needTime": 1,
@@ -19253,7 +19253,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 184965,
-                           "executionTimeMillisEstimate": 56,
+                           "executionTimeMillisEstimate": 17,
                            "works": 184967,
                            "advanced": 184965,
                            "needTime": 1,
@@ -19265,7 +19265,7 @@
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 184965,
-                              "executionTimeMillisEstimate": 11,
+                              "executionTimeMillisEstimate": 3,
                               "works": 184967,
                               "advanced": 184965,
                               "needTime": 1,
@@ -19281,7 +19281,7 @@
                   }
                },
                "nReturned": 184965,
-               "executionTimeMillisEstimate": 459
+               "executionTimeMillisEstimate": 286
             },
             {
                "$group": {
@@ -19313,7 +19313,7 @@
                   }
                },
                "nReturned": 306,
-               "executionTimeMillisEstimate": 619
+               "executionTimeMillisEstimate": 395
             }
          ]
       }
@@ -19321,15 +19321,15 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232246,
+         "t": 1612445251,
          "i": 1
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232248,
-            "i": 1
+            "t": 1612445254,
+            "i": 3
          }
       },
       "signature": {
@@ -19463,13 +19463,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 64101,
-                     "executionTimeMillis": 199,
+                     "executionTimeMillis": 145,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 64101,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 64101,
-                        "executionTimeMillisEstimate": 13,
+                        "executionTimeMillisEstimate": 7,
                         "works": 64103,
                         "advanced": 64101,
                         "needTime": 1,
@@ -19485,7 +19485,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 64101,
-                           "executionTimeMillisEstimate": 12,
+                           "executionTimeMillisEstimate": 6,
                            "works": 64103,
                            "advanced": 64101,
                            "needTime": 1,
@@ -19513,7 +19513,7 @@
                   }
                },
                "nReturned": 64101,
-               "executionTimeMillisEstimate": 135
+               "executionTimeMillisEstimate": 99
             },
             {
                "$group": {
@@ -19545,7 +19545,7 @@
                   }
                },
                "nReturned": 88,
-               "executionTimeMillisEstimate": 196
+               "executionTimeMillisEstimate": 137
             }
          ]
       },
@@ -19581,13 +19581,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 125472,
-                     "executionTimeMillis": 466,
+                     "executionTimeMillis": 275,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 125472,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 125472,
-                        "executionTimeMillisEstimate": 75,
+                        "executionTimeMillisEstimate": 13,
                         "works": 125474,
                         "advanced": 125472,
                         "needTime": 1,
@@ -19603,7 +19603,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 125472,
-                           "executionTimeMillisEstimate": 45,
+                           "executionTimeMillisEstimate": 9,
                            "works": 125474,
                            "advanced": 125472,
                            "needTime": 1,
@@ -19615,7 +19615,7 @@
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 125472,
-                              "executionTimeMillisEstimate": 6,
+                              "executionTimeMillisEstimate": 2,
                               "works": 125474,
                               "advanced": 125472,
                               "needTime": 1,
@@ -19631,7 +19631,7 @@
                   }
                },
                "nReturned": 125472,
-               "executionTimeMillisEstimate": 349
+               "executionTimeMillisEstimate": 191
             },
             {
                "$group": {
@@ -19663,7 +19663,7 @@
                   }
                },
                "nReturned": 259,
-               "executionTimeMillisEstimate": 464
+               "executionTimeMillisEstimate": 266
             }
          ]
       },
@@ -19699,13 +19699,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 184965,
-                     "executionTimeMillis": 659,
+                     "executionTimeMillis": 400,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 184965,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 184965,
-                        "executionTimeMillisEstimate": 114,
+                        "executionTimeMillisEstimate": 17,
                         "works": 184967,
                         "advanced": 184965,
                         "needTime": 1,
@@ -19721,7 +19721,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 184965,
-                           "executionTimeMillisEstimate": 107,
+                           "executionTimeMillisEstimate": 12,
                            "works": 184967,
                            "advanced": 184965,
                            "needTime": 1,
@@ -19733,7 +19733,7 @@
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 184965,
-                              "executionTimeMillisEstimate": 76,
+                              "executionTimeMillisEstimate": 4,
                               "works": 184967,
                               "advanced": 184965,
                               "needTime": 1,
@@ -19749,7 +19749,7 @@
                   }
                },
                "nReturned": 184965,
-               "executionTimeMillisEstimate": 476
+               "executionTimeMillisEstimate": 296
             },
             {
                "$group": {
@@ -19781,7 +19781,7 @@
                   }
                },
                "nReturned": 306,
-               "executionTimeMillisEstimate": 648
+               "executionTimeMillisEstimate": 396
             }
          ]
       }
@@ -19789,15 +19789,15 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232246,
+         "t": 1612445251,
          "i": 1
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232248,
-            "i": 1
+            "t": 1612445254,
+            "i": 3
          }
       },
       "signature": {
@@ -19913,13 +19913,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 9352,
-                     "executionTimeMillis": 66,
+                     "executionTimeMillis": 52,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 64101,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 9352,
-                        "executionTimeMillisEstimate": 3,
+                        "executionTimeMillisEstimate": 1,
                         "works": 64103,
                         "advanced": 9352,
                         "needTime": 54750,
@@ -19935,7 +19935,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 9352,
-                           "executionTimeMillisEstimate": 3,
+                           "executionTimeMillisEstimate": 1,
                            "works": 64103,
                            "advanced": 9352,
                            "needTime": 54750,
@@ -19952,7 +19952,7 @@
                                  }
                               },
                               "nReturned": 9352,
-                              "executionTimeMillisEstimate": 2,
+                              "executionTimeMillisEstimate": 1,
                               "works": 64103,
                               "advanced": 9352,
                               "needTime": 54750,
@@ -19968,7 +19968,7 @@
                   }
                },
                "nReturned": 9352,
-               "executionTimeMillisEstimate": 58
+               "executionTimeMillisEstimate": 46
             },
             {
                "$group": {
@@ -19984,7 +19984,7 @@
                   }
                },
                "nReturned": 87,
-               "executionTimeMillisEstimate": 63
+               "executionTimeMillisEstimate": 52
             }
          ]
       },
@@ -20029,13 +20029,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 35122,
-                     "executionTimeMillis": 171,
+                     "executionTimeMillis": 133,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 125472,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 35122,
-                        "executionTimeMillisEstimate": 11,
+                        "executionTimeMillisEstimate": 7,
                         "works": 125474,
                         "advanced": 35122,
                         "needTime": 90351,
@@ -20051,7 +20051,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 35122,
-                           "executionTimeMillisEstimate": 10,
+                           "executionTimeMillisEstimate": 6,
                            "works": 125474,
                            "advanced": 35122,
                            "needTime": 90351,
@@ -20068,7 +20068,7 @@
                                  }
                               },
                               "nReturned": 35122,
-                              "executionTimeMillisEstimate": 6,
+                              "executionTimeMillisEstimate": 5,
                               "works": 125474,
                               "advanced": 35122,
                               "needTime": 90351,
@@ -20084,7 +20084,7 @@
                   }
                },
                "nReturned": 35122,
-               "executionTimeMillisEstimate": 138
+               "executionTimeMillisEstimate": 113
             },
             {
                "$group": {
@@ -20100,7 +20100,7 @@
                   }
                },
                "nReturned": 259,
-               "executionTimeMillisEstimate": 164
+               "executionTimeMillisEstimate": 129
             }
          ]
       },
@@ -20145,13 +20145,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 34496,
-                     "executionTimeMillis": 222,
+                     "executionTimeMillis": 157,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 184965,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 34496,
-                        "executionTimeMillisEstimate": 14,
+                        "executionTimeMillisEstimate": 8,
                         "works": 184967,
                         "advanced": 34496,
                         "needTime": 150470,
@@ -20167,7 +20167,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 34496,
-                           "executionTimeMillisEstimate": 13,
+                           "executionTimeMillisEstimate": 8,
                            "works": 184967,
                            "advanced": 34496,
                            "needTime": 150470,
@@ -20184,7 +20184,7 @@
                                  }
                               },
                               "nReturned": 34496,
-                              "executionTimeMillisEstimate": 8,
+                              "executionTimeMillisEstimate": 6,
                               "works": 184967,
                               "advanced": 34496,
                               "needTime": 150470,
@@ -20200,7 +20200,7 @@
                   }
                },
                "nReturned": 34496,
-               "executionTimeMillisEstimate": 195
+               "executionTimeMillisEstimate": 134
             },
             {
                "$group": {
@@ -20216,7 +20216,7 @@
                   }
                },
                "nReturned": 305,
-               "executionTimeMillisEstimate": 215
+               "executionTimeMillisEstimate": 154
             }
          ]
       }
@@ -20224,15 +20224,15 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232246,
+         "t": 1612445251,
          "i": 1
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232248,
-            "i": 1
+            "t": 1612445254,
+            "i": 3
          }
       },
       "signature": {
@@ -20348,13 +20348,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 9352,
-                     "executionTimeMillis": 68,
+                     "executionTimeMillis": 63,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 64101,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 9352,
-                        "executionTimeMillisEstimate": 5,
+                        "executionTimeMillisEstimate": 3,
                         "works": 64103,
                         "advanced": 9352,
                         "needTime": 54750,
@@ -20370,7 +20370,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 9352,
-                           "executionTimeMillisEstimate": 5,
+                           "executionTimeMillisEstimate": 2,
                            "works": 64103,
                            "advanced": 9352,
                            "needTime": 54750,
@@ -20387,7 +20387,7 @@
                                  }
                               },
                               "nReturned": 9352,
-                              "executionTimeMillisEstimate": 4,
+                              "executionTimeMillisEstimate": 1,
                               "works": 64103,
                               "advanced": 9352,
                               "needTime": 54750,
@@ -20403,7 +20403,7 @@
                   }
                },
                "nReturned": 9352,
-               "executionTimeMillisEstimate": 60
+               "executionTimeMillisEstimate": 56
             },
             {
                "$group": {
@@ -20464,13 +20464,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 35122,
-                     "executionTimeMillis": 177,
+                     "executionTimeMillis": 141,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 125472,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 35122,
-                        "executionTimeMillisEstimate": 12,
+                        "executionTimeMillisEstimate": 6,
                         "works": 125474,
                         "advanced": 35122,
                         "needTime": 90351,
@@ -20486,7 +20486,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 35122,
-                           "executionTimeMillisEstimate": 9,
+                           "executionTimeMillisEstimate": 4,
                            "works": 125474,
                            "advanced": 35122,
                            "needTime": 90351,
@@ -20503,7 +20503,7 @@
                                  }
                               },
                               "nReturned": 35122,
-                              "executionTimeMillisEstimate": 7,
+                              "executionTimeMillisEstimate": 4,
                               "works": 125474,
                               "advanced": 35122,
                               "needTime": 90351,
@@ -20519,7 +20519,7 @@
                   }
                },
                "nReturned": 35122,
-               "executionTimeMillisEstimate": 151
+               "executionTimeMillisEstimate": 118
             },
             {
                "$group": {
@@ -20535,7 +20535,7 @@
                   }
                },
                "nReturned": 254,
-               "executionTimeMillisEstimate": 172
+               "executionTimeMillisEstimate": 142
             }
          ]
       },
@@ -20580,13 +20580,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 34496,
-                     "executionTimeMillis": 230,
+                     "executionTimeMillis": 164,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 184965,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 34496,
-                        "executionTimeMillisEstimate": 15,
+                        "executionTimeMillisEstimate": 8,
                         "works": 184967,
                         "advanced": 34496,
                         "needTime": 150470,
@@ -20602,7 +20602,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 34496,
-                           "executionTimeMillisEstimate": 13,
+                           "executionTimeMillisEstimate": 7,
                            "works": 184967,
                            "advanced": 34496,
                            "needTime": 150470,
@@ -20619,7 +20619,7 @@
                                  }
                               },
                               "nReturned": 34496,
-                              "executionTimeMillisEstimate": 10,
+                              "executionTimeMillisEstimate": 3,
                               "works": 184967,
                               "advanced": 34496,
                               "needTime": 150470,
@@ -20635,7 +20635,7 @@
                   }
                },
                "nReturned": 34496,
-               "executionTimeMillisEstimate": 208
+               "executionTimeMillisEstimate": 141
             },
             {
                "$group": {
@@ -20651,7 +20651,7 @@
                   }
                },
                "nReturned": 306,
-               "executionTimeMillisEstimate": 223
+               "executionTimeMillisEstimate": 165
             }
          ]
       }
@@ -20659,15 +20659,15 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232246,
+         "t": 1612445251,
          "i": 1
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232250,
-            "i": 1
+            "t": 1612445254,
+            "i": 3
          }
       },
       "signature": {
@@ -20783,13 +20783,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 9352,
-                     "executionTimeMillis": 69,
+                     "executionTimeMillis": 49,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 64101,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 9352,
-                        "executionTimeMillisEstimate": 2,
+                        "executionTimeMillisEstimate": 3,
                         "works": 64103,
                         "advanced": 9352,
                         "needTime": 54750,
@@ -20805,7 +20805,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 9352,
-                           "executionTimeMillisEstimate": 2,
+                           "executionTimeMillisEstimate": 3,
                            "works": 64103,
                            "advanced": 9352,
                            "needTime": 54750,
@@ -20838,7 +20838,7 @@
                   }
                },
                "nReturned": 9352,
-               "executionTimeMillisEstimate": 60
+               "executionTimeMillisEstimate": 44
             },
             {
                "$group": {
@@ -20854,7 +20854,7 @@
                   }
                },
                "nReturned": 1,
-               "executionTimeMillisEstimate": 61
+               "executionTimeMillisEstimate": 46
             }
          ]
       },
@@ -20899,13 +20899,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 35122,
-                     "executionTimeMillis": 173,
+                     "executionTimeMillis": 126,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 125472,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 35122,
-                        "executionTimeMillisEstimate": 14,
+                        "executionTimeMillisEstimate": 3,
                         "works": 125474,
                         "advanced": 35122,
                         "needTime": 90351,
@@ -20921,7 +20921,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 35122,
-                           "executionTimeMillisEstimate": 14,
+                           "executionTimeMillisEstimate": 3,
                            "works": 125474,
                            "advanced": 35122,
                            "needTime": 90351,
@@ -20938,7 +20938,7 @@
                                  }
                               },
                               "nReturned": 35122,
-                              "executionTimeMillisEstimate": 10,
+                              "executionTimeMillisEstimate": 2,
                               "works": 125474,
                               "advanced": 35122,
                               "needTime": 90351,
@@ -20954,7 +20954,7 @@
                   }
                },
                "nReturned": 35122,
-               "executionTimeMillisEstimate": 157
+               "executionTimeMillisEstimate": 112
             },
             {
                "$group": {
@@ -20970,7 +20970,7 @@
                   }
                },
                "nReturned": 3,
-               "executionTimeMillisEstimate": 173
+               "executionTimeMillisEstimate": 121
             }
          ]
       },
@@ -21015,13 +21015,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 34496,
-                     "executionTimeMillis": 224,
+                     "executionTimeMillis": 148,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 184965,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 34496,
-                        "executionTimeMillisEstimate": 14,
+                        "executionTimeMillisEstimate": 7,
                         "works": 184967,
                         "advanced": 34496,
                         "needTime": 150470,
@@ -21037,7 +21037,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 34496,
-                           "executionTimeMillisEstimate": 14,
+                           "executionTimeMillisEstimate": 6,
                            "works": 184967,
                            "advanced": 34496,
                            "needTime": 150470,
@@ -21054,7 +21054,7 @@
                                  }
                               },
                               "nReturned": 34496,
-                              "executionTimeMillisEstimate": 12,
+                              "executionTimeMillisEstimate": 5,
                               "works": 184967,
                               "advanced": 34496,
                               "needTime": 150470,
@@ -21070,7 +21070,7 @@
                   }
                },
                "nReturned": 34496,
-               "executionTimeMillisEstimate": 197
+               "executionTimeMillisEstimate": 129
             },
             {
                "$group": {
@@ -21086,7 +21086,7 @@
                   }
                },
                "nReturned": 6,
-               "executionTimeMillisEstimate": 220
+               "executionTimeMillisEstimate": 145
             }
          ]
       }
@@ -21094,15 +21094,15 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232246,
+         "t": 1612445251,
          "i": 1
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232250,
-            "i": 1
+            "t": 1612445254,
+            "i": 3
          }
       },
       "signature": {
@@ -21207,13 +21207,13 @@
          "executionStats": {
             "executionSuccess": true,
             "nReturned": 0,
-            "executionTimeMillis": 244,
+            "executionTimeMillis": 50,
             "totalKeysExamined": 0,
             "totalDocsExamined": 71070,
             "executionStages": {
                "stage": "SHARDING_FILTER",
                "nReturned": 0,
-               "executionTimeMillisEstimate": 68,
+               "executionTimeMillisEstimate": 4,
                "works": 71072,
                "advanced": 0,
                "needTime": 71071,
@@ -21239,7 +21239,7 @@
                      ]
                   },
                   "nReturned": 0,
-                  "executionTimeMillisEstimate": 68,
+                  "executionTimeMillisEstimate": 4,
                   "works": 71072,
                   "advanced": 0,
                   "needTime": 71071,
@@ -21300,13 +21300,13 @@
          "executionStats": {
             "executionSuccess": true,
             "nReturned": 0,
-            "executionTimeMillis": 417,
+            "executionTimeMillis": 88,
             "totalKeysExamined": 0,
             "totalDocsExamined": 125750,
             "executionStages": {
                "stage": "SHARDING_FILTER",
                "nReturned": 0,
-               "executionTimeMillisEstimate": 113,
+               "executionTimeMillisEstimate": 7,
                "works": 125752,
                "advanced": 0,
                "needTime": 125751,
@@ -21332,7 +21332,7 @@
                      ]
                   },
                   "nReturned": 0,
-                  "executionTimeMillisEstimate": 113,
+                  "executionTimeMillisEstimate": 7,
                   "works": 125752,
                   "advanced": 0,
                   "needTime": 125751,
@@ -21393,19 +21393,19 @@
          "executionStats": {
             "executionSuccess": true,
             "nReturned": 0,
-            "executionTimeMillis": 722,
+            "executionTimeMillis": 127,
             "totalKeysExamined": 0,
             "totalDocsExamined": 177718,
             "executionStages": {
                "stage": "SHARDING_FILTER",
                "nReturned": 0,
-               "executionTimeMillisEstimate": 222,
+               "executionTimeMillisEstimate": 12,
                "works": 177720,
                "advanced": 0,
                "needTime": 177719,
                "needYield": 0,
-               "saveState": 178,
-               "restoreState": 178,
+               "saveState": 177,
+               "restoreState": 177,
                "isEOF": 1,
                "chunkSkips": 0,
                "inputStage": {
@@ -21425,13 +21425,13 @@
                      ]
                   },
                   "nReturned": 0,
-                  "executionTimeMillisEstimate": 222,
+                  "executionTimeMillisEstimate": 11,
                   "works": 177720,
                   "advanced": 0,
                   "needTime": 177719,
                   "needYield": 0,
-                  "saveState": 178,
-                  "restoreState": 178,
+                  "saveState": 177,
+                  "restoreState": 177,
                   "isEOF": 1,
                   "direction": "forward",
                   "docsExamined": 177718
@@ -21443,15 +21443,15 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232246,
+         "t": 1612445251,
          "i": 1
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232250,
-            "i": 1
+            "t": 1612445254,
+            "i": 3
          }
       },
       "signature": {
@@ -21585,13 +21585,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 71070,
-                     "executionTimeMillis": 204,
+                     "executionTimeMillis": 166,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 71070,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 71070,
-                        "executionTimeMillisEstimate": 14,
+                        "executionTimeMillisEstimate": 11,
                         "works": 71072,
                         "advanced": 71070,
                         "needTime": 1,
@@ -21607,7 +21607,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 71070,
-                           "executionTimeMillisEstimate": 11,
+                           "executionTimeMillisEstimate": 8,
                            "works": 71072,
                            "advanced": 71070,
                            "needTime": 1,
@@ -21635,7 +21635,7 @@
                   }
                },
                "nReturned": 71070,
-               "executionTimeMillisEstimate": 154
+               "executionTimeMillisEstimate": 125
             },
             {
                "$group": {
@@ -21667,7 +21667,7 @@
                   }
                },
                "nReturned": 10,
-               "executionTimeMillisEstimate": 198
+               "executionTimeMillisEstimate": 164
             }
          ]
       },
@@ -21703,13 +21703,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 125750,
-                     "executionTimeMillis": 349,
+                     "executionTimeMillis": 304,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 125750,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 125750,
-                        "executionTimeMillisEstimate": 34,
+                        "executionTimeMillisEstimate": 19,
                         "works": 125752,
                         "advanced": 125750,
                         "needTime": 1,
@@ -21725,7 +21725,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 125750,
-                           "executionTimeMillisEstimate": 24,
+                           "executionTimeMillisEstimate": 17,
                            "works": 125752,
                            "advanced": 125750,
                            "needTime": 1,
@@ -21737,7 +21737,7 @@
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 125750,
-                              "executionTimeMillisEstimate": 0,
+                              "executionTimeMillisEstimate": 1,
                               "works": 125752,
                               "advanced": 125750,
                               "needTime": 1,
@@ -21753,7 +21753,7 @@
                   }
                },
                "nReturned": 125750,
-               "executionTimeMillisEstimate": 276
+               "executionTimeMillisEstimate": 240
             },
             {
                "$group": {
@@ -21785,7 +21785,7 @@
                   }
                },
                "nReturned": 10,
-               "executionTimeMillisEstimate": 344
+               "executionTimeMillisEstimate": 296
             }
          ]
       },
@@ -21821,19 +21821,19 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 177718,
-                     "executionTimeMillis": 514,
+                     "executionTimeMillis": 429,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 177718,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 177718,
-                        "executionTimeMillisEstimate": 57,
+                        "executionTimeMillisEstimate": 30,
                         "works": 177720,
                         "advanced": 177718,
                         "needTime": 1,
                         "needYield": 0,
-                        "saveState": 188,
-                        "restoreState": 188,
+                        "saveState": 187,
+                        "restoreState": 187,
                         "isEOF": 1,
                         "transformBy": {
                            "ARR_DELAY": 1,
@@ -21843,25 +21843,25 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 177718,
-                           "executionTimeMillisEstimate": 52,
+                           "executionTimeMillisEstimate": 20,
                            "works": 177720,
                            "advanced": 177718,
                            "needTime": 1,
                            "needYield": 0,
-                           "saveState": 188,
-                           "restoreState": 188,
+                           "saveState": 187,
+                           "restoreState": 187,
                            "isEOF": 1,
                            "chunkSkips": 0,
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 177718,
-                              "executionTimeMillisEstimate": 9,
+                              "executionTimeMillisEstimate": 5,
                               "works": 177720,
                               "advanced": 177718,
                               "needTime": 1,
                               "needYield": 0,
-                              "saveState": 188,
-                              "restoreState": 188,
+                              "saveState": 187,
+                              "restoreState": 187,
                               "isEOF": 1,
                               "direction": "forward",
                               "docsExamined": 177718
@@ -21871,7 +21871,7 @@
                   }
                },
                "nReturned": 177718,
-               "executionTimeMillisEstimate": 420
+               "executionTimeMillisEstimate": 365
             },
             {
                "$group": {
@@ -21903,7 +21903,7 @@
                   }
                },
                "nReturned": 10,
-               "executionTimeMillisEstimate": 512
+               "executionTimeMillisEstimate": 424
             }
          ]
       }
@@ -21911,14 +21911,14 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232246,
+         "t": 1612445251,
          "i": 1
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232252,
+            "t": 1612445254,
             "i": 3
          }
       },
@@ -22053,13 +22053,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 71070,
-                     "executionTimeMillis": 224,
+                     "executionTimeMillis": 178,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 71070,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 71070,
-                        "executionTimeMillisEstimate": 20,
+                        "executionTimeMillisEstimate": 11,
                         "works": 71072,
                         "advanced": 71070,
                         "needTime": 1,
@@ -22075,7 +22075,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 71070,
-                           "executionTimeMillisEstimate": 18,
+                           "executionTimeMillisEstimate": 5,
                            "works": 71072,
                            "advanced": 71070,
                            "needTime": 1,
@@ -22087,7 +22087,7 @@
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 71070,
-                              "executionTimeMillisEstimate": 5,
+                              "executionTimeMillisEstimate": 1,
                               "works": 71072,
                               "advanced": 71070,
                               "needTime": 1,
@@ -22103,7 +22103,7 @@
                   }
                },
                "nReturned": 71070,
-               "executionTimeMillisEstimate": 162
+               "executionTimeMillisEstimate": 123
             },
             {
                "$group": {
@@ -22135,7 +22135,7 @@
                   }
                },
                "nReturned": 114,
-               "executionTimeMillisEstimate": 223
+               "executionTimeMillisEstimate": 178
             }
          ]
       },
@@ -22171,13 +22171,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 125750,
-                     "executionTimeMillis": 384,
+                     "executionTimeMillis": 317,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 125750,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 125750,
-                        "executionTimeMillisEstimate": 43,
+                        "executionTimeMillisEstimate": 23,
                         "works": 125752,
                         "advanced": 125750,
                         "needTime": 1,
@@ -22193,7 +22193,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 125750,
-                           "executionTimeMillisEstimate": 32,
+                           "executionTimeMillisEstimate": 17,
                            "works": 125752,
                            "advanced": 125750,
                            "needTime": 1,
@@ -22205,7 +22205,7 @@
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 125750,
-                              "executionTimeMillisEstimate": 5,
+                              "executionTimeMillisEstimate": 4,
                               "works": 125752,
                               "advanced": 125750,
                               "needTime": 1,
@@ -22221,7 +22221,7 @@
                   }
                },
                "nReturned": 125750,
-               "executionTimeMillisEstimate": 275
+               "executionTimeMillisEstimate": 218
             },
             {
                "$group": {
@@ -22253,7 +22253,7 @@
                   }
                },
                "nReturned": 121,
-               "executionTimeMillisEstimate": 378
+               "executionTimeMillisEstimate": 306
             }
          ]
       },
@@ -22289,13 +22289,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 177718,
-                     "executionTimeMillis": 519,
+                     "executionTimeMillis": 441,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 177718,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 177718,
-                        "executionTimeMillisEstimate": 44,
+                        "executionTimeMillisEstimate": 26,
                         "works": 177720,
                         "advanced": 177718,
                         "needTime": 1,
@@ -22311,7 +22311,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 177718,
-                           "executionTimeMillisEstimate": 36,
+                           "executionTimeMillisEstimate": 23,
                            "works": 177720,
                            "advanced": 177718,
                            "needTime": 1,
@@ -22323,7 +22323,7 @@
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 177718,
-                              "executionTimeMillisEstimate": 10,
+                              "executionTimeMillisEstimate": 4,
                               "works": 177720,
                               "advanced": 177718,
                               "needTime": 1,
@@ -22339,7 +22339,7 @@
                   }
                },
                "nReturned": 177718,
-               "executionTimeMillisEstimate": 396
+               "executionTimeMillisEstimate": 325
             },
             {
                "$group": {
@@ -22371,7 +22371,7 @@
                   }
                },
                "nReturned": 124,
-               "executionTimeMillisEstimate": 519
+               "executionTimeMillisEstimate": 440
             }
          ]
       }
@@ -22379,15 +22379,15 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232253,
+         "t": 1612445251,
          "i": 1
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232253,
-            "i": 1
+            "t": 1612445254,
+            "i": 3
          }
       },
       "signature": {
@@ -22521,13 +22521,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 71070,
-                     "executionTimeMillis": 200,
+                     "executionTimeMillis": 170,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 71070,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 71070,
-                        "executionTimeMillisEstimate": 13,
+                        "executionTimeMillisEstimate": 12,
                         "works": 71072,
                         "advanced": 71070,
                         "needTime": 1,
@@ -22543,7 +22543,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 71070,
-                           "executionTimeMillisEstimate": 8,
+                           "executionTimeMillisEstimate": 9,
                            "works": 71072,
                            "advanced": 71070,
                            "needTime": 1,
@@ -22555,7 +22555,7 @@
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 71070,
-                              "executionTimeMillisEstimate": 2,
+                              "executionTimeMillisEstimate": 4,
                               "works": 71072,
                               "advanced": 71070,
                               "needTime": 1,
@@ -22571,7 +22571,7 @@
                   }
                },
                "nReturned": 71070,
-               "executionTimeMillisEstimate": 163
+               "executionTimeMillisEstimate": 134
             },
             {
                "$group": {
@@ -22603,7 +22603,7 @@
                   }
                },
                "nReturned": 186,
-               "executionTimeMillisEstimate": 197
+               "executionTimeMillisEstimate": 168
             }
          ]
       },
@@ -22639,13 +22639,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 125750,
-                     "executionTimeMillis": 361,
+                     "executionTimeMillis": 307,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 125750,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 125750,
-                        "executionTimeMillisEstimate": 32,
+                        "executionTimeMillisEstimate": 22,
                         "works": 125752,
                         "advanced": 125750,
                         "needTime": 1,
@@ -22661,7 +22661,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 125750,
-                           "executionTimeMillisEstimate": 27,
+                           "executionTimeMillisEstimate": 14,
                            "works": 125752,
                            "advanced": 125750,
                            "needTime": 1,
@@ -22673,7 +22673,7 @@
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 125750,
-                              "executionTimeMillisEstimate": 8,
+                              "executionTimeMillisEstimate": 2,
                               "works": 125752,
                               "advanced": 125750,
                               "needTime": 1,
@@ -22689,7 +22689,7 @@
                   }
                },
                "nReturned": 125750,
-               "executionTimeMillisEstimate": 276
+               "executionTimeMillisEstimate": 239
             },
             {
                "$group": {
@@ -22721,7 +22721,7 @@
                   }
                },
                "nReturned": 249,
-               "executionTimeMillisEstimate": 352
+               "executionTimeMillisEstimate": 306
             }
          ]
       },
@@ -22757,13 +22757,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 177718,
-                     "executionTimeMillis": 498,
+                     "executionTimeMillis": 440,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 177718,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 177718,
-                        "executionTimeMillisEstimate": 39,
+                        "executionTimeMillisEstimate": 27,
                         "works": 177720,
                         "advanced": 177718,
                         "needTime": 1,
@@ -22779,7 +22779,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 177718,
-                           "executionTimeMillisEstimate": 32,
+                           "executionTimeMillisEstimate": 22,
                            "works": 177720,
                            "advanced": 177718,
                            "needTime": 1,
@@ -22791,7 +22791,7 @@
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 177718,
-                              "executionTimeMillisEstimate": 14,
+                              "executionTimeMillisEstimate": 6,
                               "works": 177720,
                               "advanced": 177718,
                               "needTime": 1,
@@ -22807,7 +22807,7 @@
                   }
                },
                "nReturned": 177718,
-               "executionTimeMillisEstimate": 365
+               "executionTimeMillisEstimate": 341
             },
             {
                "$group": {
@@ -22839,7 +22839,7 @@
                   }
                },
                "nReturned": 312,
-               "executionTimeMillisEstimate": 491
+               "executionTimeMillisEstimate": 435
             }
          ]
       }
@@ -22847,15 +22847,15 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232253,
+         "t": 1612445251,
          "i": 1
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232253,
-            "i": 1
+            "t": 1612445254,
+            "i": 3
          }
       },
       "signature": {
@@ -22971,13 +22971,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 15076,
-                     "executionTimeMillis": 81,
+                     "executionTimeMillis": 67,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 71070,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 15076,
-                        "executionTimeMillisEstimate": 5,
+                        "executionTimeMillisEstimate": 3,
                         "works": 71072,
                         "advanced": 15076,
                         "needTime": 55995,
@@ -22993,7 +22993,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 15076,
-                           "executionTimeMillisEstimate": 5,
+                           "executionTimeMillisEstimate": 3,
                            "works": 71072,
                            "advanced": 15076,
                            "needTime": 55995,
@@ -23010,7 +23010,7 @@
                                  }
                               },
                               "nReturned": 15076,
-                              "executionTimeMillisEstimate": 4,
+                              "executionTimeMillisEstimate": 3,
                               "works": 71072,
                               "advanced": 15076,
                               "needTime": 55995,
@@ -23026,7 +23026,7 @@
                   }
                },
                "nReturned": 15076,
-               "executionTimeMillisEstimate": 69
+               "executionTimeMillisEstimate": 55
             },
             {
                "$group": {
@@ -23042,7 +23042,7 @@
                   }
                },
                "nReturned": 114,
-               "executionTimeMillisEstimate": 78
+               "executionTimeMillisEstimate": 64
             }
          ]
       },
@@ -23087,13 +23087,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 26485,
-                     "executionTimeMillis": 141,
+                     "executionTimeMillis": 120,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 125750,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 26485,
-                        "executionTimeMillisEstimate": 7,
+                        "executionTimeMillisEstimate": 6,
                         "works": 125752,
                         "advanced": 26485,
                         "needTime": 99266,
@@ -23109,7 +23109,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 26485,
-                           "executionTimeMillisEstimate": 7,
+                           "executionTimeMillisEstimate": 5,
                            "works": 125752,
                            "advanced": 26485,
                            "needTime": 99266,
@@ -23126,7 +23126,7 @@
                                  }
                               },
                               "nReturned": 26485,
-                              "executionTimeMillisEstimate": 6,
+                              "executionTimeMillisEstimate": 2,
                               "works": 125752,
                               "advanced": 26485,
                               "needTime": 99266,
@@ -23142,7 +23142,7 @@
                   }
                },
                "nReturned": 26485,
-               "executionTimeMillisEstimate": 119
+               "executionTimeMillisEstimate": 98
             },
             {
                "$group": {
@@ -23158,7 +23158,7 @@
                   }
                },
                "nReturned": 120,
-               "executionTimeMillisEstimate": 141
+               "executionTimeMillisEstimate": 118
             }
          ]
       },
@@ -23203,13 +23203,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 37409,
-                     "executionTimeMillis": 196,
+                     "executionTimeMillis": 177,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 177718,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 37409,
-                        "executionTimeMillisEstimate": 12,
+                        "executionTimeMillisEstimate": 9,
                         "works": 177720,
                         "advanced": 37409,
                         "needTime": 140310,
@@ -23225,7 +23225,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 37409,
-                           "executionTimeMillisEstimate": 9,
+                           "executionTimeMillisEstimate": 6,
                            "works": 177720,
                            "advanced": 37409,
                            "needTime": 140310,
@@ -23242,7 +23242,7 @@
                                  }
                               },
                               "nReturned": 37409,
-                              "executionTimeMillisEstimate": 7,
+                              "executionTimeMillisEstimate": 3,
                               "works": 177720,
                               "advanced": 37409,
                               "needTime": 140310,
@@ -23258,7 +23258,7 @@
                   }
                },
                "nReturned": 37409,
-               "executionTimeMillisEstimate": 177
+               "executionTimeMillisEstimate": 153
             },
             {
                "$group": {
@@ -23274,7 +23274,7 @@
                   }
                },
                "nReturned": 124,
-               "executionTimeMillisEstimate": 197
+               "executionTimeMillisEstimate": 170
             }
          ]
       }
@@ -23282,15 +23282,15 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232253,
+         "t": 1612445251,
          "i": 1
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232253,
-            "i": 2
+            "t": 1612445254,
+            "i": 3
          }
       },
       "signature": {
@@ -23406,13 +23406,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 15076,
-                     "executionTimeMillis": 88,
+                     "executionTimeMillis": 65,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 71070,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 15076,
-                        "executionTimeMillisEstimate": 7,
+                        "executionTimeMillisEstimate": 2,
                         "works": 71072,
                         "advanced": 15076,
                         "needTime": 55995,
@@ -23428,7 +23428,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 15076,
-                           "executionTimeMillisEstimate": 6,
+                           "executionTimeMillisEstimate": 2,
                            "works": 71072,
                            "advanced": 15076,
                            "needTime": 55995,
@@ -23445,7 +23445,7 @@
                                  }
                               },
                               "nReturned": 15076,
-                              "executionTimeMillisEstimate": 5,
+                              "executionTimeMillisEstimate": 2,
                               "works": 71072,
                               "advanced": 15076,
                               "needTime": 55995,
@@ -23461,7 +23461,7 @@
                   }
                },
                "nReturned": 15076,
-               "executionTimeMillisEstimate": 76
+               "executionTimeMillisEstimate": 53
             },
             {
                "$group": {
@@ -23477,7 +23477,7 @@
                   }
                },
                "nReturned": 180,
-               "executionTimeMillisEstimate": 85
+               "executionTimeMillisEstimate": 54
             }
          ]
       },
@@ -23522,13 +23522,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 26485,
-                     "executionTimeMillis": 148,
+                     "executionTimeMillis": 118,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 125750,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 26485,
-                        "executionTimeMillisEstimate": 9,
+                        "executionTimeMillisEstimate": 3,
                         "works": 125752,
                         "advanced": 26485,
                         "needTime": 99266,
@@ -23544,7 +23544,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 26485,
-                           "executionTimeMillisEstimate": 8,
+                           "executionTimeMillisEstimate": 3,
                            "works": 125752,
                            "advanced": 26485,
                            "needTime": 99266,
@@ -23561,7 +23561,7 @@
                                  }
                               },
                               "nReturned": 26485,
-                              "executionTimeMillisEstimate": 4,
+                              "executionTimeMillisEstimate": 3,
                               "works": 125752,
                               "advanced": 26485,
                               "needTime": 99266,
@@ -23577,7 +23577,7 @@
                   }
                },
                "nReturned": 26485,
-               "executionTimeMillisEstimate": 126
+               "executionTimeMillisEstimate": 97
             },
             {
                "$group": {
@@ -23593,7 +23593,7 @@
                   }
                },
                "nReturned": 246,
-               "executionTimeMillisEstimate": 138
+               "executionTimeMillisEstimate": 110
             }
          ]
       },
@@ -23638,13 +23638,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 37409,
-                     "executionTimeMillis": 208,
+                     "executionTimeMillis": 179,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 177718,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 37409,
-                        "executionTimeMillisEstimate": 14,
+                        "executionTimeMillisEstimate": 9,
                         "works": 177720,
                         "advanced": 37409,
                         "needTime": 140310,
@@ -23660,7 +23660,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 37409,
-                           "executionTimeMillisEstimate": 12,
+                           "executionTimeMillisEstimate": 7,
                            "works": 177720,
                            "advanced": 37409,
                            "needTime": 140310,
@@ -23677,7 +23677,7 @@
                                  }
                               },
                               "nReturned": 37409,
-                              "executionTimeMillisEstimate": 10,
+                              "executionTimeMillisEstimate": 3,
                               "works": 177720,
                               "advanced": 37409,
                               "needTime": 140310,
@@ -23693,7 +23693,7 @@
                   }
                },
                "nReturned": 37409,
-               "executionTimeMillisEstimate": 175
+               "executionTimeMillisEstimate": 156
             },
             {
                "$group": {
@@ -23709,7 +23709,7 @@
                   }
                },
                "nReturned": 308,
-               "executionTimeMillisEstimate": 206
+               "executionTimeMillisEstimate": 176
             }
          ]
       }
@@ -23717,15 +23717,15 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232253,
+         "t": 1612445251,
          "i": 1
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232253,
-            "i": 2
+            "t": 1612445254,
+            "i": 3
          }
       },
       "signature": {
@@ -23841,13 +23841,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 15076,
-                     "executionTimeMillis": 79,
+                     "executionTimeMillis": 64,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 71070,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 15076,
-                        "executionTimeMillisEstimate": 5,
+                        "executionTimeMillisEstimate": 1,
                         "works": 71072,
                         "advanced": 15076,
                         "needTime": 55995,
@@ -23863,7 +23863,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 15076,
-                           "executionTimeMillisEstimate": 4,
+                           "executionTimeMillisEstimate": 1,
                            "works": 71072,
                            "advanced": 15076,
                            "needTime": 55995,
@@ -23880,7 +23880,7 @@
                                  }
                               },
                               "nReturned": 15076,
-                              "executionTimeMillisEstimate": 3,
+                              "executionTimeMillisEstimate": 1,
                               "works": 71072,
                               "advanced": 15076,
                               "needTime": 55995,
@@ -23896,7 +23896,7 @@
                   }
                },
                "nReturned": 15076,
-               "executionTimeMillisEstimate": 69
+               "executionTimeMillisEstimate": 54
             },
             {
                "$group": {
@@ -23912,7 +23912,7 @@
                   }
                },
                "nReturned": 10,
-               "executionTimeMillisEstimate": 76
+               "executionTimeMillisEstimate": 56
             }
          ]
       },
@@ -23957,13 +23957,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 26485,
-                     "executionTimeMillis": 140,
+                     "executionTimeMillis": 115,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 125750,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 26485,
-                        "executionTimeMillisEstimate": 6,
+                        "executionTimeMillisEstimate": 2,
                         "works": 125752,
                         "advanced": 26485,
                         "needTime": 99266,
@@ -23979,7 +23979,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 26485,
-                           "executionTimeMillisEstimate": 6,
+                           "executionTimeMillisEstimate": 2,
                            "works": 125752,
                            "advanced": 26485,
                            "needTime": 99266,
@@ -23996,7 +23996,7 @@
                                  }
                               },
                               "nReturned": 26485,
-                              "executionTimeMillisEstimate": 4,
+                              "executionTimeMillisEstimate": 1,
                               "works": 125752,
                               "advanced": 26485,
                               "needTime": 99266,
@@ -24012,7 +24012,7 @@
                   }
                },
                "nReturned": 26485,
-               "executionTimeMillisEstimate": 122
+               "executionTimeMillisEstimate": 98
             },
             {
                "$group": {
@@ -24028,7 +24028,7 @@
                   }
                },
                "nReturned": 10,
-               "executionTimeMillisEstimate": 134
+               "executionTimeMillisEstimate": 114
             }
          ]
       },
@@ -24073,13 +24073,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 37409,
-                     "executionTimeMillis": 191,
+                     "executionTimeMillis": 173,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 177718,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 37409,
-                        "executionTimeMillisEstimate": 14,
+                        "executionTimeMillisEstimate": 9,
                         "works": 177720,
                         "advanced": 37409,
                         "needTime": 140310,
@@ -24095,7 +24095,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 37409,
-                           "executionTimeMillisEstimate": 11,
+                           "executionTimeMillisEstimate": 9,
                            "works": 177720,
                            "advanced": 37409,
                            "needTime": 140310,
@@ -24112,7 +24112,7 @@
                                  }
                               },
                               "nReturned": 37409,
-                              "executionTimeMillisEstimate": 6,
+                              "executionTimeMillisEstimate": 5,
                               "works": 177720,
                               "advanced": 37409,
                               "needTime": 140310,
@@ -24128,7 +24128,7 @@
                   }
                },
                "nReturned": 37409,
-               "executionTimeMillisEstimate": 168
+               "executionTimeMillisEstimate": 149
             },
             {
                "$group": {
@@ -24144,7 +24144,7 @@
                   }
                },
                "nReturned": 10,
-               "executionTimeMillisEstimate": 185
+               "executionTimeMillisEstimate": 169
             }
          ]
       }
@@ -24152,15 +24152,15 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232253,
+         "t": 1612445251,
          "i": 1
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232253,
-            "i": 2
+            "t": 1612445254,
+            "i": 3
          }
       },
       "signature": {
@@ -24265,13 +24265,13 @@
          "executionStats": {
             "executionSuccess": true,
             "nReturned": 0,
-            "executionTimeMillis": 401,
+            "executionTimeMillis": 53,
             "totalKeysExamined": 0,
             "totalDocsExamined": 53231,
             "executionStages": {
                "stage": "SHARDING_FILTER",
                "nReturned": 0,
-               "executionTimeMillisEstimate": 218,
+               "executionTimeMillisEstimate": 4,
                "works": 53233,
                "advanced": 0,
                "needTime": 53232,
@@ -24297,7 +24297,7 @@
                      ]
                   },
                   "nReturned": 0,
-                  "executionTimeMillisEstimate": 218,
+                  "executionTimeMillisEstimate": 4,
                   "works": 53233,
                   "advanced": 0,
                   "needTime": 53232,
@@ -24358,13 +24358,13 @@
          "executionStats": {
             "executionSuccess": true,
             "nReturned": 0,
-            "executionTimeMillis": 541,
+            "executionTimeMillis": 104,
             "totalKeysExamined": 0,
             "totalDocsExamined": 160646,
             "executionStages": {
                "stage": "SHARDING_FILTER",
                "nReturned": 0,
-               "executionTimeMillisEstimate": 145,
+               "executionTimeMillisEstimate": 5,
                "works": 160648,
                "advanced": 0,
                "needTime": 160647,
@@ -24390,7 +24390,7 @@
                      ]
                   },
                   "nReturned": 0,
-                  "executionTimeMillisEstimate": 145,
+                  "executionTimeMillisEstimate": 5,
                   "works": 160648,
                   "advanced": 0,
                   "needTime": 160647,
@@ -24451,13 +24451,13 @@
          "executionStats": {
             "executionSuccess": true,
             "nReturned": 0,
-            "executionTimeMillis": 567,
+            "executionTimeMillis": 106,
             "totalKeysExamined": 0,
             "totalDocsExamined": 160661,
             "executionStages": {
                "stage": "SHARDING_FILTER",
                "nReturned": 0,
-               "executionTimeMillisEstimate": 176,
+               "executionTimeMillisEstimate": 7,
                "works": 160663,
                "advanced": 0,
                "needTime": 160662,
@@ -24483,7 +24483,7 @@
                      ]
                   },
                   "nReturned": 0,
-                  "executionTimeMillisEstimate": 176,
+                  "executionTimeMillisEstimate": 6,
                   "works": 160663,
                   "advanced": 0,
                   "needTime": 160662,
@@ -24501,15 +24501,15 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232253,
+         "t": 1612445251,
          "i": 1
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232253,
-            "i": 2
+            "t": 1612445254,
+            "i": 3
          }
       },
       "signature": {
@@ -24643,13 +24643,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 53231,
-                     "executionTimeMillis": 166,
+                     "executionTimeMillis": 127,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 53231,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 53231,
-                        "executionTimeMillisEstimate": 20,
+                        "executionTimeMillisEstimate": 5,
                         "works": 53233,
                         "advanced": 53231,
                         "needTime": 1,
@@ -24665,7 +24665,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 53231,
-                           "executionTimeMillisEstimate": 10,
+                           "executionTimeMillisEstimate": 3,
                            "works": 53233,
                            "advanced": 53231,
                            "needTime": 1,
@@ -24677,7 +24677,7 @@
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 53231,
-                              "executionTimeMillisEstimate": 5,
+                              "executionTimeMillisEstimate": 0,
                               "works": 53233,
                               "advanced": 53231,
                               "needTime": 1,
@@ -24693,7 +24693,7 @@
                   }
                },
                "nReturned": 53231,
-               "executionTimeMillisEstimate": 128
+               "executionTimeMillisEstimate": 88
             },
             {
                "$group": {
@@ -24725,7 +24725,7 @@
                   }
                },
                "nReturned": 10,
-               "executionTimeMillisEstimate": 160
+               "executionTimeMillisEstimate": 124
             }
          ]
       },
@@ -24761,13 +24761,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 160661,
-                     "executionTimeMillis": 462,
+                     "executionTimeMillis": 334,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 160661,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 160661,
-                        "executionTimeMillisEstimate": 37,
+                        "executionTimeMillisEstimate": 21,
                         "works": 160663,
                         "advanced": 160661,
                         "needTime": 1,
@@ -24783,7 +24783,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 160661,
-                           "executionTimeMillisEstimate": 29,
+                           "executionTimeMillisEstimate": 16,
                            "works": 160663,
                            "advanced": 160661,
                            "needTime": 1,
@@ -24795,7 +24795,7 @@
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 160661,
-                              "executionTimeMillisEstimate": 7,
+                              "executionTimeMillisEstimate": 4,
                               "works": 160663,
                               "advanced": 160661,
                               "needTime": 1,
@@ -24811,7 +24811,7 @@
                   }
                },
                "nReturned": 160661,
-               "executionTimeMillisEstimate": 347
+               "executionTimeMillisEstimate": 253
             },
             {
                "$group": {
@@ -24843,7 +24843,7 @@
                   }
                },
                "nReturned": 9,
-               "executionTimeMillisEstimate": 458
+               "executionTimeMillisEstimate": 326
             }
          ]
       },
@@ -24879,13 +24879,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 160646,
-                     "executionTimeMillis": 463,
+                     "executionTimeMillis": 339,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 160646,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 160646,
-                        "executionTimeMillisEstimate": 46,
+                        "executionTimeMillisEstimate": 16,
                         "works": 160648,
                         "advanced": 160646,
                         "needTime": 1,
@@ -24901,7 +24901,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 160646,
-                           "executionTimeMillisEstimate": 40,
+                           "executionTimeMillisEstimate": 11,
                            "works": 160648,
                            "advanced": 160646,
                            "needTime": 1,
@@ -24913,7 +24913,7 @@
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 160646,
-                              "executionTimeMillisEstimate": 13,
+                              "executionTimeMillisEstimate": 3,
                               "works": 160648,
                               "advanced": 160646,
                               "needTime": 1,
@@ -24929,7 +24929,7 @@
                   }
                },
                "nReturned": 160646,
-               "executionTimeMillisEstimate": 341
+               "executionTimeMillisEstimate": 263
             },
             {
                "$group": {
@@ -24961,7 +24961,7 @@
                   }
                },
                "nReturned": 10,
-               "executionTimeMillisEstimate": 454
+               "executionTimeMillisEstimate": 337
             }
          ]
       }
@@ -24969,15 +24969,15 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232253,
+         "t": 1612445251,
          "i": 1
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232254,
-            "i": 1
+            "t": 1612445254,
+            "i": 3
          }
       },
       "signature": {
@@ -25111,13 +25111,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 53231,
-                     "executionTimeMillis": 175,
+                     "executionTimeMillis": 129,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 53231,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 53231,
-                        "executionTimeMillisEstimate": 17,
+                        "executionTimeMillisEstimate": 12,
                         "works": 53233,
                         "advanced": 53231,
                         "needTime": 1,
@@ -25133,7 +25133,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 53231,
-                           "executionTimeMillisEstimate": 14,
+                           "executionTimeMillisEstimate": 10,
                            "works": 53233,
                            "advanced": 53231,
                            "needTime": 1,
@@ -25145,7 +25145,7 @@
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 53231,
-                              "executionTimeMillisEstimate": 6,
+                              "executionTimeMillisEstimate": 5,
                               "works": 53233,
                               "advanced": 53231,
                               "needTime": 1,
@@ -25161,7 +25161,7 @@
                   }
                },
                "nReturned": 53231,
-               "executionTimeMillisEstimate": 124
+               "executionTimeMillisEstimate": 98
             },
             {
                "$group": {
@@ -25193,125 +25193,7 @@
                   }
                },
                "nReturned": 67,
-               "executionTimeMillisEstimate": 173
-            }
-         ]
-      },
-      "shard02": {
-         "host": "localhost:27019",
-         "stages": [
-            {
-               "$cursor": {
-                  "queryPlanner": {
-                     "plannerVersion": 1,
-                     "namespace": "SummerResearch.AirlineData_ORIGIN_CITY_NAME_range",
-                     "indexFilterSet": false,
-                     "parsedQuery": {},
-                     "queryHash": "422FF7AE",
-                     "planCacheKey": "422FF7AE",
-                     "winningPlan": {
-                        "stage": "PROJECTION_SIMPLE",
-                        "transformBy": {
-                           "ARR_DELAY": 1,
-                           "ORIGIN_CITY_NAME": 1,
-                           "_id": 0
-                        },
-                        "inputStage": {
-                           "stage": "SHARDING_FILTER",
-                           "inputStage": {
-                              "stage": "COLLSCAN",
-                              "direction": "forward"
-                           }
-                        }
-                     },
-                     "rejectedPlans": []
-                  },
-                  "executionStats": {
-                     "executionSuccess": true,
-                     "nReturned": 160646,
-                     "executionTimeMillis": 453,
-                     "totalKeysExamined": 0,
-                     "totalDocsExamined": 160646,
-                     "executionStages": {
-                        "stage": "PROJECTION_SIMPLE",
-                        "nReturned": 160646,
-                        "executionTimeMillisEstimate": 37,
-                        "works": 160648,
-                        "advanced": 160646,
-                        "needTime": 1,
-                        "needYield": 0,
-                        "saveState": 167,
-                        "restoreState": 167,
-                        "isEOF": 1,
-                        "transformBy": {
-                           "ARR_DELAY": 1,
-                           "ORIGIN_CITY_NAME": 1,
-                           "_id": 0
-                        },
-                        "inputStage": {
-                           "stage": "SHARDING_FILTER",
-                           "nReturned": 160646,
-                           "executionTimeMillisEstimate": 29,
-                           "works": 160648,
-                           "advanced": 160646,
-                           "needTime": 1,
-                           "needYield": 0,
-                           "saveState": 167,
-                           "restoreState": 167,
-                           "isEOF": 1,
-                           "chunkSkips": 0,
-                           "inputStage": {
-                              "stage": "COLLSCAN",
-                              "nReturned": 160646,
-                              "executionTimeMillisEstimate": 8,
-                              "works": 160648,
-                              "advanced": 160646,
-                              "needTime": 1,
-                              "needYield": 0,
-                              "saveState": 167,
-                              "restoreState": 167,
-                              "isEOF": 1,
-                              "direction": "forward",
-                              "docsExamined": 160646
-                           }
-                        }
-                     }
-                  }
-               },
-               "nReturned": 160646,
-               "executionTimeMillisEstimate": 313
-            },
-            {
-               "$group": {
-                  "_id": "$ORIGIN_CITY_NAME",
-                  "late": {
-                     "$sum": {
-                        "$cond": [
-                           {
-                              "$gt": [
-                                 "$ARR_DELAY",
-                                 {
-                                    "$const": 0
-                                 }
-                              ]
-                           },
-                           {
-                              "$const": 1
-                           },
-                           {
-                              "$const": 0
-                           }
-                        ]
-                     }
-                  },
-                  "total": {
-                     "$sum": {
-                        "$const": 1
-                     }
-                  }
-               },
-               "nReturned": 176,
-               "executionTimeMillisEstimate": 445
+               "executionTimeMillisEstimate": 124
             }
          ]
       },
@@ -25347,13 +25229,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 160661,
-                     "executionTimeMillis": 457,
+                     "executionTimeMillis": 344,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 160661,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 160661,
-                        "executionTimeMillisEstimate": 40,
+                        "executionTimeMillisEstimate": 19,
                         "works": 160663,
                         "advanced": 160661,
                         "needTime": 1,
@@ -25369,7 +25251,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 160661,
-                           "executionTimeMillisEstimate": 25,
+                           "executionTimeMillisEstimate": 17,
                            "works": 160663,
                            "advanced": 160661,
                            "needTime": 1,
@@ -25381,7 +25263,7 @@
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 160661,
-                              "executionTimeMillisEstimate": 8,
+                              "executionTimeMillisEstimate": 5,
                               "works": 160663,
                               "advanced": 160661,
                               "needTime": 1,
@@ -25397,7 +25279,7 @@
                   }
                },
                "nReturned": 160661,
-               "executionTimeMillisEstimate": 322
+               "executionTimeMillisEstimate": 262
             },
             {
                "$group": {
@@ -25429,7 +25311,125 @@
                   }
                },
                "nReturned": 116,
-               "executionTimeMillisEstimate": 455
+               "executionTimeMillisEstimate": 340
+            }
+         ]
+      },
+      "shard02": {
+         "host": "localhost:27019",
+         "stages": [
+            {
+               "$cursor": {
+                  "queryPlanner": {
+                     "plannerVersion": 1,
+                     "namespace": "SummerResearch.AirlineData_ORIGIN_CITY_NAME_range",
+                     "indexFilterSet": false,
+                     "parsedQuery": {},
+                     "queryHash": "422FF7AE",
+                     "planCacheKey": "422FF7AE",
+                     "winningPlan": {
+                        "stage": "PROJECTION_SIMPLE",
+                        "transformBy": {
+                           "ARR_DELAY": 1,
+                           "ORIGIN_CITY_NAME": 1,
+                           "_id": 0
+                        },
+                        "inputStage": {
+                           "stage": "SHARDING_FILTER",
+                           "inputStage": {
+                              "stage": "COLLSCAN",
+                              "direction": "forward"
+                           }
+                        }
+                     },
+                     "rejectedPlans": []
+                  },
+                  "executionStats": {
+                     "executionSuccess": true,
+                     "nReturned": 160646,
+                     "executionTimeMillis": 349,
+                     "totalKeysExamined": 0,
+                     "totalDocsExamined": 160646,
+                     "executionStages": {
+                        "stage": "PROJECTION_SIMPLE",
+                        "nReturned": 160646,
+                        "executionTimeMillisEstimate": 24,
+                        "works": 160648,
+                        "advanced": 160646,
+                        "needTime": 1,
+                        "needYield": 0,
+                        "saveState": 167,
+                        "restoreState": 167,
+                        "isEOF": 1,
+                        "transformBy": {
+                           "ARR_DELAY": 1,
+                           "ORIGIN_CITY_NAME": 1,
+                           "_id": 0
+                        },
+                        "inputStage": {
+                           "stage": "SHARDING_FILTER",
+                           "nReturned": 160646,
+                           "executionTimeMillisEstimate": 19,
+                           "works": 160648,
+                           "advanced": 160646,
+                           "needTime": 1,
+                           "needYield": 0,
+                           "saveState": 167,
+                           "restoreState": 167,
+                           "isEOF": 1,
+                           "chunkSkips": 0,
+                           "inputStage": {
+                              "stage": "COLLSCAN",
+                              "nReturned": 160646,
+                              "executionTimeMillisEstimate": 9,
+                              "works": 160648,
+                              "advanced": 160646,
+                              "needTime": 1,
+                              "needYield": 0,
+                              "saveState": 167,
+                              "restoreState": 167,
+                              "isEOF": 1,
+                              "direction": "forward",
+                              "docsExamined": 160646
+                           }
+                        }
+                     }
+                  }
+               },
+               "nReturned": 160646,
+               "executionTimeMillisEstimate": 255
+            },
+            {
+               "$group": {
+                  "_id": "$ORIGIN_CITY_NAME",
+                  "late": {
+                     "$sum": {
+                        "$cond": [
+                           {
+                              "$gt": [
+                                 "$ARR_DELAY",
+                                 {
+                                    "$const": 0
+                                 }
+                              ]
+                           },
+                           {
+                              "$const": 1
+                           },
+                           {
+                              "$const": 0
+                           }
+                        ]
+                     }
+                  },
+                  "total": {
+                     "$sum": {
+                        "$const": 1
+                     }
+                  }
+               },
+               "nReturned": 176,
+               "executionTimeMillisEstimate": 343
             }
          ]
       }
@@ -25437,15 +25437,15 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232253,
+         "t": 1612445251,
          "i": 1
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232254,
-            "i": 1
+            "t": 1612445254,
+            "i": 3
          }
       },
       "signature": {
@@ -25579,13 +25579,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 53231,
-                     "executionTimeMillis": 193,
+                     "executionTimeMillis": 125,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 53231,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 53231,
-                        "executionTimeMillisEstimate": 26,
+                        "executionTimeMillisEstimate": 7,
                         "works": 53233,
                         "advanced": 53231,
                         "needTime": 1,
@@ -25601,7 +25601,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 53231,
-                           "executionTimeMillisEstimate": 16,
+                           "executionTimeMillisEstimate": 6,
                            "works": 53233,
                            "advanced": 53231,
                            "needTime": 1,
@@ -25613,7 +25613,7 @@
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 53231,
-                              "executionTimeMillisEstimate": 5,
+                              "executionTimeMillisEstimate": 4,
                               "works": 53233,
                               "advanced": 53231,
                               "needTime": 1,
@@ -25629,7 +25629,7 @@
                   }
                },
                "nReturned": 53231,
-               "executionTimeMillisEstimate": 135
+               "executionTimeMillisEstimate": 92
             },
             {
                "$group": {
@@ -25661,7 +25661,7 @@
                   }
                },
                "nReturned": 176,
-               "executionTimeMillisEstimate": 185
+               "executionTimeMillisEstimate": 123
             }
          ]
       },
@@ -25697,19 +25697,19 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 160646,
-                     "executionTimeMillis": 560,
+                     "executionTimeMillis": 350,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 160646,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 160646,
-                        "executionTimeMillisEstimate": 74,
+                        "executionTimeMillisEstimate": 19,
                         "works": 160648,
                         "advanced": 160646,
                         "needTime": 1,
                         "needYield": 0,
-                        "saveState": 171,
-                        "restoreState": 171,
+                        "saveState": 170,
+                        "restoreState": 170,
                         "isEOF": 1,
                         "transformBy": {
                            "ARR_DELAY": 1,
@@ -25719,25 +25719,25 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 160646,
-                           "executionTimeMillisEstimate": 58,
+                           "executionTimeMillisEstimate": 15,
                            "works": 160648,
                            "advanced": 160646,
                            "needTime": 1,
                            "needYield": 0,
-                           "saveState": 171,
-                           "restoreState": 171,
+                           "saveState": 170,
+                           "restoreState": 170,
                            "isEOF": 1,
                            "chunkSkips": 0,
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 160646,
-                              "executionTimeMillisEstimate": 9,
+                              "executionTimeMillisEstimate": 5,
                               "works": 160648,
                               "advanced": 160646,
                               "needTime": 1,
                               "needYield": 0,
-                              "saveState": 171,
-                              "restoreState": 171,
+                              "saveState": 170,
+                              "restoreState": 170,
                               "isEOF": 1,
                               "direction": "forward",
                               "docsExamined": 160646
@@ -25747,7 +25747,7 @@
                   }
                },
                "nReturned": 160646,
-               "executionTimeMillisEstimate": 414
+               "executionTimeMillisEstimate": 243
             },
             {
                "$group": {
@@ -25779,7 +25779,7 @@
                   }
                },
                "nReturned": 247,
-               "executionTimeMillisEstimate": 551
+               "executionTimeMillisEstimate": 347
             }
          ]
       },
@@ -25815,13 +25815,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 160661,
-                     "executionTimeMillis": 570,
+                     "executionTimeMillis": 353,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 160661,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 160661,
-                        "executionTimeMillisEstimate": 79,
+                        "executionTimeMillisEstimate": 20,
                         "works": 160663,
                         "advanced": 160661,
                         "needTime": 1,
@@ -25837,7 +25837,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 160661,
-                           "executionTimeMillisEstimate": 49,
+                           "executionTimeMillisEstimate": 19,
                            "works": 160663,
                            "advanced": 160661,
                            "needTime": 1,
@@ -25849,7 +25849,7 @@
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 160661,
-                              "executionTimeMillisEstimate": 15,
+                              "executionTimeMillisEstimate": 5,
                               "works": 160663,
                               "advanced": 160661,
                               "needTime": 1,
@@ -25865,7 +25865,7 @@
                   }
                },
                "nReturned": 160661,
-               "executionTimeMillisEstimate": 416
+               "executionTimeMillisEstimate": 260
             },
             {
                "$group": {
@@ -25897,7 +25897,7 @@
                   }
                },
                "nReturned": 306,
-               "executionTimeMillisEstimate": 561
+               "executionTimeMillisEstimate": 351
             }
          ]
       }
@@ -25905,14 +25905,14 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232253,
+         "t": 1612445251,
          "i": 1
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232254,
+            "t": 1612445259,
             "i": 1
          }
       },
@@ -26029,13 +26029,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 9950,
-                     "executionTimeMillis": 92,
+                     "executionTimeMillis": 51,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 53231,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 9950,
-                        "executionTimeMillisEstimate": 5,
+                        "executionTimeMillisEstimate": 1,
                         "works": 53233,
                         "advanced": 9950,
                         "needTime": 43282,
@@ -26051,7 +26051,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 9950,
-                           "executionTimeMillisEstimate": 5,
+                           "executionTimeMillisEstimate": 1,
                            "works": 53233,
                            "advanced": 9950,
                            "needTime": 43282,
@@ -26068,7 +26068,7 @@
                                  }
                               },
                               "nReturned": 9950,
-                              "executionTimeMillisEstimate": 4,
+                              "executionTimeMillisEstimate": 0,
                               "works": 53233,
                               "advanced": 9950,
                               "needTime": 43282,
@@ -26084,7 +26084,7 @@
                   }
                },
                "nReturned": 9950,
-               "executionTimeMillisEstimate": 80
+               "executionTimeMillisEstimate": 44
             },
             {
                "$group": {
@@ -26100,7 +26100,7 @@
                   }
                },
                "nReturned": 66,
-               "executionTimeMillisEstimate": 86
+               "executionTimeMillisEstimate": 44
             }
          ]
       },
@@ -26145,13 +26145,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 32185,
-                     "executionTimeMillis": 197,
+                     "executionTimeMillis": 139,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 160646,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 32185,
-                        "executionTimeMillisEstimate": 12,
+                        "executionTimeMillisEstimate": 5,
                         "works": 160648,
                         "advanced": 32185,
                         "needTime": 128462,
@@ -26167,7 +26167,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 32185,
-                           "executionTimeMillisEstimate": 11,
+                           "executionTimeMillisEstimate": 5,
                            "works": 160648,
                            "advanced": 32185,
                            "needTime": 128462,
@@ -26184,7 +26184,7 @@
                                  }
                               },
                               "nReturned": 32185,
-                              "executionTimeMillisEstimate": 7,
+                              "executionTimeMillisEstimate": 4,
                               "works": 160648,
                               "advanced": 32185,
                               "needTime": 128462,
@@ -26200,7 +26200,7 @@
                   }
                },
                "nReturned": 32185,
-               "executionTimeMillisEstimate": 175
+               "executionTimeMillisEstimate": 122
             },
             {
                "$group": {
@@ -26216,7 +26216,7 @@
                   }
                },
                "nReturned": 176,
-               "executionTimeMillisEstimate": 192
+               "executionTimeMillisEstimate": 135
             }
          ]
       },
@@ -26261,13 +26261,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 36835,
-                     "executionTimeMillis": 216,
+                     "executionTimeMillis": 149,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 160661,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 36835,
-                        "executionTimeMillisEstimate": 12,
+                        "executionTimeMillisEstimate": 4,
                         "works": 160663,
                         "advanced": 36835,
                         "needTime": 123827,
@@ -26283,7 +26283,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 36835,
-                           "executionTimeMillisEstimate": 11,
+                           "executionTimeMillisEstimate": 3,
                            "works": 160663,
                            "advanced": 36835,
                            "needTime": 123827,
@@ -26300,7 +26300,7 @@
                                  }
                               },
                               "nReturned": 36835,
-                              "executionTimeMillisEstimate": 9,
+                              "executionTimeMillisEstimate": 2,
                               "works": 160663,
                               "advanced": 36835,
                               "needTime": 123827,
@@ -26316,7 +26316,7 @@
                   }
                },
                "nReturned": 36835,
-               "executionTimeMillisEstimate": 182
+               "executionTimeMillisEstimate": 125
             },
             {
                "$group": {
@@ -26332,7 +26332,7 @@
                   }
                },
                "nReturned": 116,
-               "executionTimeMillisEstimate": 214
+               "executionTimeMillisEstimate": 144
             }
          ]
       }
@@ -26340,14 +26340,14 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232256,
+         "t": 1612445251,
          "i": 1
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232256,
+            "t": 1612445259,
             "i": 1
          }
       },
@@ -26464,13 +26464,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 9950,
-                     "executionTimeMillis": 68,
+                     "executionTimeMillis": 51,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 53231,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 9950,
-                        "executionTimeMillisEstimate": 5,
+                        "executionTimeMillisEstimate": 2,
                         "works": 53233,
                         "advanced": 9950,
                         "needTime": 43282,
@@ -26486,7 +26486,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 9950,
-                           "executionTimeMillisEstimate": 3,
+                           "executionTimeMillisEstimate": 2,
                            "works": 53233,
                            "advanced": 9950,
                            "needTime": 43282,
@@ -26503,7 +26503,7 @@
                                  }
                               },
                               "nReturned": 9950,
-                              "executionTimeMillisEstimate": 3,
+                              "executionTimeMillisEstimate": 1,
                               "works": 53233,
                               "advanced": 9950,
                               "needTime": 43282,
@@ -26519,7 +26519,7 @@
                   }
                },
                "nReturned": 9950,
-               "executionTimeMillisEstimate": 58
+               "executionTimeMillisEstimate": 43
             },
             {
                "$group": {
@@ -26535,7 +26535,7 @@
                   }
                },
                "nReturned": 170,
-               "executionTimeMillisEstimate": 58
+               "executionTimeMillisEstimate": 49
             }
          ]
       },
@@ -26580,13 +26580,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 32185,
-                     "executionTimeMillis": 191,
+                     "executionTimeMillis": 138,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 160646,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 32185,
-                        "executionTimeMillisEstimate": 11,
+                        "executionTimeMillisEstimate": 4,
                         "works": 160648,
                         "advanced": 32185,
                         "needTime": 128462,
@@ -26602,7 +26602,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 32185,
-                           "executionTimeMillisEstimate": 11,
+                           "executionTimeMillisEstimate": 3,
                            "works": 160648,
                            "advanced": 32185,
                            "needTime": 128462,
@@ -26619,7 +26619,7 @@
                                  }
                               },
                               "nReturned": 32185,
-                              "executionTimeMillisEstimate": 8,
+                              "executionTimeMillisEstimate": 2,
                               "works": 160648,
                               "advanced": 32185,
                               "needTime": 128462,
@@ -26635,7 +26635,7 @@
                   }
                },
                "nReturned": 32185,
-               "executionTimeMillisEstimate": 152
+               "executionTimeMillisEstimate": 113
             },
             {
                "$group": {
@@ -26651,7 +26651,7 @@
                   }
                },
                "nReturned": 244,
-               "executionTimeMillisEstimate": 184
+               "executionTimeMillisEstimate": 134
             }
          ]
       },
@@ -26696,13 +26696,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 36835,
-                     "executionTimeMillis": 213,
+                     "executionTimeMillis": 148,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 160661,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 36835,
-                        "executionTimeMillisEstimate": 10,
+                        "executionTimeMillisEstimate": 7,
                         "works": 160663,
                         "advanced": 36835,
                         "needTime": 123827,
@@ -26718,7 +26718,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 36835,
-                           "executionTimeMillisEstimate": 10,
+                           "executionTimeMillisEstimate": 4,
                            "works": 160663,
                            "advanced": 36835,
                            "needTime": 123827,
@@ -26735,7 +26735,7 @@
                                  }
                               },
                               "nReturned": 36835,
-                              "executionTimeMillisEstimate": 8,
+                              "executionTimeMillisEstimate": 2,
                               "works": 160663,
                               "advanced": 36835,
                               "needTime": 123827,
@@ -26751,7 +26751,7 @@
                   }
                },
                "nReturned": 36835,
-               "executionTimeMillisEstimate": 171
+               "executionTimeMillisEstimate": 126
             },
             {
                "$group": {
@@ -26767,7 +26767,7 @@
                   }
                },
                "nReturned": 302,
-               "executionTimeMillisEstimate": 205
+               "executionTimeMillisEstimate": 143
             }
          ]
       }
@@ -26775,14 +26775,14 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232256,
+         "t": 1612445251,
          "i": 1
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232256,
+            "t": 1612445259,
             "i": 1
          }
       },
@@ -26899,13 +26899,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 9950,
-                     "executionTimeMillis": 74,
+                     "executionTimeMillis": 50,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 53231,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 9950,
-                        "executionTimeMillisEstimate": 5,
+                        "executionTimeMillisEstimate": 2,
                         "works": 53233,
                         "advanced": 9950,
                         "needTime": 43282,
@@ -26921,7 +26921,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 9950,
-                           "executionTimeMillisEstimate": 5,
+                           "executionTimeMillisEstimate": 2,
                            "works": 53233,
                            "advanced": 9950,
                            "needTime": 43282,
@@ -26954,7 +26954,7 @@
                   }
                },
                "nReturned": 9950,
-               "executionTimeMillisEstimate": 62
+               "executionTimeMillisEstimate": 43
             },
             {
                "$group": {
@@ -26970,7 +26970,7 @@
                   }
                },
                "nReturned": 10,
-               "executionTimeMillisEstimate": 72
+               "executionTimeMillisEstimate": 43
             }
          ]
       },
@@ -27015,13 +27015,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 32185,
-                     "executionTimeMillis": 188,
+                     "executionTimeMillis": 136,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 160646,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 32185,
-                        "executionTimeMillisEstimate": 20,
+                        "executionTimeMillisEstimate": 5,
                         "works": 160648,
                         "advanced": 32185,
                         "needTime": 128462,
@@ -27037,7 +27037,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 32185,
-                           "executionTimeMillisEstimate": 14,
+                           "executionTimeMillisEstimate": 4,
                            "works": 160648,
                            "advanced": 32185,
                            "needTime": 128462,
@@ -27054,7 +27054,7 @@
                                  }
                               },
                               "nReturned": 32185,
-                              "executionTimeMillisEstimate": 11,
+                              "executionTimeMillisEstimate": 2,
                               "works": 160648,
                               "advanced": 32185,
                               "needTime": 128462,
@@ -27070,7 +27070,7 @@
                   }
                },
                "nReturned": 32185,
-               "executionTimeMillisEstimate": 166
+               "executionTimeMillisEstimate": 122
             },
             {
                "$group": {
@@ -27086,7 +27086,7 @@
                   }
                },
                "nReturned": 10,
-               "executionTimeMillisEstimate": 186
+               "executionTimeMillisEstimate": 134
             }
          ]
       },
@@ -27131,13 +27131,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 36835,
-                     "executionTimeMillis": 203,
+                     "executionTimeMillis": 149,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 160661,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 36835,
-                        "executionTimeMillisEstimate": 14,
+                        "executionTimeMillisEstimate": 7,
                         "works": 160663,
                         "advanced": 36835,
                         "needTime": 123827,
@@ -27153,7 +27153,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 36835,
-                           "executionTimeMillisEstimate": 12,
+                           "executionTimeMillisEstimate": 7,
                            "works": 160663,
                            "advanced": 36835,
                            "needTime": 123827,
@@ -27170,7 +27170,7 @@
                                  }
                               },
                               "nReturned": 36835,
-                              "executionTimeMillisEstimate": 8,
+                              "executionTimeMillisEstimate": 4,
                               "works": 160663,
                               "advanced": 36835,
                               "needTime": 123827,
@@ -27186,7 +27186,7 @@
                   }
                },
                "nReturned": 36835,
-               "executionTimeMillisEstimate": 175
+               "executionTimeMillisEstimate": 125
             },
             {
                "$group": {
@@ -27202,7 +27202,7 @@
                   }
                },
                "nReturned": 9,
-               "executionTimeMillisEstimate": 203
+               "executionTimeMillisEstimate": 143
             }
          ]
       }
@@ -27210,14 +27210,14 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232256,
+         "t": 1612445251,
          "i": 1
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232256,
+            "t": 1612445259,
             "i": 1
          }
       },
@@ -27323,19 +27323,19 @@
          "executionStats": {
             "executionSuccess": true,
             "nReturned": 0,
-            "executionTimeMillis": 341,
+            "executionTimeMillis": 38,
             "totalKeysExamined": 0,
             "totalDocsExamined": 51899,
             "executionStages": {
                "stage": "SHARDING_FILTER",
                "nReturned": 0,
-               "executionTimeMillisEstimate": 144,
+               "executionTimeMillisEstimate": 1,
                "works": 51901,
                "advanced": 0,
                "needTime": 51900,
                "needYield": 0,
-               "saveState": 52,
-               "restoreState": 52,
+               "saveState": 51,
+               "restoreState": 51,
                "isEOF": 1,
                "chunkSkips": 0,
                "inputStage": {
@@ -27355,13 +27355,13 @@
                      ]
                   },
                   "nReturned": 0,
-                  "executionTimeMillisEstimate": 144,
+                  "executionTimeMillisEstimate": 1,
                   "works": 51901,
                   "advanced": 0,
                   "needTime": 51900,
                   "needYield": 0,
-                  "saveState": 52,
-                  "restoreState": 52,
+                  "saveState": 51,
+                  "restoreState": 51,
                   "isEOF": 1,
                   "direction": "forward",
                   "docsExamined": 51899
@@ -27416,19 +27416,19 @@
          "executionStats": {
             "executionSuccess": true,
             "nReturned": 0,
-            "executionTimeMillis": 1173,
+            "executionTimeMillis": 108,
             "totalKeysExamined": 0,
             "totalDocsExamined": 161320,
             "executionStages": {
                "stage": "SHARDING_FILTER",
                "nReturned": 0,
-               "executionTimeMillisEstimate": 571,
+               "executionTimeMillisEstimate": 4,
                "works": 161322,
                "advanced": 0,
                "needTime": 161321,
                "needYield": 0,
-               "saveState": 162,
-               "restoreState": 162,
+               "saveState": 161,
+               "restoreState": 161,
                "isEOF": 1,
                "chunkSkips": 0,
                "inputStage": {
@@ -27448,13 +27448,13 @@
                      ]
                   },
                   "nReturned": 0,
-                  "executionTimeMillisEstimate": 571,
+                  "executionTimeMillisEstimate": 4,
                   "works": 161322,
                   "advanced": 0,
                   "needTime": 161321,
                   "needYield": 0,
-                  "saveState": 162,
-                  "restoreState": 162,
+                  "saveState": 161,
+                  "restoreState": 161,
                   "isEOF": 1,
                   "direction": "forward",
                   "docsExamined": 161320
@@ -27509,19 +27509,19 @@
          "executionStats": {
             "executionSuccess": true,
             "nReturned": 0,
-            "executionTimeMillis": 1238,
+            "executionTimeMillis": 109,
             "totalKeysExamined": 0,
             "totalDocsExamined": 161319,
             "executionStages": {
                "stage": "SHARDING_FILTER",
                "nReturned": 0,
-               "executionTimeMillisEstimate": 599,
+               "executionTimeMillisEstimate": 5,
                "works": 161321,
                "advanced": 0,
                "needTime": 161320,
                "needYield": 0,
-               "saveState": 163,
-               "restoreState": 163,
+               "saveState": 161,
+               "restoreState": 161,
                "isEOF": 1,
                "chunkSkips": 0,
                "inputStage": {
@@ -27541,13 +27541,13 @@
                      ]
                   },
                   "nReturned": 0,
-                  "executionTimeMillisEstimate": 599,
+                  "executionTimeMillisEstimate": 5,
                   "works": 161321,
                   "advanced": 0,
                   "needTime": 161320,
                   "needYield": 0,
-                  "saveState": 163,
-                  "restoreState": 163,
+                  "saveState": 161,
+                  "restoreState": 161,
                   "isEOF": 1,
                   "direction": "forward",
                   "docsExamined": 161319
@@ -27559,14 +27559,14 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232256,
+         "t": 1612445251,
          "i": 1
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232256,
+            "t": 1612445259,
             "i": 1
          }
       },
@@ -27701,13 +27701,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 51899,
-                     "executionTimeMillis": 148,
+                     "executionTimeMillis": 112,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 51899,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 51899,
-                        "executionTimeMillisEstimate": 16,
+                        "executionTimeMillisEstimate": 7,
                         "works": 51901,
                         "advanced": 51899,
                         "needTime": 1,
@@ -27723,7 +27723,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 51899,
-                           "executionTimeMillisEstimate": 13,
+                           "executionTimeMillisEstimate": 6,
                            "works": 51901,
                            "advanced": 51899,
                            "needTime": 1,
@@ -27735,7 +27735,7 @@
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 51899,
-                              "executionTimeMillisEstimate": 5,
+                              "executionTimeMillisEstimate": 0,
                               "works": 51901,
                               "advanced": 51899,
                               "needTime": 1,
@@ -27751,7 +27751,7 @@
                   }
                },
                "nReturned": 51899,
-               "executionTimeMillisEstimate": 112
+               "executionTimeMillisEstimate": 81
             },
             {
                "$group": {
@@ -27783,125 +27783,7 @@
                   }
                },
                "nReturned": 10,
-               "executionTimeMillisEstimate": 144
-            }
-         ]
-      },
-      "shard02": {
-         "host": "localhost:27019",
-         "stages": [
-            {
-               "$cursor": {
-                  "queryPlanner": {
-                     "plannerVersion": 1,
-                     "namespace": "SummerResearch.AirlineData_range",
-                     "indexFilterSet": false,
-                     "parsedQuery": {},
-                     "queryHash": "7759D437",
-                     "planCacheKey": "7759D437",
-                     "winningPlan": {
-                        "stage": "PROJECTION_SIMPLE",
-                        "transformBy": {
-                           "ARR_DELAY": 1,
-                           "MKT_UNIQUE_CARRIER": 1,
-                           "_id": 0
-                        },
-                        "inputStage": {
-                           "stage": "SHARDING_FILTER",
-                           "inputStage": {
-                              "stage": "COLLSCAN",
-                              "direction": "forward"
-                           }
-                        }
-                     },
-                     "rejectedPlans": []
-                  },
-                  "executionStats": {
-                     "executionSuccess": true,
-                     "nReturned": 161320,
-                     "executionTimeMillis": 451,
-                     "totalKeysExamined": 0,
-                     "totalDocsExamined": 161320,
-                     "executionStages": {
-                        "stage": "PROJECTION_SIMPLE",
-                        "nReturned": 161320,
-                        "executionTimeMillisEstimate": 35,
-                        "works": 161322,
-                        "advanced": 161320,
-                        "needTime": 1,
-                        "needYield": 0,
-                        "saveState": 169,
-                        "restoreState": 169,
-                        "isEOF": 1,
-                        "transformBy": {
-                           "ARR_DELAY": 1,
-                           "MKT_UNIQUE_CARRIER": 1,
-                           "_id": 0
-                        },
-                        "inputStage": {
-                           "stage": "SHARDING_FILTER",
-                           "nReturned": 161320,
-                           "executionTimeMillisEstimate": 30,
-                           "works": 161322,
-                           "advanced": 161320,
-                           "needTime": 1,
-                           "needYield": 0,
-                           "saveState": 169,
-                           "restoreState": 169,
-                           "isEOF": 1,
-                           "chunkSkips": 0,
-                           "inputStage": {
-                              "stage": "COLLSCAN",
-                              "nReturned": 161320,
-                              "executionTimeMillisEstimate": 8,
-                              "works": 161322,
-                              "advanced": 161320,
-                              "needTime": 1,
-                              "needYield": 0,
-                              "saveState": 169,
-                              "restoreState": 169,
-                              "isEOF": 1,
-                              "direction": "forward",
-                              "docsExamined": 161320
-                           }
-                        }
-                     }
-                  }
-               },
-               "nReturned": 161320,
-               "executionTimeMillisEstimate": 342
-            },
-            {
-               "$group": {
-                  "_id": "$MKT_UNIQUE_CARRIER",
-                  "late": {
-                     "$sum": {
-                        "$cond": [
-                           {
-                              "$gt": [
-                                 "$ARR_DELAY",
-                                 {
-                                    "$const": 0
-                                 }
-                              ]
-                           },
-                           {
-                              "$const": 1
-                           },
-                           {
-                              "$const": 0
-                           }
-                        ]
-                     }
-                  },
-                  "total": {
-                     "$sum": {
-                        "$const": 1
-                     }
-                  }
-               },
-               "nReturned": 10,
-               "executionTimeMillisEstimate": 451
+               "executionTimeMillisEstimate": 110
             }
          ]
       },
@@ -27937,13 +27819,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 161319,
-                     "executionTimeMillis": 452,
+                     "executionTimeMillis": 317,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 161319,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 161319,
-                        "executionTimeMillisEstimate": 34,
+                        "executionTimeMillisEstimate": 15,
                         "works": 161321,
                         "advanced": 161319,
                         "needTime": 1,
@@ -27959,7 +27841,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 161319,
-                           "executionTimeMillisEstimate": 26,
+                           "executionTimeMillisEstimate": 11,
                            "works": 161321,
                            "advanced": 161319,
                            "needTime": 1,
@@ -27971,7 +27853,7 @@
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 161319,
-                              "executionTimeMillisEstimate": 5,
+                              "executionTimeMillisEstimate": 3,
                               "works": 161321,
                               "advanced": 161319,
                               "needTime": 1,
@@ -27987,7 +27869,7 @@
                   }
                },
                "nReturned": 161319,
-               "executionTimeMillisEstimate": 345
+               "executionTimeMillisEstimate": 240
             },
             {
                "$group": {
@@ -28019,7 +27901,125 @@
                   }
                },
                "nReturned": 10,
-               "executionTimeMillisEstimate": 451
+               "executionTimeMillisEstimate": 317
+            }
+         ]
+      },
+      "shard02": {
+         "host": "localhost:27019",
+         "stages": [
+            {
+               "$cursor": {
+                  "queryPlanner": {
+                     "plannerVersion": 1,
+                     "namespace": "SummerResearch.AirlineData_range",
+                     "indexFilterSet": false,
+                     "parsedQuery": {},
+                     "queryHash": "7759D437",
+                     "planCacheKey": "7759D437",
+                     "winningPlan": {
+                        "stage": "PROJECTION_SIMPLE",
+                        "transformBy": {
+                           "ARR_DELAY": 1,
+                           "MKT_UNIQUE_CARRIER": 1,
+                           "_id": 0
+                        },
+                        "inputStage": {
+                           "stage": "SHARDING_FILTER",
+                           "inputStage": {
+                              "stage": "COLLSCAN",
+                              "direction": "forward"
+                           }
+                        }
+                     },
+                     "rejectedPlans": []
+                  },
+                  "executionStats": {
+                     "executionSuccess": true,
+                     "nReturned": 161320,
+                     "executionTimeMillis": 319,
+                     "totalKeysExamined": 0,
+                     "totalDocsExamined": 161320,
+                     "executionStages": {
+                        "stage": "PROJECTION_SIMPLE",
+                        "nReturned": 161320,
+                        "executionTimeMillisEstimate": 16,
+                        "works": 161322,
+                        "advanced": 161320,
+                        "needTime": 1,
+                        "needYield": 0,
+                        "saveState": 169,
+                        "restoreState": 169,
+                        "isEOF": 1,
+                        "transformBy": {
+                           "ARR_DELAY": 1,
+                           "MKT_UNIQUE_CARRIER": 1,
+                           "_id": 0
+                        },
+                        "inputStage": {
+                           "stage": "SHARDING_FILTER",
+                           "nReturned": 161320,
+                           "executionTimeMillisEstimate": 13,
+                           "works": 161322,
+                           "advanced": 161320,
+                           "needTime": 1,
+                           "needYield": 0,
+                           "saveState": 169,
+                           "restoreState": 169,
+                           "isEOF": 1,
+                           "chunkSkips": 0,
+                           "inputStage": {
+                              "stage": "COLLSCAN",
+                              "nReturned": 161320,
+                              "executionTimeMillisEstimate": 4,
+                              "works": 161322,
+                              "advanced": 161320,
+                              "needTime": 1,
+                              "needYield": 0,
+                              "saveState": 169,
+                              "restoreState": 169,
+                              "isEOF": 1,
+                              "direction": "forward",
+                              "docsExamined": 161320
+                           }
+                        }
+                     }
+                  }
+               },
+               "nReturned": 161320,
+               "executionTimeMillisEstimate": 220
+            },
+            {
+               "$group": {
+                  "_id": "$MKT_UNIQUE_CARRIER",
+                  "late": {
+                     "$sum": {
+                        "$cond": [
+                           {
+                              "$gt": [
+                                 "$ARR_DELAY",
+                                 {
+                                    "$const": 0
+                                 }
+                              ]
+                           },
+                           {
+                              "$const": 1
+                           },
+                           {
+                              "$const": 0
+                           }
+                        ]
+                     }
+                  },
+                  "total": {
+                     "$sum": {
+                        "$const": 1
+                     }
+                  }
+               },
+               "nReturned": 10,
+               "executionTimeMillisEstimate": 316
             }
          ]
       }
@@ -28027,14 +28027,14 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232256,
+         "t": 1612445251,
          "i": 1
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232256,
+            "t": 1612445259,
             "i": 1
          }
       },
@@ -28169,13 +28169,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 51899,
-                     "executionTimeMillis": 154,
+                     "executionTimeMillis": 116,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 51899,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 51899,
-                        "executionTimeMillisEstimate": 9,
+                        "executionTimeMillisEstimate": 5,
                         "works": 51901,
                         "advanced": 51899,
                         "needTime": 1,
@@ -28191,7 +28191,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 51899,
-                           "executionTimeMillisEstimate": 4,
+                           "executionTimeMillisEstimate": 5,
                            "works": 51901,
                            "advanced": 51899,
                            "needTime": 1,
@@ -28203,7 +28203,7 @@
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 51899,
-                              "executionTimeMillisEstimate": 0,
+                              "executionTimeMillisEstimate": 1,
                               "works": 51901,
                               "advanced": 51899,
                               "needTime": 1,
@@ -28219,7 +28219,7 @@
                   }
                },
                "nReturned": 51899,
-               "executionTimeMillisEstimate": 109
+               "executionTimeMillisEstimate": 77
             },
             {
                "$group": {
@@ -28251,7 +28251,7 @@
                   }
                },
                "nReturned": 350,
-               "executionTimeMillisEstimate": 153
+               "executionTimeMillisEstimate": 114
             }
          ]
       },
@@ -28287,13 +28287,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 161319,
-                     "executionTimeMillis": 439,
+                     "executionTimeMillis": 332,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 161319,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 161319,
-                        "executionTimeMillisEstimate": 24,
+                        "executionTimeMillisEstimate": 15,
                         "works": 161321,
                         "advanced": 161319,
                         "needTime": 1,
@@ -28309,7 +28309,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 161319,
-                           "executionTimeMillisEstimate": 21,
+                           "executionTimeMillisEstimate": 9,
                            "works": 161321,
                            "advanced": 161319,
                            "needTime": 1,
@@ -28321,7 +28321,7 @@
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 161319,
-                              "executionTimeMillisEstimate": 10,
+                              "executionTimeMillisEstimate": 3,
                               "works": 161321,
                               "advanced": 161319,
                               "needTime": 1,
@@ -28337,7 +28337,7 @@
                   }
                },
                "nReturned": 161319,
-               "executionTimeMillisEstimate": 325
+               "executionTimeMillisEstimate": 230
             },
             {
                "$group": {
@@ -28369,7 +28369,7 @@
                   }
                },
                "nReturned": 359,
-               "executionTimeMillisEstimate": 438
+               "executionTimeMillisEstimate": 331
             }
          ]
       },
@@ -28405,13 +28405,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 161320,
-                     "executionTimeMillis": 443,
+                     "executionTimeMillis": 335,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 161320,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 161320,
-                        "executionTimeMillisEstimate": 26,
+                        "executionTimeMillisEstimate": 12,
                         "works": 161322,
                         "advanced": 161320,
                         "needTime": 1,
@@ -28427,7 +28427,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 161320,
-                           "executionTimeMillisEstimate": 25,
+                           "executionTimeMillisEstimate": 7,
                            "works": 161322,
                            "advanced": 161320,
                            "needTime": 1,
@@ -28439,7 +28439,7 @@
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 161320,
-                              "executionTimeMillisEstimate": 10,
+                              "executionTimeMillisEstimate": 2,
                               "works": 161322,
                               "advanced": 161320,
                               "needTime": 1,
@@ -28455,7 +28455,7 @@
                   }
                },
                "nReturned": 161320,
-               "executionTimeMillisEstimate": 316
+               "executionTimeMillisEstimate": 237
             },
             {
                "$group": {
@@ -28487,7 +28487,7 @@
                   }
                },
                "nReturned": 351,
-               "executionTimeMillisEstimate": 442
+               "executionTimeMillisEstimate": 334
             }
          ]
       }
@@ -28495,14 +28495,14 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232256,
+         "t": 1612445251,
          "i": 1
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232256,
+            "t": 1612445259,
             "i": 1
          }
       },
@@ -28637,13 +28637,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 51899,
-                     "executionTimeMillis": 162,
+                     "executionTimeMillis": 115,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 51899,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 51899,
-                        "executionTimeMillisEstimate": 14,
+                        "executionTimeMillisEstimate": 6,
                         "works": 51901,
                         "advanced": 51899,
                         "needTime": 1,
@@ -28659,7 +28659,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 51899,
-                           "executionTimeMillisEstimate": 10,
+                           "executionTimeMillisEstimate": 2,
                            "works": 51901,
                            "advanced": 51899,
                            "needTime": 1,
@@ -28671,7 +28671,7 @@
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 51899,
-                              "executionTimeMillisEstimate": 1,
+                              "executionTimeMillisEstimate": 0,
                               "works": 51901,
                               "advanced": 51899,
                               "needTime": 1,
@@ -28687,7 +28687,7 @@
                   }
                },
                "nReturned": 51899,
-               "executionTimeMillisEstimate": 117
+               "executionTimeMillisEstimate": 84
             },
             {
                "$group": {
@@ -28719,125 +28719,7 @@
                   }
                },
                "nReturned": 350,
-               "executionTimeMillisEstimate": 156
-            }
-         ]
-      },
-      "shard03": {
-         "host": "localhost:27020",
-         "stages": [
-            {
-               "$cursor": {
-                  "queryPlanner": {
-                     "plannerVersion": 1,
-                     "namespace": "SummerResearch.AirlineData_range",
-                     "indexFilterSet": false,
-                     "parsedQuery": {},
-                     "queryHash": "270C0B07",
-                     "planCacheKey": "270C0B07",
-                     "winningPlan": {
-                        "stage": "PROJECTION_SIMPLE",
-                        "transformBy": {
-                           "ARR_DELAY": 1,
-                           "DEST_CITY_NAME": 1,
-                           "_id": 0
-                        },
-                        "inputStage": {
-                           "stage": "SHARDING_FILTER",
-                           "inputStage": {
-                              "stage": "COLLSCAN",
-                              "direction": "forward"
-                           }
-                        }
-                     },
-                     "rejectedPlans": []
-                  },
-                  "executionStats": {
-                     "executionSuccess": true,
-                     "nReturned": 161319,
-                     "executionTimeMillis": 440,
-                     "totalKeysExamined": 0,
-                     "totalDocsExamined": 161319,
-                     "executionStages": {
-                        "stage": "PROJECTION_SIMPLE",
-                        "nReturned": 161319,
-                        "executionTimeMillisEstimate": 32,
-                        "works": 161321,
-                        "advanced": 161319,
-                        "needTime": 1,
-                        "needYield": 0,
-                        "saveState": 171,
-                        "restoreState": 171,
-                        "isEOF": 1,
-                        "transformBy": {
-                           "ARR_DELAY": 1,
-                           "DEST_CITY_NAME": 1,
-                           "_id": 0
-                        },
-                        "inputStage": {
-                           "stage": "SHARDING_FILTER",
-                           "nReturned": 161319,
-                           "executionTimeMillisEstimate": 22,
-                           "works": 161321,
-                           "advanced": 161319,
-                           "needTime": 1,
-                           "needYield": 0,
-                           "saveState": 171,
-                           "restoreState": 171,
-                           "isEOF": 1,
-                           "chunkSkips": 0,
-                           "inputStage": {
-                              "stage": "COLLSCAN",
-                              "nReturned": 161319,
-                              "executionTimeMillisEstimate": 5,
-                              "works": 161321,
-                              "advanced": 161319,
-                              "needTime": 1,
-                              "needYield": 0,
-                              "saveState": 171,
-                              "restoreState": 171,
-                              "isEOF": 1,
-                              "direction": "forward",
-                              "docsExamined": 161319
-                           }
-                        }
-                     }
-                  }
-               },
-               "nReturned": 161319,
-               "executionTimeMillisEstimate": 325
-            },
-            {
-               "$group": {
-                  "_id": "$DEST_CITY_NAME",
-                  "late": {
-                     "$sum": {
-                        "$cond": [
-                           {
-                              "$gt": [
-                                 "$ARR_DELAY",
-                                 {
-                                    "$const": 0
-                                 }
-                              ]
-                           },
-                           {
-                              "$const": 1
-                           },
-                           {
-                              "$const": 0
-                           }
-                        ]
-                     }
-                  },
-                  "total": {
-                     "$sum": {
-                        "$const": 1
-                     }
-                  }
-               },
-               "nReturned": 359,
-               "executionTimeMillisEstimate": 431
+               "executionTimeMillisEstimate": 107
             }
          ]
       },
@@ -28873,13 +28755,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 161320,
-                     "executionTimeMillis": 443,
+                     "executionTimeMillis": 338,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 161320,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 161320,
-                        "executionTimeMillisEstimate": 34,
+                        "executionTimeMillisEstimate": 15,
                         "works": 161322,
                         "advanced": 161320,
                         "needTime": 1,
@@ -28895,7 +28777,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 161320,
-                           "executionTimeMillisEstimate": 27,
+                           "executionTimeMillisEstimate": 8,
                            "works": 161322,
                            "advanced": 161320,
                            "needTime": 1,
@@ -28907,7 +28789,7 @@
                            "inputStage": {
                               "stage": "COLLSCAN",
                               "nReturned": 161320,
-                              "executionTimeMillisEstimate": 8,
+                              "executionTimeMillisEstimate": 3,
                               "works": 161322,
                               "advanced": 161320,
                               "needTime": 1,
@@ -28923,7 +28805,7 @@
                   }
                },
                "nReturned": 161320,
-               "executionTimeMillisEstimate": 325
+               "executionTimeMillisEstimate": 226
             },
             {
                "$group": {
@@ -28955,7 +28837,125 @@
                   }
                },
                "nReturned": 351,
-               "executionTimeMillisEstimate": 442
+               "executionTimeMillisEstimate": 327
+            }
+         ]
+      },
+      "shard03": {
+         "host": "localhost:27020",
+         "stages": [
+            {
+               "$cursor": {
+                  "queryPlanner": {
+                     "plannerVersion": 1,
+                     "namespace": "SummerResearch.AirlineData_range",
+                     "indexFilterSet": false,
+                     "parsedQuery": {},
+                     "queryHash": "270C0B07",
+                     "planCacheKey": "270C0B07",
+                     "winningPlan": {
+                        "stage": "PROJECTION_SIMPLE",
+                        "transformBy": {
+                           "ARR_DELAY": 1,
+                           "DEST_CITY_NAME": 1,
+                           "_id": 0
+                        },
+                        "inputStage": {
+                           "stage": "SHARDING_FILTER",
+                           "inputStage": {
+                              "stage": "COLLSCAN",
+                              "direction": "forward"
+                           }
+                        }
+                     },
+                     "rejectedPlans": []
+                  },
+                  "executionStats": {
+                     "executionSuccess": true,
+                     "nReturned": 161319,
+                     "executionTimeMillis": 340,
+                     "totalKeysExamined": 0,
+                     "totalDocsExamined": 161319,
+                     "executionStages": {
+                        "stage": "PROJECTION_SIMPLE",
+                        "nReturned": 161319,
+                        "executionTimeMillisEstimate": 14,
+                        "works": 161321,
+                        "advanced": 161319,
+                        "needTime": 1,
+                        "needYield": 0,
+                        "saveState": 171,
+                        "restoreState": 171,
+                        "isEOF": 1,
+                        "transformBy": {
+                           "ARR_DELAY": 1,
+                           "DEST_CITY_NAME": 1,
+                           "_id": 0
+                        },
+                        "inputStage": {
+                           "stage": "SHARDING_FILTER",
+                           "nReturned": 161319,
+                           "executionTimeMillisEstimate": 10,
+                           "works": 161321,
+                           "advanced": 161319,
+                           "needTime": 1,
+                           "needYield": 0,
+                           "saveState": 171,
+                           "restoreState": 171,
+                           "isEOF": 1,
+                           "chunkSkips": 0,
+                           "inputStage": {
+                              "stage": "COLLSCAN",
+                              "nReturned": 161319,
+                              "executionTimeMillisEstimate": 2,
+                              "works": 161321,
+                              "advanced": 161319,
+                              "needTime": 1,
+                              "needYield": 0,
+                              "saveState": 171,
+                              "restoreState": 171,
+                              "isEOF": 1,
+                              "direction": "forward",
+                              "docsExamined": 161319
+                           }
+                        }
+                     }
+                  }
+               },
+               "nReturned": 161319,
+               "executionTimeMillisEstimate": 240
+            },
+            {
+               "$group": {
+                  "_id": "$DEST_CITY_NAME",
+                  "late": {
+                     "$sum": {
+                        "$cond": [
+                           {
+                              "$gt": [
+                                 "$ARR_DELAY",
+                                 {
+                                    "$const": 0
+                                 }
+                              ]
+                           },
+                           {
+                              "$const": 1
+                           },
+                           {
+                              "$const": 0
+                           }
+                        ]
+                     }
+                  },
+                  "total": {
+                     "$sum": {
+                        "$const": 1
+                     }
+                  }
+               },
+               "nReturned": 359,
+               "executionTimeMillisEstimate": 339
             }
          ]
       }
@@ -28963,14 +28963,14 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232256,
+         "t": 1612445251,
          "i": 1
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232256,
+            "t": 1612445259,
             "i": 1
          }
       },
@@ -29087,7 +29087,7 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 11876,
-                     "executionTimeMillis": 60,
+                     "executionTimeMillis": 51,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 51899,
                      "executionStages": {
@@ -29142,7 +29142,7 @@
                   }
                },
                "nReturned": 11876,
-               "executionTimeMillisEstimate": 48
+               "executionTimeMillisEstimate": 41
             },
             {
                "$group": {
@@ -29158,7 +29158,7 @@
                   }
                },
                "nReturned": 319,
-               "executionTimeMillisEstimate": 61
+               "executionTimeMillisEstimate": 41
             }
          ]
       },
@@ -29203,13 +29203,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 27491,
-                     "executionTimeMillis": 154,
+                     "executionTimeMillis": 127,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 161319,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 27491,
-                        "executionTimeMillisEstimate": 11,
+                        "executionTimeMillisEstimate": 4,
                         "works": 161321,
                         "advanced": 27491,
                         "needTime": 133829,
@@ -29225,7 +29225,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 27491,
-                           "executionTimeMillisEstimate": 9,
+                           "executionTimeMillisEstimate": 4,
                            "works": 161321,
                            "advanced": 27491,
                            "needTime": 133829,
@@ -29242,7 +29242,7 @@
                                  }
                               },
                               "nReturned": 27491,
-                              "executionTimeMillisEstimate": 6,
+                              "executionTimeMillisEstimate": 4,
                               "works": 161321,
                               "advanced": 27491,
                               "needTime": 133829,
@@ -29258,7 +29258,7 @@
                   }
                },
                "nReturned": 27491,
-               "executionTimeMillisEstimate": 142
+               "executionTimeMillisEstimate": 106
             },
             {
                "$group": {
@@ -29274,7 +29274,7 @@
                   }
                },
                "nReturned": 347,
-               "executionTimeMillisEstimate": 154
+               "executionTimeMillisEstimate": 126
             }
          ]
       },
@@ -29319,13 +29319,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 39603,
-                     "executionTimeMillis": 182,
+                     "executionTimeMillis": 153,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 161320,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 39603,
-                        "executionTimeMillisEstimate": 11,
+                        "executionTimeMillisEstimate": 9,
                         "works": 161322,
                         "advanced": 39603,
                         "needTime": 121718,
@@ -29341,7 +29341,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 39603,
-                           "executionTimeMillisEstimate": 10,
+                           "executionTimeMillisEstimate": 8,
                            "works": 161322,
                            "advanced": 39603,
                            "needTime": 121718,
@@ -29358,7 +29358,7 @@
                                  }
                               },
                               "nReturned": 39603,
-                              "executionTimeMillisEstimate": 7,
+                              "executionTimeMillisEstimate": 6,
                               "works": 161322,
                               "advanced": 39603,
                               "needTime": 121718,
@@ -29374,7 +29374,7 @@
                   }
                },
                "nReturned": 39603,
-               "executionTimeMillisEstimate": 146
+               "executionTimeMillisEstimate": 130
             },
             {
                "$group": {
@@ -29390,7 +29390,7 @@
                   }
                },
                "nReturned": 347,
-               "executionTimeMillisEstimate": 175
+               "executionTimeMillisEstimate": 145
             }
          ]
       }
@@ -29398,14 +29398,14 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232256,
+         "t": 1612445251,
          "i": 1
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232256,
+            "t": 1612445259,
             "i": 1
          }
       },
@@ -29522,7 +29522,7 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 11876,
-                     "executionTimeMillis": 56,
+                     "executionTimeMillis": 50,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 51899,
                      "executionStages": {
@@ -29561,7 +29561,7 @@
                                  }
                               },
                               "nReturned": 11876,
-                              "executionTimeMillisEstimate": 0,
+                              "executionTimeMillisEstimate": 1,
                               "works": 51901,
                               "advanced": 11876,
                               "needTime": 40024,
@@ -29577,7 +29577,7 @@
                   }
                },
                "nReturned": 11876,
-               "executionTimeMillisEstimate": 45
+               "executionTimeMillisEstimate": 38
             },
             {
                "$group": {
@@ -29593,7 +29593,7 @@
                   }
                },
                "nReturned": 315,
-               "executionTimeMillisEstimate": 54
+               "executionTimeMillisEstimate": 49
             }
          ]
       },
@@ -29638,13 +29638,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 27491,
-                     "executionTimeMillis": 164,
+                     "executionTimeMillis": 127,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 161319,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 27491,
-                        "executionTimeMillisEstimate": 13,
+                        "executionTimeMillisEstimate": 6,
                         "works": 161321,
                         "advanced": 27491,
                         "needTime": 133829,
@@ -29660,7 +29660,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 27491,
-                           "executionTimeMillisEstimate": 11,
+                           "executionTimeMillisEstimate": 5,
                            "works": 161321,
                            "advanced": 27491,
                            "needTime": 133829,
@@ -29677,7 +29677,7 @@
                                  }
                               },
                               "nReturned": 27491,
-                              "executionTimeMillisEstimate": 9,
+                              "executionTimeMillisEstimate": 5,
                               "works": 161321,
                               "advanced": 27491,
                               "needTime": 133829,
@@ -29693,7 +29693,7 @@
                   }
                },
                "nReturned": 27491,
-               "executionTimeMillisEstimate": 148
+               "executionTimeMillisEstimate": 112
             },
             {
                "$group": {
@@ -29709,7 +29709,7 @@
                   }
                },
                "nReturned": 347,
-               "executionTimeMillisEstimate": 163
+               "executionTimeMillisEstimate": 126
             }
          ]
       },
@@ -29754,13 +29754,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 39603,
-                     "executionTimeMillis": 190,
+                     "executionTimeMillis": 154,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 161320,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 39603,
-                        "executionTimeMillisEstimate": 12,
+                        "executionTimeMillisEstimate": 9,
                         "works": 161322,
                         "advanced": 39603,
                         "needTime": 121718,
@@ -29776,7 +29776,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 39603,
-                           "executionTimeMillisEstimate": 12,
+                           "executionTimeMillisEstimate": 7,
                            "works": 161322,
                            "advanced": 39603,
                            "needTime": 121718,
@@ -29793,7 +29793,7 @@
                                  }
                               },
                               "nReturned": 39603,
-                              "executionTimeMillisEstimate": 9,
+                              "executionTimeMillisEstimate": 5,
                               "works": 161322,
                               "advanced": 39603,
                               "needTime": 121718,
@@ -29809,7 +29809,7 @@
                   }
                },
                "nReturned": 39603,
-               "executionTimeMillisEstimate": 148
+               "executionTimeMillisEstimate": 122
             },
             {
                "$group": {
@@ -29825,7 +29825,7 @@
                   }
                },
                "nReturned": 346,
-               "executionTimeMillisEstimate": 181
+               "executionTimeMillisEstimate": 149
             }
          ]
       }
@@ -29833,14 +29833,14 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232256,
+         "t": 1612445261,
          "i": 1
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232256,
+            "t": 1612445261,
             "i": 1
          }
       },
@@ -29957,7 +29957,7 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 11876,
-                     "executionTimeMillis": 58,
+                     "executionTimeMillis": 51,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 51899,
                      "executionStages": {
@@ -30012,7 +30012,7 @@
                   }
                },
                "nReturned": 11876,
-               "executionTimeMillisEstimate": 49
+               "executionTimeMillisEstimate": 43
             },
             {
                "$group": {
@@ -30028,7 +30028,7 @@
                   }
                },
                "nReturned": 10,
-               "executionTimeMillisEstimate": 49
+               "executionTimeMillisEstimate": 43
             }
          ]
       },
@@ -30073,13 +30073,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 27491,
-                     "executionTimeMillis": 155,
+                     "executionTimeMillis": 125,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 161319,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 27491,
-                        "executionTimeMillisEstimate": 10,
+                        "executionTimeMillisEstimate": 4,
                         "works": 161321,
                         "advanced": 27491,
                         "needTime": 133829,
@@ -30095,7 +30095,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 27491,
-                           "executionTimeMillisEstimate": 7,
+                           "executionTimeMillisEstimate": 4,
                            "works": 161321,
                            "advanced": 27491,
                            "needTime": 133829,
@@ -30112,7 +30112,7 @@
                                  }
                               },
                               "nReturned": 27491,
-                              "executionTimeMillisEstimate": 6,
+                              "executionTimeMillisEstimate": 3,
                               "works": 161321,
                               "advanced": 27491,
                               "needTime": 133829,
@@ -30128,7 +30128,7 @@
                   }
                },
                "nReturned": 27491,
-               "executionTimeMillisEstimate": 136
+               "executionTimeMillisEstimate": 108
             },
             {
                "$group": {
@@ -30144,7 +30144,7 @@
                   }
                },
                "nReturned": 10,
-               "executionTimeMillisEstimate": 151
+               "executionTimeMillisEstimate": 118
             }
          ]
       },
@@ -30189,13 +30189,13 @@
                   "executionStats": {
                      "executionSuccess": true,
                      "nReturned": 39603,
-                     "executionTimeMillis": 187,
+                     "executionTimeMillis": 150,
                      "totalKeysExamined": 0,
                      "totalDocsExamined": 161320,
                      "executionStages": {
                         "stage": "PROJECTION_SIMPLE",
                         "nReturned": 39603,
-                        "executionTimeMillisEstimate": 6,
+                        "executionTimeMillisEstimate": 3,
                         "works": 161322,
                         "advanced": 39603,
                         "needTime": 121718,
@@ -30211,7 +30211,7 @@
                         "inputStage": {
                            "stage": "SHARDING_FILTER",
                            "nReturned": 39603,
-                           "executionTimeMillisEstimate": 5,
+                           "executionTimeMillisEstimate": 3,
                            "works": 161322,
                            "advanced": 39603,
                            "needTime": 121718,
@@ -30228,7 +30228,7 @@
                                  }
                               },
                               "nReturned": 39603,
-                              "executionTimeMillisEstimate": 4,
+                              "executionTimeMillisEstimate": 2,
                               "works": 161322,
                               "advanced": 39603,
                               "needTime": 121718,
@@ -30244,7 +30244,7 @@
                   }
                },
                "nReturned": 39603,
-               "executionTimeMillisEstimate": 160
+               "executionTimeMillisEstimate": 125
             },
             {
                "$group": {
@@ -30260,7 +30260,7 @@
                   }
                },
                "nReturned": 10,
-               "executionTimeMillisEstimate": 187
+               "executionTimeMillisEstimate": 142
             }
          ]
       }
@@ -30268,14 +30268,14 @@
    "ok": 1.0,
    "operationTime": {
       "$timestamp": {
-         "t": 1612232256,
+         "t": 1612445261,
          "i": 1
       }
    },
    "$clusterTime": {
       "clusterTime": {
          "$timestamp": {
-            "t": 1612232256,
+            "t": 1612445261,
             "i": 1
          }
       },
