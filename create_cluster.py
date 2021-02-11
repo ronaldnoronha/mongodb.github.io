@@ -50,21 +50,21 @@ if __name__ == "__main__":
                 mycol.create_index([(index, 1)])
 
         # Create Database
-        # if sharding == 1:
-        #     mycol.insert_many(csv_to_json('data_sep.csv'))
-        #     mycol.insert_many(csv_to_json('data_oct.csv'))
-        #     mycol.insert_many(csv_to_json('data_nov.csv'))
-        #     client.admin.command('shardCollection', 'SummerResearch.' + i, key={index: sharding})
-        # else:
-        #     client.admin.command('shardCollection', 'SummerResearch.' + i, key={index: sharding})
-        #     mycol.insert_many(csv_to_json('data_sep.csv'))
-        #     mycol.insert_many(csv_to_json('data_oct.csv'))
-        #     mycol.insert_many(csv_to_json('data_nov.csv'))
+        if sharding == 1:
+            mycol.insert_many(csv_to_json('data_sep.csv'))
+            mycol.insert_many(csv_to_json('data_oct.csv'))
+            mycol.insert_many(csv_to_json('data_nov.csv'))
+            client.admin.command('shardCollection', 'SummerResearch.' + i, key={index: sharding})
+        else:
+            client.admin.command('shardCollection', 'SummerResearch.' + i, key={index: sharding})
+            mycol.insert_many(csv_to_json('data_sep.csv'))
+            mycol.insert_many(csv_to_json('data_oct.csv'))
+            mycol.insert_many(csv_to_json('data_nov.csv'))
 
-        client.admin.command('shardCollection', 'SummerResearch.' + i, key={index: sharding})
-        mycol.insert_many(csv_to_json('data_sep.csv'))
-        mycol.insert_many(csv_to_json('data_oct.csv'))
-        mycol.insert_many(csv_to_json('data_nov.csv'))
+        # client.admin.command('shardCollection', 'SummerResearch.' + i, key={index: sharding})
+        # mycol.insert_many(csv_to_json('data_sep.csv'))
+        # mycol.insert_many(csv_to_json('data_oct.csv'))
+        # mycol.insert_many(csv_to_json('data_nov.csv'))
 
 
 
