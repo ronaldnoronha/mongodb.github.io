@@ -66,6 +66,36 @@ pipeline = [
     'minDelay' : {'$min': '$ARR_DELAY'}
 }},
 {'$sort': {'avgDelay': -1}}],
+
+[{'$match': {'$and': [{'FL_DATE': {'$gte': datetime(2020,9,1)}}, {'FL_DATE': {'$lt': datetime(2020,10,1)}}]}},
+{'$group': {
+  '_id': '$ORIGIN_CITY_NAME',
+  'avgDelay' : {'$avg': '$ARR_DELAY'},
+  'maxDelay' : {'$max': '$ARR_DELAY'},
+  'minDelay' : {'$min': '$ARR_DELAY'}
+}},
+{'$sort': {'avgDelay': -1}}],
+
+[{'$match': {'$and': [{'FL_DATE': {'$gte': datetime(2020,9,1)}}, {'FL_DATE': {'$lt': datetime(2020,10,1)}}]}},
+{'$group': {
+'_id': '$DEST_CITY_NAME',
+'avgDelay' : {'$avg': '$ARR_DELAY'},
+'maxDelay' : {'$max': '$ARR_DELAY'},
+'minDelay' : {'$min': '$ARR_DELAY'}
+}},
+{'$sort': {'avgDelay': -1}}],
+
+[{'$match': {'$and': [{'FL_DATE': {'$gte': datetime(2020,9,1)}}, {'FL_DATE': {'$lt': datetime(2020,10,1)}}]}},
+{'$group': {
+'_id': '$MKT_UNIQUE_CARRIER',
+'avgDelay' : {'$avg': '$ARR_DELAY'},
+'maxDelay' : {'$max': '$ARR_DELAY'},
+'minDelay' : {'$min': '$ARR_DELAY'}
+}},
+{'$sort': {'avgDelay': -1}}],
+
+[]
+
 ]
 
 class Workload:

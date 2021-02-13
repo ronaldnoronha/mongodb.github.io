@@ -30,7 +30,7 @@ db.getCollection('AirlineData').aggregate([
 ```
 db.getCollection('AirlineData').aggregate([
 {$group: {
-    _id: '$ORIGIN_CITY_NAME',
+    _id: '$ORIGIN',
     late: {$sum: { $cond: 
         { if: { $gt: ['$ARR_DELAY', 0] }, then: 1, else: 0 }
     }},
@@ -48,7 +48,7 @@ db.getCollection('AirlineData').aggregate([
 ```
 db.getCollection('AirlineData').aggregate([
 {$group: {
-    _id: '$DEST_CITY_NAME',
+    _id: '$DEST',
     late: {$sum: { $cond: 
         { if: { $gt: ['$ARR_DELAY', 0] }, then: 1, else: 0 }
     }},
@@ -67,7 +67,7 @@ db.getCollection('AirlineData').aggregate([
 db.getCollection('AirlineData').aggregate([
 {$match: {ARR_DELAY: {$gt: 0}}},
 {$group: {
-    _id: '$ORIGIN_CITY_NAME',
+    _id: '$ORIGIN',
     avgDelay : {$avg: '$ARR_DELAY'},
     maxDelay : {$max: '$ARR_DELAY'},
     minDelay : {$min: '$ARR_DELAY'}
@@ -82,7 +82,7 @@ db.getCollection('AirlineData').aggregate([
 db.getCollection('AirlineData').aggregate([
 {$match: {ARR_DELAY: {$gt: 0}}},
 {$group: {
-    _id: '$DEST_CITY_NAME',
+    _id: '$DEST',
     avgDelay : {$avg: '$ARR_DELAY'},
     maxDelay : {$max: '$ARR_DELAY'},
     minDelay : {$min: '$ARR_DELAY'}
@@ -109,9 +109,9 @@ db.getCollection('AirlineData').aggregate([
 - Query 8: Max/Min/Avg delay by origin for a given date range
 ```
 db.getCollection('AirlineData').aggregate([
-{$match: {$and: [{FL_DATE: {$gte: ISODate('2020-09-01')}}, {FL_DATE: {$lt: ISODate('2020-11-01')}}]}},
+{$match: {$and: [{FL_DATE: {$gte: ISODate('2020-09-01')}}, {FL_DATE: {$lt: ISODate('2020-10-01')}}]}},
 {$group: {
-  _id: '$ORIGIN_CITY_NAME',
+  _id: '$ORIGIN',
   avgDelay : {$avg: '$ARR_DELAY'},
   maxDelay : {$max: '$ARR_DELAY'},
   minDelay : {$min: '$ARR_DELAY'}
@@ -123,9 +123,9 @@ db.getCollection('AirlineData').aggregate([
 - Query 9: Max/Min/Avg delay by destination for a given date range
 ```
 db.getCollection('AirlineData').aggregate([
-{$match: {$and: [{FL_DATE: {$gte: ISODate('2020-09-01')}}, {FL_DATE: {$lt: ISODate('2020-11-01')}}]}},
+{$match: {$and: [{FL_DATE: {$gte: ISODate('2020-09-01')}}, {FL_DATE: {$lt: ISODate('2020-10-01')}}]}},
 {$group: {
-  _id: '$DEST_CITY_NAME',
+  _id: '$DEST',
   avgDelay : {$avg: '$ARR_DELAY'},
   maxDelay : {$max: '$ARR_DELAY'},
   minDelay : {$min: '$ARR_DELAY'}
@@ -134,10 +134,10 @@ db.getCollection('AirlineData').aggregate([
 ])
 ```
 
-- Query 10: Max/Min/Avg delay by airlione for a given date range
+- Query 10: Max/Min/Avg delay by airline for a given date range
 ```
 db.getCollection('AirlineData').aggregate([
-{$match: {$and: [{FL_DATE: {$gte: ISODate('2020-09-01')}}, {FL_DATE: {$lt: ISODate('2020-11-01')}}]}},
+{$match: {$and: [{FL_DATE: {$gte: ISODate('2020-09-01')}}, {FL_DATE: {$lt: ISODate('2020-10-01')}}]}},
 {$group: {
   _id: '$MKT_UNIQUE_CARRIER',
   avgDelay : {$avg: '$ARR_DELAY'},
@@ -147,5 +147,17 @@ db.getCollection('AirlineData').aggregate([
 {$sort: {avgDelay: -1}}
 ])
 ```
+
+- Query 11: Max/Min/Avg delay for each origin by airline
+```
+
+```
+
+
+
+- Query 12: Max/Min/Avg delay for each destination by airline
+
+- Query 13: For a given range of dates, find all flights that are delayed by a given number of minutes. 
+
 
 [Back to Overview](index.md)
