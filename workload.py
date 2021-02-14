@@ -15,7 +15,7 @@ pipeline = [
 {'$sort': {'late_percent': -1 }}],
 
 [{'$group': {
-    '_id': '$ORIGIN_CITY_NAME',
+    '_id': '$ORIGIN',
     'late': {'$sum': { '$cond':
         { 'if': { '$gt': ['$ARR_DELAY', 0] }, 'then': 1, 'else': 0 }
     }},
@@ -28,7 +28,7 @@ pipeline = [
 { '$sort': { 'late_percent': -1}}],
 
 [{'$group': {
-    '_id': '$DEST_CITY_NAME',
+    '_id': '$DEST',
     'late': {'$sum': { '$cond':
         { 'if': { '$gt': ['$ARR_DELAY', 0] }, 'then': 1, 'else': 0 }
     }},
@@ -42,7 +42,7 @@ pipeline = [
 
 [{'$match': {'ARR_DELAY': {'$gt': 0}}},
 {'$group': {
-    '_id': '$ORIGIN_CITY_NAME',
+    '_id': '$ORIGIN',
     'avgDelay' : {'$avg': '$ARR_DELAY'},
     'maxDelay' : {'$max': '$ARR_DELAY'},
     'minDelay' : {'$min': '$ARR_DELAY'}
@@ -51,7 +51,7 @@ pipeline = [
 
 [{'$match': {'ARR_DELAY': {'$gt': 0}}},
 {'$group': {
-    '_id': '$DEST_CITY_NAME',
+    '_id': '$DEST',
     'avgDelay' : {'$avg': '$ARR_DELAY'},
     'maxDelay' : {'$max': '$ARR_DELAY'},
     'minDelay' : {'$min': '$ARR_DELAY'}
@@ -69,7 +69,7 @@ pipeline = [
 
 [{'$match': {'$and': [{'FL_DATE': {'$gte': datetime(2020,9,1)}}, {'FL_DATE': {'$lt': datetime(2020,10,1)}}]}},
 {'$group': {
-  '_id': '$ORIGIN_CITY_NAME',
+  '_id': '$ORIGIN',
   'avgDelay' : {'$avg': '$ARR_DELAY'},
   'maxDelay' : {'$max': '$ARR_DELAY'},
   'minDelay' : {'$min': '$ARR_DELAY'}
@@ -78,7 +78,7 @@ pipeline = [
 
 [{'$match': {'$and': [{'FL_DATE': {'$gte': datetime(2020,9,1)}}, {'FL_DATE': {'$lt': datetime(2020,10,1)}}]}},
 {'$group': {
-'_id': '$DEST_CITY_NAME',
+'_id': '$DEST',
 'avgDelay' : {'$avg': '$ARR_DELAY'},
 'maxDelay' : {'$max': '$ARR_DELAY'},
 'minDelay' : {'$min': '$ARR_DELAY'}
