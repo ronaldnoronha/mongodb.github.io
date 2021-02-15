@@ -201,4 +201,71 @@ db.getCollection('AirlineData').aggregate([
 ])
 ```
 
+- Query 14: Max/Min/Avg delay by day of week for each Origin
+
+
+```
+db.getCollection('AirlineData').aggregate([
+{$project: {ORIGIN: '$ORIGIN', day: {$dayOfWeek: '$FL_DATE'}, ARR_DELAY: '$ARR_DELAY'}},
+{$group: {
+    _id : ['$ORIGIN', '$day'],
+    'avgDelay' : {$avg: '$ARR_DELAY'},
+    'maxDelay' : {$max: '$ARR_DELAY'},
+    'minDelay' : {$min: '$ARR_DELAY'}
+}},
+{$project: {'_id':0 ,ORIGIN: {$arrayElemAt : ['$_id', 0]}, day: {$arrayElemAt : ['$_id', 1]},
+            'avgDelay':'$avgDelay', 'maxDelay':'$maxDelay', 'minDelay':'$minDelay'}}
+])
+```
+
+
+- Query 15:  Max/Min/Avg delay by day of week for each Destination
+
+```
+db.getCollection('AirlineData').aggregate([
+{$project: {DEST: '$DEST', day: {$dayOfWeek: '$FL_DATE'}, ARR_DELAY: '$ARR_DELAY'}},
+{$group: {
+    _id : ['$DEST', '$day'],
+    'avgDelay' : {$avg: '$ARR_DELAY'},
+    'maxDelay' : {$max: '$ARR_DELAY'},
+    'minDelay' : {$min: '$ARR_DELAY'}
+}},
+{$project: {'_id':0 ,DEST: {$arrayElemAt : ['$_id', 0]}, day: {$arrayElemAt : ['$_id', 1]},
+            'avgDelay':'$avgDelay', 'maxDelay':'$maxDelay', 'minDelay':'$minDelay'}}
+])
+```
+
+- Query 16: Number of flights by airline
+```
+db.getCollection('AirlineData').aggregate([
+{$group: {_id: '$MKT_UNIQUE_CARRIER',
+    count: {$sum: 1}}}
+])
+```
+
+- Query 17: Number of flights by origin within a range of flight dates
+```
+db.getCollection('AirlineData').aggregate([
+{$match: { $and: [
+    { FL_DATE: {$gte: ISODate('2020-10-01')}}, 
+    { FL_DATE: {$lt: ISODate('2020-10-16')}}]
+}},
+{ $group: {_id: '$ORIGIN',
+            count: {$sum: 1}}}
+])
+```
+
+
+- Query 18: Number of flights by destination within a range of flight dates 
+```
+db.getCollection('AirlineData').aggregate([
+{$match: { $and: [
+    { FL_DATE: {$gte: ISODate('2020-10-01')}}, 
+    { FL_DATE: {$lt: ISODate('2020-10-16')}}]
+}},
+{ $group: {_id: '$DEST',
+            count: {$sum: 1}}}
+])
+```
+
 [Back to Overview](index.md)

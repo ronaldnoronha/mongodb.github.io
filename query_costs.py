@@ -20,6 +20,8 @@ if __name__ == "__main__":
         data.append(dct)
     df = pd.DataFrame(data)
 
+    df_total = pd.DataFrame([dict(df.sum())])
+
     list_of_queries= []
     for i in range(len(pipeline)):
         list_of_queries.append('Query '+str(i+1))
@@ -30,3 +32,6 @@ if __name__ == "__main__":
 
     table = Table(df)
     table.getJPG('images/cost.jpg')
+
+    table = Table(df_total)
+    table.getJPG('images/cost_total.jpg')

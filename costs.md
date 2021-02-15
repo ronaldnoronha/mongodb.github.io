@@ -4,4 +4,10 @@ The query costs here are the number of documents examined to produce result. Fro
 
 ![Costs](images/cost.jpg)
 
+# Total costs
+
+Total number of documents examined by each partition for executing the query workload.
+
+![Total costs](images/cost_total.jpg)
+
 [Back to Overview](index.md)
