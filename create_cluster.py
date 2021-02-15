@@ -16,9 +16,7 @@ list_of_collections = ['AirlineData',
                        'AirlineData_ARR_DELAY_range'
                        ]
 
-compound_collection = ['AirlineData_X',
-                       'AirlineData_X_range'
-                       ]
+compound_collection = 'AirlineData_X'
 
 def csv_to_json(filename, header=None):
     data = pd.read_csv(filename)
@@ -53,18 +51,27 @@ if __name__ == "__main__":
                 mycol.create_index([(index, 1)])
 
         # Create Database
-        if sharding == 1:
-            mycol.insert_many(csv_to_json('data_sep.csv'))
-            mycol.insert_many(csv_to_json('data_oct.csv'))
-            mycol.insert_many(csv_to_json('data_nov.csv'))
-            client.admin.command('shardCollection', 'SummerResearch.' + i, key={index: sharding})
-        else:
-            client.admin.command('shardCollection', 'SummerResearch.' + i, key={index: sharding})
-            mycol.insert_many(csv_to_json('data_sep.csv'))
-            mycol.insert_many(csv_to_json('data_oct.csv'))
-            mycol.insert_many(csv_to_json('data_nov.csv'))
+        # if sharding == 1:
+        #     mycol.insert_many(csv_to_json('data_sep.csv'))
+        #     mycol.insert_many(csv_to_json('data_oct.csv'))
+        #     mycol.insert_many(csv_to_json('data_nov.csv'))
+        #     client.admin.command('shardCollection', 'SummerResearch.' + i, key={index: sharding})
+        # else:
+        #     client.admin.command('shardCollection', 'SummerResearch.' + i, key={index: sharding})
+        #     mycol.insert_many(csv_to_json('data_sep.csv'))
+        #     mycol.insert_many(csv_to_json('data_oct.csv'))
+        #     mycol.insert_many(csv_to_json('data_nov.csv'))
 
-        # client.admin.command('shardCollection', 'SummerResearch.' + i, key={index: sharding})
-        # mycol.insert_many(csv_to_json('data_sep.csv'))
-        # mycol.insert_many(csv_to_json('data_oct.csv'))
-        # mycol.insert_many(csv_to_json('data_nov.csv'))
+        client.admin.command('shardCollection', 'SummerResearch.' + i, key={index: sharding})
+        mycol.insert_many(csv_to_json('data_sep.csv'))
+        mycol.insert_many(csv_to_json('data_oct.csv'))
+        mycol.insert_many(csv_to_json('data_nov.csv'))
+
+
+    # Compound Collecion
+    mycol = db[compound_collection]
+    mycol.create_index([('ORIGIN',1),('MKT_UNIQUE_CARRIER',1)])
+    client.admin.command('shardCollection', 'SummerResearch.' + compound_collection, key={'ORIGIN': 1, 'MKT_UNIQUE_CARRIER': 1})
+    mycol.insert_many(csv_to_json('data_sep.csv'))
+    mycol.insert_many(csv_to_json('data_oct.csv'))
+    mycol.insert_many(csv_to_json('data_nov.csv'))
