@@ -132,7 +132,42 @@ pipeline = [
 }},
 {'$match' : { 'ARR_DELAY' : { '$gt' : 10}}}],
 
+[{'$project': {'ORIGIN': '$ORIGIN', 'day': {'$dayOfWeek': '$FL_DATE'}, 'ARR_DELAY': '$ARR_DELAY'}},
+{'$group': {
+    '_id' : ['$ORIGIN', '$day'],
+    'avgDelay' : {'$avg': '$ARR_DELAY'},
+    'maxDelay' : {'$max': '$ARR_DELAY'},
+    'minDelay' : {'$min': '$ARR_DELAY'}
+}},
+{'$project': {'_id':0 ,'ORIGIN': {'$arrayElemAt' : ['$_id', 0]}, 'day': {'$arrayElemAt' : ['$_id', 1]},
+            'avgDelay':'$avgDelay', 'maxDelay':'$maxDelay', 'minDelay':'$minDelay'}}],
 
+[{'$project': {'DEST': '$DEST', 'day': {'$dayOfWeek': '$FL_DATE'}, 'ARR_DELAY': '$ARR_DELAY'}},
+{'$group': {
+    '_id' : ['$DEST', '$day'],
+    'avgDelay' : {'$avg': '$ARR_DELAY'},
+    'maxDelay' : {'$max': '$ARR_DELAY'},
+    'minDelay' : {'$min': '$ARR_DELAY'}
+}},
+{'$project': {'_id':0 ,'DEST': {'$arrayElemAt' : ['$_id', 0]}, 'day': {'$arrayElemAt' : ['$_id', 1]},
+            'avgDelay':'$avgDelay', 'maxDelay':'$maxDelay', 'minDelay':'$minDelay'}}],
+
+[{'$group': {'_id': '$MKT_UNIQUE_CARRIER',
+  'count': {'$sum': 1}}}],
+
+[{'$match': { '$and': [
+  { 'FL_DATE': {'$gte': datetime(2020,10,1)}},
+  { 'FL_DATE': {'$lt': datetime(2020,10,16)}}]
+}},
+{ '$group': {'_id': '$ORIGIN',
+          'count': {'$sum': 1}}}],
+
+[{'$match': { '$and': [
+  { 'FL_DATE': {'$gte': datetime(2020,10,1)}},
+  { 'FL_DATE': {'$lt': datetime(2020,10,16)}}]
+}},
+{ '$group': {'_id': '$DEST',
+          'count': {'$sum': 1}}}]
 
 ]
 
